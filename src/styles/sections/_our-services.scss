@@ -1,0 +1,26 @@
+@use "../abstracts/functions";
+@use "../abstracts/responsive";
+
+.our-services-title {
+	font-size: functions.get-font-size(h3);
+	line-height: 1.2em;
+
+	@include responsive.style-in-tablet {
+		font-size: functions.get-font-size(h2);
+	}
+}
+
+.our-services-description {
+	font-size: functions.get-font-size(sm);
+
+	@include responsive.style-in-tablet {
+		font-size: functions.get-font-size(base);
+	}
+}
+
+.our-services-image {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	height: 48vh;
+}

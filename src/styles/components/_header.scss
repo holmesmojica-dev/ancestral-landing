@@ -1,0 +1,27 @@
+@use "../abstracts/responsive";
+
+header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 10;
+
+	@include responsive.style-in-laptop {
+		.hide-content {
+			opacity: 0;
+			max-height: 0;
+			transition: opacity 0.3s ease, max-height 0.4s ease;
+			overflow: hidden;
+		}
+	}
+}
+
+.container-xl {
+	opacity: 1;
+	max-height: 400px;
+	transition: opacity 0.5s ease, max-height 0.3s ease;
+}
+
+.header-spacer {
+	height: 174px;
+}

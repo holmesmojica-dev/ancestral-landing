@@ -1,0 +1,84 @@
+@use "../abstracts/variables";
+@use "../abstracts/colors";
+@use "../abstracts/fonts";
+@use "../abstracts/functions";
+
+@include colors.generate-color-classes(variables.$custom-colors);
+
+@include fonts.generate-font-family-classes(variables.$custom-font-families);
+@include fonts.generate-font-size-classes(variables.$custom-font-sizes);
+@include fonts.generate-font-weight-classes(variables.$custom-font-weights);
+@include fonts.generate-line-height-classes(variables.$custom-line-heights);
+
+*,
+*::before,
+*::after {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	outline: none;
+	text-decoration: none;
+	list-style: none;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	box-sizing: border-box;
+	background-color: functions.get-color(white);
+	color: functions.get-color(text);
+	font-family: functions.get-font-family(heebo);
+	font-weight: 300;
+	font-size: functions.get-font-size(base);
+	line-height: 1.5em;
+	overflow-x: hidden;
+}
+
+img {
+	display: block;
+}
+
+// Input
+input,
+select,
+textarea {
+	padding: 15px 25px;
+	border-radius: 0.4rem;
+	width: 100%;
+	border: 1px solid functions.get-color(light-gray);
+	font-size: 15px;
+	font-family: functions.get-font-family(inter);
+	font-weight: 400;
+
+	&::placeholder {
+		color: functions.get-color(text) !important;
+	}
+
+	&::-webkit-input-placeholder {
+		color: functions.get-color(text) !important;
+	}
+
+	&::-moz-placeholder {
+		color: functions.get-color(text) !important;
+	}
+
+	&:-ms-input-placeholder {
+		color: functions.get-color(text) !important;
+	}
+
+	&::-ms-input-placeholder {
+		color: functions.get-color(text) !important;
+	}
+}
+
+h2,
+h3,
+h5,
+div {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}

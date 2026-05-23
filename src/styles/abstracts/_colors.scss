@@ -1,0 +1,26 @@
+@mixin generate-color-classes($colors-map) {
+	@each $key, $value in $colors-map {
+		$color-name: "#{$key}";
+		@include generate-bg-color-class($color-name, $value);
+		@include generate-font-color-class($color-name, $value);
+		@include generate-fill-class($color-name, $value);
+	}
+}
+
+@mixin generate-bg-color-class($class-name, $color) {
+	.c-bg-#{$class-name} {
+		background-color: $color;
+	}
+}
+
+@mixin generate-font-color-class($class-name, $color) {
+	.c-fc-#{$class-name} {
+		color: $color;
+	}
+}
+
+@mixin generate-fill-class($class-name, $color) {
+	.c-fill-#{$class-name} {
+		fill: $color;
+	}
+}

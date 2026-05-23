@@ -1,0 +1,17 @@
+@use "../abstracts/responsive";
+
+.contact-us-image {
+	background-image: url(../assets/images/contact/contact-us-form-img.jpg);
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-size: cover;
+}
+
+.contact-us-form-container {
+	position: relative;
+	margin-top: -21rem;
+
+	@include responsive.style-in-mobile {
+		margin-top: -19rem;
+	}
+}

@@ -1,0 +1,69 @@
+@use "../abstracts/functions";
+@use "../abstracts/responsive";
+
+.nav-link {
+	padding-left: 0 !important;
+	padding-right: 2rem !important;
+
+	font-family: functions.get-font-family(inter);
+	font-size: functions.get-font-size(xs);
+	color: functions.get-color(primary);
+	font-weight: 700;
+
+	&.active,
+	&:focus,
+	&:hover {
+		color: functions.get-color(secondary) !important;
+	}
+
+	@include responsive.style-in-laptop {
+		&.active,
+		&:focus,
+		&:hover {
+			color: functions.get-color(accent) !important;
+		}
+	}
+}
+
+.navbar-toggler {
+	cursor: pointer;
+	border: none !important;
+
+	&:hover,
+	&:active,
+	&:focus {
+		color: functions.get-color(secondary) !important;
+	}
+}
+
+.navbar-collapse {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.5s ease-out, opacity 0.5s ease-out, transform 0.5s ease-out;
+	opacity: 0;
+	transform: translateY(-20px);
+
+	@include responsive.style-in-laptop {
+		max-height: none;
+		opacity: 1;
+		transform: none;
+		display: block;
+	}
+}
+
+#navbar-toggle:checked + .navbar-toggler + .navbar-collapse {
+	max-height: 100vh;
+	opacity: 1;
+	transform: translateY(0);
+	transition: max-height 0.5s ease-in, opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+.nav-network {
+	position: absolute;
+	right: 1em;
+	top: 0;
+
+	@include responsive.style-in-laptop {
+		position: inherit;
+	}
+}

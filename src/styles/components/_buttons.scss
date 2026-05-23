@@ -1,0 +1,73 @@
+@use "../abstracts/functions";
+
+.btn-wrapper {
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	font-family: functions.get-font-family(inter);
+	font-weight: 500;
+	line-height: 1em;
+}
+
+.btn-rounded-wrapper {
+	cursor: pointer;
+	border-radius: 50%;
+	padding: 1rem;
+}
+
+.btn-c-accent {
+	background-color: functions.get-color(accent);
+	color: functions.get-color(secondary);
+	fill: functions.get-color(secondary);
+
+	&:focus,
+	&:hover {
+		background-color: functions.get-color(secondary);
+		color: functions.get-color(accent);
+	}
+
+	&:active {
+		background-color: functions.get-color(primary) !important;
+	}
+}
+
+.btn-c-secondary {
+	background-color: functions.get-color(secondary);
+	color: functions.get-color(accent);
+
+	&:hover {
+		background-color: functions.get-color(accent);
+		color: functions.get-color(secondary);
+	}
+
+	&:active {
+		background-color: functions.get-color(medium-gray) !important;
+	}
+}
+
+.btn-link {
+	@extend .btn-wrapper;
+	text-decoration: none;
+	padding: 15px 30px;
+}
+
+.btn-link-sm {
+	@extend .btn-link;
+	font-size: functions.get-font-size(sm);
+}
+
+.btn-link-rounded {
+	@extend .btn-rounded-wrapper;
+}
+
+.btn-link-rounded-sm {
+	@extend .btn-link-rounded;
+	font-size: functions.get-font-size(sm);
+	padding: 0.4rem;
+}
+
+.btn-link-square {
+	@extend .btn-wrapper;
+	text-decoration: none;
+	padding: 15px;
+}

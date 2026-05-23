@@ -1,0 +1,13 @@
+@use "../abstracts/responsive";
+
+.projects-widget {
+	left: 50%;
+
+	@include responsive.style-in-phablet {
+		left: 26.5%;
+	}
+
+	@include responsive.style-in-laptop {
+		left: 28%;
+	}
+}

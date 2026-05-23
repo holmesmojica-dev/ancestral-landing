@@ -1,0 +1,82 @@
+@use "../abstracts/functions";
+
+.opacity-90 {
+	opacity: 0.9;
+}
+
+// List
+.c-features-list {
+	list-style: none;
+	padding: 0;
+
+	li {
+		position: relative;
+		padding-left: 25px;
+		margin-bottom: 0.8em;
+
+		&::before {
+			content: "\2713";
+			position: absolute;
+			left: 0;
+			top: 0;
+			color: functions.get-color(accent);
+			font-size: 1.2rem;
+			line-height: 1;
+			font-weight: 600;
+		}
+
+		a {
+			text-decoration: none;
+			color: #333;
+			transition: color 0.3s ease;
+
+			&:hover {
+				color: #007bff;
+			}
+		}
+	}
+}
+
+// Animations
+.c-animation-float {
+	transition-duration: 0.3s;
+	transition-property: transform;
+	transition-timing-function: ease-out;
+
+	&:focus,
+	&:hover {
+		transform: translateY(-7px);
+	}
+}
+
+.c-animation-shrink {
+	transition-duration: 0.3s;
+	transition-property: transform;
+
+	&:focus,
+	&:hover {
+		transform: scale(0.9);
+	}
+
+	&:active {
+		transform: scale(0.8);
+	}
+}
+
+.c-animation-go-right {
+	&:hover {
+		animation: kf-go-right 0.7s infinite;
+	}
+}
+
+@keyframes kf-go-right {
+	0% {
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(7px);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}

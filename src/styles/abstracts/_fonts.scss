@@ -1,0 +1,31 @@
+@mixin generate-font-family-classes($font-families-map) {
+	@each $key, $value in $font-families-map {
+		.c-ff-#{$key} {
+			font-family: $value, Sans-serif;
+		}
+	}
+}
+
+@mixin generate-font-size-classes($font-sizes-map) {
+	@each $key, $value in $font-sizes-map {
+		.c-fs-#{$key} {
+			font-size: $value;
+		}
+	}
+}
+
+@mixin generate-font-weight-classes($font-weights-map) {
+	@each $key, $value in $font-weights-map {
+		.c-fw-#{$key} {
+			font-weight: $value;
+		}
+	}
+}
+
+@mixin generate-line-height-classes($line-heights-map) {
+	@each $key, $value in $line-heights-map {
+		.c-lh-#{$key} {
+			line-height: $value;
+		}
+	}
+}

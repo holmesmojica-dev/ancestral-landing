@@ -1,0 +1,48 @@
+// Colors map definitions
+$custom-colors: (
+	primary: #00160e,
+	secondary: #006943,
+	text: #7f7f7f,
+	accent: #96cf24,
+	white: #ffffff,
+	medium-gray: #c4c4c4,
+	light-gray: #e1e1e1,
+);
+
+// Font families map definition
+$custom-font-families: (
+	inter: "Inter",
+	roboto: "Roboto",
+	heebo: "Heebo",
+);
+
+// Font sizes map definitions
+$custom-font-sizes: (
+	h1: 50px,
+	h2: 34px,
+	h3: 24px,
+	h4: 18px,
+	title: 30px,
+	base: 16px,
+	md: 20px,
+	sm: 14px,
+	xs: 12px,
+);
+
+// Font weights map definitions
+$custom-font-weights: (
+	bold: 700,
+	semibold: 600,
+	medium: 500,
+	normal: 400,
+	light: 300,
+);
+
+// Line heights map definitions
+$custom-line-heights: (
+	normal: 1em,
+	tight: 1.1em,
+	compact: 1.2em,
+	relaxed: 1.3em,
+	loose: 1.5em,
+);
