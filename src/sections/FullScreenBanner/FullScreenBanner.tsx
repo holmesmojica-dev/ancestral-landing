@@ -48,7 +48,7 @@ const FullScreenBanner: React.FC<BaseSectionProps> = ({ id }) => {
 						<img
 							key={`banner-image-${index}`}
 							src={image}
-							alt={`Banner Image ${index + 1}`}
+							alt=""
 							className={`banner-image ${currentIndex === index ? "active" : ""}`}
 						/>
 					))}
