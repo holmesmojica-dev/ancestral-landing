@@ -62,9 +62,9 @@ const Navbar: React.FC = () => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light">
 			<div className="container-fluid align-items-center position-relative">
-				<input type="checkbox" id="navbar-toggle" className="d-none" aria-hidden="true" />
-				<label htmlFor="navbar-toggle" className="navbar-toggler" aria-label="Toggle navigation">
-					<MenuIcon className="c-fc-accent c-fw-bold" />
+				<input type="checkbox" id="navbar-toggle" className="d-none" />
+				<label htmlFor="navbar-toggle" className="navbar-toggler" aria-label="Toggle navigation menu">
+					<MenuIcon className="c-fc-accent c-fw-bold" aria-hidden="true" />
 				</label>
 
 				<div className="navbar-collapse" id="navbarNav">
