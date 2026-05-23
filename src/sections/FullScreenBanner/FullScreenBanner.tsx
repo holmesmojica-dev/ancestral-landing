@@ -46,7 +46,7 @@ const FullScreenBanner: React.FC<BaseSectionProps> = ({ id }) => {
 				<div className="banner-images">
 					{images.map((image, index) => (
 						<img
-							key={`banner-image-${index}`}
+							key={image}
 							src={image}
 							alt=""
 							className={`banner-image ${currentIndex === index ? "active" : ""}`}
@@ -96,8 +96,8 @@ const FullScreenBanner: React.FC<BaseSectionProps> = ({ id }) => {
 
 						<div className="col-12 col-sm-6 d-flex align-items-center">
 							<ul className="c-features-list mb-0">
-								{selectedService.features.map((feature, index) => (
-									<li key={`service-feature-${index}`}>{feature}</li>
+								{selectedService.features.map((feature) => (
+									<li key={feature}>{feature}</li>
 								))}
 							</ul>
 						</div>
