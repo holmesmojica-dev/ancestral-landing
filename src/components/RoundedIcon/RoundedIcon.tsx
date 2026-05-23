@@ -1,18 +1,14 @@
 import { LucideProps } from "lucide-react";
-
-export enum IconStyle {
-	Accent,
-	Secondary,
-}
+import { ICON_STYLES, IconStyle } from "./RoundedIcon.constants";
 
 interface RoundedIconProps {
 	style: IconStyle;
 	icon: React.ComponentType<LucideProps>;
 }
 
-const RoundedIcon: React.FC<RoundedIconProps> = ({ icon: Icon, style = IconStyle.Accent }) => {
+const RoundedIcon: React.FC<RoundedIconProps> = ({ icon: Icon, style = ICON_STYLES.ACCENT }) => {
 	const styleClasses =
-		style === IconStyle.Accent
+		style === ICON_STYLES.ACCENT
 			? "c-fc-secondary c-bg-accent"
 			: "c-fc-accent c-bg-secondary";
 

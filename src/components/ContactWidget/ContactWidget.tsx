@@ -1,5 +1,6 @@
 import { LucideProps } from "lucide-react";
-import RoundedIcon, { IconStyle } from "../RoundedIcon/RoundedIcon";
+import RoundedIcon from "../RoundedIcon/RoundedIcon";
+import { ICON_STYLES } from "../RoundedIcon/RoundedIcon.constants";
 
 interface ContactWidgetProps {
 	title: string;
@@ -13,7 +14,7 @@ const ContactWidget: React.FC<ContactWidgetProps> = ({
 	widgetIcon: WidgetIcon,
 }) => (
 	<div className="d-flex align-items-center gap-3 justify-content-center py-1">
-		<RoundedIcon icon={WidgetIcon} style={IconStyle.Secondary} />
+		<RoundedIcon icon={WidgetIcon} style={ICON_STYLES.SECONDARY} />
 		<div>
 			<div className="c-ff-inter c-fs-h4 c-fc-primary c-fw-medium">
 				<span>{title}</span>
