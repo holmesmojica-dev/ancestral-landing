@@ -13,6 +13,9 @@ const Navbar: React.FC = () => {
 
 	useEffect(() => {
 		return initScrollingObserver();
+
+		// Observer should only be initialized once on mount.
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const initScrollingObserver = () => {
@@ -21,12 +24,7 @@ const Navbar: React.FC = () => {
 
 		const observer = new IntersectionObserver(
 			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						const menuItem = menuItems.find((item) => getMenuSectionId(item.id) === entry.target.id);
-						if (menuItem) setActiveItem(menuItem.id);
-					}
-				});
+				entries.forEach(handleIntersection);
 			},
 			{
 				root: null,
@@ -34,15 +32,26 @@ const Navbar: React.FC = () => {
 			}
 		);
 
-		sections.forEach((section) => {
-			observer.observe(section);
-		});
+		sections.forEach((section) => observer.observe(section));
 
 		return () => {
 			sections.forEach((section) => {
 				observer.unobserve(section);
 			});
 		};
+	};
+
+	const handleIntersection = (entry: IntersectionObserverEntry) => {
+		if (entry.isIntersecting) {
+			const menuItem = findMenuItemBySection(entry.target.id);
+			if (menuItem) setActiveItem(menuItem.id);
+		}
+	};
+
+	const findMenuItemBySection = (sectionId: string) => {
+		return menuItems.find(
+			(item) => getMenuSectionId(item.id) === sectionId
+		);
 	};
 
 	const handleItemClick = () => {

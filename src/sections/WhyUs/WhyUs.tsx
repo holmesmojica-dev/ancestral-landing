@@ -1,5 +1,6 @@
 import { Handshake, HardHatIcon, SproutIcon } from "lucide-react";
-import RoundedIcon, { IconStyle } from "../../components/RoundedIcon/RoundedIcon";
+import RoundedIcon from "../../components/RoundedIcon/RoundedIcon";
+import { ICON_STYLES } from "../../components/RoundedIcon/RoundedIcon.constants";
 import { BaseSectionProps } from "../../types/baseSection";
 import { menuSectionClass } from "../../config/menuConfig";
 
@@ -56,7 +57,7 @@ const WhyUs: React.FC<BaseSectionProps> = ({ id }) => {
 										<div className="pb-4">
 											<RoundedIcon
 												icon={feature.icon}
-												style={feature.id % 2 === 0 ? IconStyle.Accent : IconStyle.Secondary}
+												style={feature.id % 2 === 0 ? ICON_STYLES.ACCENT : ICON_STYLES.SECONDARY}
 											/>
 										</div>
 										<h3 className="c-ff-inter c-fc-white c-fs-md c-fw-medium c-lh-relaxed mb-0">

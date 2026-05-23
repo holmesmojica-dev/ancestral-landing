@@ -1,5 +1,6 @@
 import { SproutIcon } from "lucide-react";
-import RoundedIcon, { IconStyle } from "../../components/RoundedIcon/RoundedIcon";
+import RoundedIcon from "../../components/RoundedIcon/RoundedIcon";
+import { ICON_STYLES } from "../../components/RoundedIcon/RoundedIcon.constants";
 import { BaseSectionProps } from "../../types/baseSection";
 import { menuSectionClass } from "../../config/menuConfig";
 
@@ -26,7 +27,7 @@ const ContactUs: React.FC<BaseSectionProps> = ({ id }) => (
 						<div className="col-sm-6 contact-us-image position-relative">
 							<div className="h-100 w-100 bg-black bg-gradient opacity-50 position-absolute"></div>
 							<div className="position-relative d-flex flex-column px-5 py-9 p-sm-8 justify-content-end align-items-center text-center gap-2 h-100">
-								<RoundedIcon icon={SproutIcon} style={IconStyle.Accent} />
+								<RoundedIcon icon={SproutIcon} style={ICON_STYLES.ACCENT} />
 								<h3 className="c-ff-inter c-fs-h2 c-fw-semibold c-fc-white">
 									Envía tu necesidad, Obtén una solución
 								</h3>
