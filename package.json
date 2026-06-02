@@ -13,7 +13,9 @@
 		"prepare": "husky",
 		"test": "vitest",
 		"test:run": "vitest run",
-		"test:watch": "vitest"
+		"test:watch": "vitest",
+		"coverage": "vitest run --coverage",
+		"coverage:watch": "vitest --coverage"
 	},
 	"dependencies": {
 		"@fontsource/heebo": "^5.2.8",
@@ -34,6 +36,7 @@
 		"@types/react": "^18.3.10",
 		"@types/react-dom": "^18.3.0",
 		"@vitejs/plugin-react": "^4.3.2",
+		"@vitest/coverage-v8": "^4.1.8",
 		"eslint": "^9.11.1",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-jsx-a11y": "^6.10.2",
