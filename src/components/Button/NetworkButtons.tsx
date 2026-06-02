@@ -1,4 +1,6 @@
-import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa6";
+import { AiFillInstagram } from "react-icons/ai";
 
 interface NetworkButtonsProps {
 	className?: string;
@@ -8,22 +10,22 @@ const NetworkButtons: React.FC<NetworkButtonsProps> = ({ className }) => {
 	const networks = [
 		{
 			id: 1,
-			icon: Facebook,
+			icon: FaFacebookF,
 			url: "https://facebook.com",
 		},
 		{
 			id: 2,
-			icon: Twitter,
+			icon: FaTwitter,
 			url: "https://twitter.com",
 		},
 		{
 			id: 3,
-			icon: Youtube,
+			icon: FaYoutube,
 			url: "https://youtube.com",
 		},
 		{
 			id: 4,
-			icon: Instagram,
+			icon: AiFillInstagram,
 			url: "https://instagram.com",
 		},
 	];
@@ -38,7 +40,7 @@ const NetworkButtons: React.FC<NetworkButtonsProps> = ({ className }) => {
 					target="_blank"
 					rel="noreferrer"
 				>
-					{<network.icon />}
+					{<network.icon size={17} />}
 				</a>
 			))}
 		</div>

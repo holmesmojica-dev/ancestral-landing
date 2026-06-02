@@ -63,7 +63,10 @@
 .btn-link-rounded-sm {
 	@extend .btn-link-rounded;
 	font-size: functions.get-font-size(sm);
-	padding: 0.4rem;
+	padding-top: 0.4rem;
+	padding-bottom: 0.4rem;
+	padding-left: 0.61rem;
+	padding-right: 0.61rem;
 }
 
 .btn-link-square {
