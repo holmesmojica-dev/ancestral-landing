@@ -35,9 +35,18 @@
 		"eslint-plugin-react-refresh": "^0.4.12",
 		"globals": "^15.9.0",
 		"husky": "^9.1.7",
+		"lint-staged": "^16.4.0",
 		"prettier": "^3.8.3",
 		"typescript": "^5.5.3",
 		"typescript-eslint": "^8.7.0",
 		"vite": "^5.4.8"
+	},
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx}": [
+			"eslint --fix"
+		],
+		"*.{js,jsx,ts,tsx,json,scss,css,html,md}": [
+			"prettier --write"
+		]
 	}
 }
