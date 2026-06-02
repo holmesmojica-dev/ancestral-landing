@@ -1,9 +1,10 @@
 import "@testing-library/jest-dom";
+import { vi } from "vitest";
 
 class MockIntersectionObserver {
-	observe() {}
-	unobserve() {}
-	disconnect() {}
+	observe = vi.fn();
+	unobserve = vi.fn();
+	disconnect = vi.fn();
 }
 
 Object.defineProperty(globalThis, "IntersectionObserver", {
