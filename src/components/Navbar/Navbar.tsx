@@ -49,9 +49,7 @@ const Navbar: React.FC = () => {
 	};
 
 	const findMenuItemBySection = (sectionId: string) => {
-		return menuItems.find(
-			(item) => getMenuSectionId(item.id) === sectionId
-		);
+		return menuItems.find((item) => getMenuSectionId(item.id) === sectionId);
 	};
 
 	const handleItemClick = () => {
@@ -63,7 +61,11 @@ const Navbar: React.FC = () => {
 		<nav className="navbar navbar-expand-lg navbar-light">
 			<div className="container-fluid align-items-center position-relative">
 				<input type="checkbox" id="navbar-toggle" className="d-none" />
-				<label htmlFor="navbar-toggle" className="navbar-toggler" aria-label="Toggle navigation menu">
+				<label
+					htmlFor="navbar-toggle"
+					className="navbar-toggler"
+					aria-label="Toggle navigation menu"
+				>
 					<MenuIcon className="c-fc-accent c-fw-bold" aria-hidden="true" />
 				</label>
 

@@ -40,30 +40,62 @@ const ContactUs: React.FC<BaseSectionProps> = ({ id }) => (
 							<form>
 								<div className="row g-7">
 									<div className="col-sm-6">
-										<label htmlFor="service-name" className="visually-hidden">Nombre</label>
+										<label htmlFor="service-name" className="visually-hidden">
+											Nombre
+										</label>
 										<input type="text" placeholder="Nombre" name="service-name" id="service-name" />
 									</div>
 									<div className="col-sm-6">
-										<label htmlFor="service-email" className="visually-hidden">Email</label>
-										<input type="email" placeholder="Email" name="service-email" id="service-email" />
+										<label htmlFor="service-email" className="visually-hidden">
+											Email
+										</label>
+										<input
+											type="email"
+											placeholder="Email"
+											name="service-email"
+											id="service-email"
+										/>
 									</div>
 									<div className="col-sm-6">
-										<label htmlFor="service-phone" className="visually-hidden">Teléfono</label>
-										<input type="tel" placeholder="Teléfono" name="service-phone" id="service-phone" />
+										<label htmlFor="service-phone" className="visually-hidden">
+											Teléfono
+										</label>
+										<input
+											type="tel"
+											placeholder="Teléfono"
+											name="service-phone"
+											id="service-phone"
+										/>
 									</div>
 									<div className="col-sm-6">
-										<label htmlFor="service-date" className="visually-hidden">Fecha</label>
+										<label htmlFor="service-date" className="visually-hidden">
+											Fecha
+										</label>
 										<input type="date" placeholder="Fecha" name="service-date" id="service-date" />
 									</div>
 									<div className="col-12">
-										<label htmlFor="select-service" className="visually-hidden">Seleccionar servicio</label>
-										<select className="w-100" name="select-service" id="select-service" title="Seleccionar servicio">
+										<label htmlFor="select-service" className="visually-hidden">
+											Seleccionar servicio
+										</label>
+										<select
+											className="w-100"
+											name="select-service"
+											id="select-service"
+											title="Seleccionar servicio"
+										>
 											<option value={0}>Seleccionar servicio</option>
 										</select>
 									</div>
 									<div className="col-12">
-										<label htmlFor="service-details" className="visually-hidden">Detalles adicionales</label>
-										<textarea rows={6} placeholder="Detalles adicionales" name="service-details" id="service-details"></textarea>
+										<label htmlFor="service-details" className="visually-hidden">
+											Detalles adicionales
+										</label>
+										<textarea
+											rows={6}
+											placeholder="Detalles adicionales"
+											name="service-details"
+											id="service-details"
+										></textarea>
 									</div>
 									<div>
 										<button type="submit" className="btn-link btn-c-accent">

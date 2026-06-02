@@ -12,9 +12,10 @@ const ServiceThumbnailButton: React.FC<ServiceThumbnailButtonProps> = ({
 	title,
 	onClick,
 }) => (
-	<button type="button"
-			className="btn-link-square btn-c-secondary d-flex flex-column gap-3 align-items-center rounded-4"
-			onClick={onClick}
+	<button
+		type="button"
+		className="btn-link-square btn-c-secondary d-flex flex-column gap-3 align-items-center rounded-4"
+		onClick={onClick}
 	>
 		<BtnIcon size={58} />
 		{title}

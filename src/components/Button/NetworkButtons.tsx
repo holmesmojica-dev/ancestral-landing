@@ -31,16 +31,16 @@ const NetworkButtons: React.FC<NetworkButtonsProps> = ({ className }) => {
 	return (
 		<div className={`d-flex gap-4 ${className}`}>
 			{networks.map((network) => (
-					<a
-						className="btn-link-rounded-sm btn-c-secondary c-animation-shrink"
-						key={`network-button-${network.id}`}
-						href={network.url}
-						target="_blank"
-						rel="noreferrer"
-					>
-						{<network.icon />}
-					</a>
-				))}
+				<a
+					className="btn-link-rounded-sm btn-c-secondary c-animation-shrink"
+					key={`network-button-${network.id}`}
+					href={network.url}
+					target="_blank"
+					rel="noreferrer"
+				>
+					{<network.icon />}
+				</a>
+			))}
 		</div>
 	);
 };

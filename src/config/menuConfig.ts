@@ -44,5 +44,4 @@ export const menuItems = [
 
 export const getMenuSectionId = (itemId: MenuItemId) => `${itemId}-section`;
 
-export const getBaseSectionHref = (itemId: MenuItemId) =>
-	`#${getMenuSectionId(itemId)}`;
+export const getBaseSectionHref = (itemId: MenuItemId) => `#${getMenuSectionId(itemId)}`;

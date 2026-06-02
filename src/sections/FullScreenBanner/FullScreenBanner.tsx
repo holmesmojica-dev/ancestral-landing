@@ -10,12 +10,7 @@ import bannerImage2 from "../../assets/images/banner/banner-img-2.jpg";
 import bannerImage3 from "../../assets/images/banner/banner-img-3.jpg";
 import bannerImage4 from "../../assets/images/banner/banner-img-4.jpg";
 
-const images = [
-	bannerImage1,
-	bannerImage2,
-	bannerImage3,
-	bannerImage4
-];
+const images = [bannerImage1, bannerImage2, bannerImage3, bannerImage4];
 
 const FullScreenBanner: React.FC<BaseSectionProps> = ({ id }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
@@ -68,24 +63,20 @@ const FullScreenBanner: React.FC<BaseSectionProps> = ({ id }) => {
 							</p>
 							<div className="banner-section-services-grid">
 								{servicesData.map((service) => (
-										<ServiceThumbnailButton
-											key={`service-thumbnail-btn-${service.id}`}
-											btnIcon={service.icon}
-											title={service.title}
-											onClick={() => openServicePopup(service)}
-										/>
-									))}
+									<ServiceThumbnailButton
+										key={`service-thumbnail-btn-${service.id}`}
+										btnIcon={service.icon}
+										title={service.title}
+										onClick={() => openServicePopup(service)}
+									/>
+								))}
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
 			{selectedService && (
-				<CustomPopup
-					isOpen={isPopupOpen}
-					title={selectedService.title}
-					onClose={closeServicePopup}
-				>
+				<CustomPopup isOpen={isPopupOpen} title={selectedService.title} onClose={closeServicePopup}>
 					<div className="row gap-4 gap-sm-0">
 						<div className="col-12 col-sm-6 px-3">
 							<div

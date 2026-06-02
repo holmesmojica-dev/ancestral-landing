@@ -7,7 +7,11 @@ const Footer = () => (
 		<div className="container position-relative p-5 pt-sm-9 px-sm-9 pb-sm-3">
 			<div className="row g-6 g-md-4">
 				<div className="col-sm-4 d-flex flex-column gap-4">
-					<img src="/images/logo-footer.png" className="w-75" alt="Logo Ancestral servicios ambientales" />
+					<img
+						src="/images/logo-footer.png"
+						className="w-75"
+						alt="Logo Ancestral servicios ambientales"
+					/>
 					<div className="c-fc-light-gray">
 						Comprometidos en brindar soluciones ambientales con experiencia y certificación
 					</div>
