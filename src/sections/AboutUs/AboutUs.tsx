@@ -26,11 +26,7 @@ const AboutUs: React.FC<BaseSectionProps> = ({ id }) => (
 
 				<div className="d-flex flex-column flex-sm-row align-items-center gap-7 pt-5 pt-lg-6 pt-xl-8">
 					<div className="col-12 col-md-6">
-						<img
-							className="rounded-3 w-100"
-							src={aboutServicesImg}
-							alt="Proyectos ambientales"
-						/>
+						<img className="rounded-3 w-100" src={aboutServicesImg} alt="Proyectos ambientales" />
 					</div>
 
 					<div className="col-lg-6">

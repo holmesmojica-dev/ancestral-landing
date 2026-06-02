@@ -26,7 +26,11 @@ const Header = () => {
 			<header className="c-bg-white shadow z-1">
 				<div className={`container-fluid container-xl ${isScrolled ? "hide-content" : ""}`}>
 					<div className="row align-items-center justify-content-center justify-content-sm-between pt-5 ">
-						<img src="/images/logo.png" className="col-7 col-sm-3 col-lg-3 col-xl-2" alt="Logo Ancestral servicios ambientales" />
+						<img
+							src="/images/logo.png"
+							className="col-7 col-sm-3 col-lg-3 col-xl-2"
+							alt="Logo Ancestral servicios ambientales"
+						/>
 						<div className="col-sm-8 d-none d-sm-flex gap-6 justify-content-end">
 							<ContactWidget title="Ubicación" description="Calle 54 # 22-12" widgetIcon={MapPin} />
 							<Vr />

@@ -10,7 +10,9 @@ header {
 		.hide-content {
 			opacity: 0;
 			max-height: 0;
-			transition: opacity 0.3s ease, max-height 0.4s ease;
+			transition:
+				opacity 0.3s ease,
+				max-height 0.4s ease;
 			overflow: hidden;
 		}
 	}
@@ -19,7 +21,9 @@ header {
 .container-xl {
 	opacity: 1;
 	max-height: 400px;
-	transition: opacity 0.5s ease, max-height 0.3s ease;
+	transition:
+		opacity 0.5s ease,
+		max-height 0.3s ease;
 }
 
 .header-spacer {

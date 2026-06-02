@@ -50,22 +50,22 @@ const WhyUs: React.FC<BaseSectionProps> = ({ id }) => {
 					<div>
 						<div className="row gx-4 gy-5 pt-7">
 							{features.map((feature) => (
-									<div
-										className="col-sm-6 pt-3 d-flex flex-column gap-3"
-										key={`why-us-feature-${feature.id}`}
-									>
-										<div className="pb-4">
-											<RoundedIcon
-												icon={feature.icon}
-												style={feature.id % 2 === 0 ? ICON_STYLES.ACCENT : ICON_STYLES.SECONDARY}
-											/>
-										</div>
-										<h3 className="c-ff-inter c-fc-white c-fs-md c-fw-medium c-lh-relaxed mb-0">
-											{feature.title}
-										</h3>
-										<p className="c-fc-medium-gray">{feature.text}</p>
+								<div
+									className="col-sm-6 pt-3 d-flex flex-column gap-3"
+									key={`why-us-feature-${feature.id}`}
+								>
+									<div className="pb-4">
+										<RoundedIcon
+											icon={feature.icon}
+											style={feature.id % 2 === 0 ? ICON_STYLES.ACCENT : ICON_STYLES.SECONDARY}
+										/>
 									</div>
-								))}
+									<h3 className="c-ff-inter c-fc-white c-fs-md c-fw-medium c-lh-relaxed mb-0">
+										{feature.title}
+									</h3>
+									<p className="c-fc-medium-gray">{feature.text}</p>
+								</div>
+							))}
 						</div>
 					</div>
 				</div>

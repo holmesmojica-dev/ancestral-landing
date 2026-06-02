@@ -8,9 +8,7 @@ interface RoundedIconProps {
 
 const RoundedIcon: React.FC<RoundedIconProps> = ({ icon: Icon, style = ICON_STYLES.ACCENT }) => {
 	const styleClasses =
-		style === ICON_STYLES.ACCENT
-			? "c-fc-secondary c-bg-accent"
-			: "c-fc-accent c-bg-secondary";
+		style === ICON_STYLES.ACCENT ? "c-fc-secondary c-bg-accent" : "c-fc-accent c-bg-secondary";
 
 	return <span className={`p-4 rounded-circle circle ${styleClasses}`}>{<Icon />}</span>;
 };

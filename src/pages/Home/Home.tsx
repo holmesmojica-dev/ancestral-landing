@@ -4,10 +4,7 @@ const Home = () => {
 	return (
 		<>
 			{menuItems.map((item) => (
-				<item.section
-					key={`page-section-${item.id}`}
-					id={getMenuSectionId(item.id)}
-				/>
+				<item.section key={`page-section-${item.id}`} id={getMenuSectionId(item.id)} />
 			))}
 		</>
 	);

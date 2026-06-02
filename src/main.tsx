@@ -26,11 +26,11 @@ import "@fontsource/roboto/600.css";
 import "@fontsource/roboto/700.css";
 import "@fontsource/roboto/800.css";
 import "@fontsource/roboto/900.css";
-	
+
 import App from "./App.tsx";
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
 		<App />
-	</StrictMode>	
+	</StrictMode>
 );

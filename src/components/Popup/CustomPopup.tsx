@@ -7,12 +7,7 @@ interface CustomPopupProps {
 	onClose: () => void;
 }
 
-const CustomPopup: React.FC<CustomPopupProps> = ({
-	isOpen,
-	title,
-	children,
-	onClose,
-}) => {
+const CustomPopup: React.FC<CustomPopupProps> = ({ isOpen, title, children, onClose }) => {
 	const dialogRef = useRef<HTMLDialogElement>(null);
 
 	useEffect(() => {
@@ -42,10 +37,7 @@ const CustomPopup: React.FC<CustomPopupProps> = ({
 				<div className="d-flex justify-content-center align-self-center container-fluid py-5">
 					<div className="c-bg-white p-4 rounded-3 col-12 col-sm-11 col-md-10 col-lg-8 col-xl-7">
 						<div className="d-flex justify-content-between">
-							<h2
-								id="popup-title"
-								className="c-fc-secondary c-fw-semibold c-ff-inter c-fs-md"
-							>
+							<h2 id="popup-title" className="c-fc-secondary c-fw-semibold c-ff-inter c-fs-md">
 								{title}
 							</h2>
 
