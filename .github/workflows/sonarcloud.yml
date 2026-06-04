@@ -4,24 +4,22 @@ on:
   push:
     branches:
       - main
+      - develop
+      - feature/**
   pull_request:
     branches:
       - main
-    types:
-      - opened
-      - synchronize
-      - reopened
+      - develop
 
 jobs:
-  quality-check:
+  quality-validation:
     name: Frontend Quality Validation
-    runs-on: windows-latest
+
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -43,6 +41,14 @@ jobs:
 
       - name: Build project
         run: npm run build
+
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: |
+            ${{ runner.os }}-sonar
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v8
