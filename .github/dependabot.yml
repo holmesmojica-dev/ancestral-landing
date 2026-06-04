@@ -3,10 +3,10 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
-    target-branch: "main"
-
     schedule:
       interval: "weekly"
+      day: "monday"
+      time: "08:00"
 
     open-pull-requests-limit: 5
 
@@ -14,19 +14,27 @@ updates:
       - "dependencies"
 
     commit-message:
-      prefix: "chore(deps)"
+      prefix: "chore"
+
+    groups:
+      npm-dependencies:
+        patterns:
+          - "*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
-    target-branch: "main"
-
     schedule:
       interval: "weekly"
-
-    open-pull-requests-limit: 3
+      day: "monday"
+      time: "08:00"
 
     labels:
       - "dependencies"
 
     commit-message:
-      prefix: "chore(actions)"
+      prefix: "chore"
+
+    groups:
+      github-actions:
+        patterns:
+          - "*"
