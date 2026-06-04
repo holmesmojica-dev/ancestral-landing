@@ -1,0 +1,103 @@
+/* ==========================================================
+   Bootstrap Extensions
+   Extends Bootstrap's default styles with custom utilities and components
+   ========================================================== */
+
+/* Opacity */
+
+.opacity-60 {
+	opacity: 0.6 !important;
+}
+
+/* Spacing Scale */
+
+$spacing-6: 1.5rem;
+$spacing-7: 2rem;
+$spacing-8: 3rem;
+$spacing-9: 3.5rem;
+
+/* Margin */
+
+@each $index, $value in (6: $spacing-6, 7: $spacing-7, 8: $spacing-8, 9: $spacing-9) {
+	.m-#{$index} {
+		margin: $value !important;
+	}
+
+	.mt-#{$index} {
+		margin-top: $value !important;
+	}
+
+	.mb-#{$index} {
+		margin-bottom: $value !important;
+	}
+
+	.ms-#{$index} {
+		margin-left: $value !important;
+	}
+
+	.me-#{$index} {
+		margin-right: $value !important;
+	}
+
+	.mx-#{$index} {
+		margin-left: $value !important;
+		margin-right: $value !important;
+	}
+
+	.my-#{$index} {
+		margin-top: $value !important;
+		margin-bottom: $value !important;
+	}
+}
+
+/* Padding */
+
+@each $index, $value in (6: $spacing-6, 7: $spacing-7, 8: $spacing-8, 9: $spacing-9) {
+	.p-#{$index} {
+		padding: $value !important;
+	}
+
+	.pt-#{$index} {
+		padding-top: $value !important;
+	}
+
+	.pb-#{$index} {
+		padding-bottom: $value !important;
+	}
+
+	.ps-#{$index} {
+		padding-left: $value !important;
+	}
+
+	.pe-#{$index} {
+		padding-right: $value !important;
+	}
+
+	.px-#{$index} {
+		padding-left: $value !important;
+		padding-right: $value !important;
+	}
+
+	.py-#{$index} {
+		padding-top: $value !important;
+		padding-bottom: $value !important;
+	}
+}
+
+/* Gap */
+
+.gap-6 {
+	gap: $spacing-6 !important;
+}
+
+.gap-7 {
+	gap: $spacing-7 !important;
+}
+
+.gap-8 {
+	gap: $spacing-8 !important;
+}
+
+.gap-9 {
+	gap: $spacing-9 !important;
+}
