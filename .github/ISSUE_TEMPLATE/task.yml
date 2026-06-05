@@ -1,0 +1,50 @@
+name: Task
+description: Create a project task or technical work item.
+title: "[Task]: "
+labels:
+  - documentation
+
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: Describe the objective of this task.
+      placeholder: Define the goal to be achieved.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Describe the scope and boundaries of this task.
+      placeholder: What is included and excluded?
+    validations:
+      required: true
+
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Checklist
+      description: List all implementation steps.
+      placeholder: |
+        - [ ] Step 1
+        - [ ] Step 2
+        - [ ] Step 3
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Related issues, blockers, or dependencies.
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Outcome
+      description: Describe the expected result after completing this task.
+    validations:
+      required: true
