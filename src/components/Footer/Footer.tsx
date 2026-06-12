@@ -8,7 +8,7 @@ const Footer = () => (
 			<div className="row g-6 g-md-4">
 				<div className="col-sm-4 d-flex flex-column gap-4">
 					<img
-						src="/images/logo-footer.png"
+						src={`${import.meta.env.BASE_URL}images/logo-footer.png`}
 						className="w-75"
 						alt="Logo Ancestral servicios ambientales"
 					/>
