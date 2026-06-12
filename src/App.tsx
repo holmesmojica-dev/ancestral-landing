@@ -5,7 +5,7 @@ import Footer from "./components/Footer/Footer";
 
 function App() {
 	return (
-		<Router>
+		<Router basename="/ancestral-landing/">
 			<Header />
 			<Routes>
 				<Route path="/" element={<Home />} />
