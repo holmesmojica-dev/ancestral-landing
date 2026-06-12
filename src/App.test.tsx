@@ -16,6 +16,8 @@ vi.mock("./pages/Home/Home", () => ({
 
 describe("App", () => {
 	it("should render application layout", () => {
+		window.history.pushState({}, "", "/ancestral-landing/");
+
 		render(<App />);
 
 		expect(screen.getByText("Header")).toBeInTheDocument();
