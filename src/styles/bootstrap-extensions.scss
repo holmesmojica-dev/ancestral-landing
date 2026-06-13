@@ -84,6 +84,23 @@ $spacing-9: 3.5rem;
 	}
 }
 
+/* Gutter */
+
+@each $index, $value in (6: $spacing-6, 7: $spacing-7, 8: $spacing-8, 9: $spacing-9) {
+	.g-#{$index} {
+		--bs-gutter-x: #{$value} !important;
+		--bs-gutter-y: #{$value} !important;
+	}
+
+	.gx-#{$index} {
+		--bs-gutter-x: #{$value} !important;
+	}
+
+	.gy-#{$index} {
+		--bs-gutter-y: #{$value} !important;
+	}
+}
+
 /* Gap */
 
 .gap-6 {
