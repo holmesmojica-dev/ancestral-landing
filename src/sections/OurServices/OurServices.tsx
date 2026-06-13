@@ -28,7 +28,7 @@ const OurServices: React.FC<BaseSectionProps> = ({ id }) => {
 							>
 								<div className="h-100 w-100 c-bg-primary top-0 opacity-25"></div>
 								<div className="position-absolute bottom-0 w-100 p-5">
-									<div className="d-flex justify-content-between c-bg-white rounded-3 p-5 align-items-center">
+									<div className="d-flex justify-content-between c-bg-white rounded-3 p-3 align-items-center">
 										<div>
 											<h2 className="c-fs-md c-fc-primary c-fw-medium c-ff-inter c-lh-relaxed mb-0">
 												{service.title}
