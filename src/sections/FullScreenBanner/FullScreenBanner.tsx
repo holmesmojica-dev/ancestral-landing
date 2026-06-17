@@ -5,10 +5,10 @@ import ServiceThumbnailButton from "../../components/Button/ServiceThumbnailButt
 import CustomPopup from "../../components/Popup/CustomPopup";
 import { ServiceData, servicesData } from "../../config/servicesConfig";
 
-import bannerImage1 from "../../assets/images/banner/banner-img-1.jpg";
-import bannerImage2 from "../../assets/images/banner/banner-img-2.jpg";
-import bannerImage3 from "../../assets/images/banner/banner-img-3.jpg";
-import bannerImage4 from "../../assets/images/banner/banner-img-4.jpg";
+import bannerImage1 from "../../assets/images/banner/banner-img-1.webp";
+import bannerImage2 from "../../assets/images/banner/banner-img-2.webp";
+import bannerImage3 from "../../assets/images/banner/banner-img-3.webp";
+import bannerImage4 from "../../assets/images/banner/banner-img-4.webp";
 
 const images = [bannerImage1, bannerImage2, bannerImage3, bannerImage4];
 
