@@ -25,6 +25,15 @@ const FullScreenBanner: React.FC<BaseSectionProps> = ({ id }) => {
 		return () => clearInterval(interval);
 	}, []);
 
+	useEffect(() => {
+		const preloadImages = images.slice(1);
+
+		preloadImages.forEach((image) => {
+			const img = new Image();
+			img.src = image;
+		});
+	}, []);
+
 	const openServicePopup = (service: ServiceData) => {
 		setSelectedService(service);
 		setIsPopupOpen(true);
@@ -44,23 +53,28 @@ const FullScreenBanner: React.FC<BaseSectionProps> = ({ id }) => {
 							key={image}
 							src={image}
 							alt=""
+							decoding="async"
 							className={`banner-image ${currentIndex === index ? "active" : ""}`}
 						/>
 					))}
 				</div>
+
 				<div className="h-100 w-100 c-bg-primary position-absolute opacity-60"></div>
+
 				<div className="h-100 w-100 position-absolute">
 					<div className="p-5 p-lg-0 container-lg h-100 d-flex flex-column gap-7 justify-content-center">
 						<div className="px-6 py-8 c-bg-white rounded-3 col-sm-7 col-lg-6">
 							<h1 className="banner-title c-fc-primary c-ff-inter c-fw-semibold">
 								Ancestral <span className="c-fc-secondary">Servicios</span> Ambientales
 							</h1>
+
 							<p className="py-1 py-sm-3">
 								Con más de 10 años de experiencia, somos líderes en servicios ambientales agrícolas
 								y forestales en el oriente colombiano. Desde nuestros viveros acreditados, te
 								ofrecemos soluciones personalizadas para tus proyectos sostenibles. ¡Explora
 								nuestros servicios y únete al cambio hacia un futuro más verde!
 							</p>
+
 							<div className="banner-section-services-grid">
 								{servicesData.map((service) => (
 									<ServiceThumbnailButton
@@ -75,6 +89,7 @@ const FullScreenBanner: React.FC<BaseSectionProps> = ({ id }) => {
 					</div>
 				</div>
 			</section>
+
 			{selectedService && (
 				<CustomPopup isOpen={isPopupOpen} title={selectedService.title} onClose={closeServicePopup}>
 					<div className="row gap-4 gap-sm-0">
