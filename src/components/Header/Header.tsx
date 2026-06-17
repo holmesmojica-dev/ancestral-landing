@@ -25,7 +25,7 @@ const Header = () => {
 			<div className="header-spacer" />
 			<header className="c-bg-white shadow z-1">
 				<div className={`container-fluid container-xl ${isScrolled ? "hide-content" : ""}`}>
-					<div className="row align-items-center justify-content-center justify-content-sm-between pt-5 ">
+					<div className="row align-items-center justify-content-center justify-content-sm-between pt-4 ">
 						<img
 							src={`${import.meta.env.BASE_URL}images/logo.png`}
 							className="col-7 col-sm-3 col-lg-3 col-xl-2"
