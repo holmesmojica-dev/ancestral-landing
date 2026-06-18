@@ -27,8 +27,10 @@ const Header = () => {
 				<div className={`container-fluid container-xl ${isScrolled ? "hide-content" : ""}`}>
 					<div className="row align-items-center justify-content-center justify-content-sm-between pt-4 ">
 						<img
-							src={`${import.meta.env.BASE_URL}images/logo.png`}
-							className="col-7 col-sm-3 col-lg-3 col-xl-2"
+							src={`${import.meta.env.BASE_URL}images/logo.webp`}
+							width={365}
+							height={137}
+							className="col-7 col-sm-3 col-lg-3 col-xl-2 h-auto"
 							alt="Logo Ancestral servicios ambientales"
 						/>
 						<div className="col-sm-8 d-none d-sm-flex gap-6 justify-content-end">

@@ -1,9 +1,9 @@
 import { EarthIcon, HardHatIcon, LucideProps, TractorIcon, TreesIcon } from "lucide-react";
 
-import agriculturalServicesImage from "../assets/images/services/agricultural-services.jpg";
-import forestryServicesImage from "../assets/images/services/forestry-services.jpg";
-import environmentalServicesImage from "../assets/images/services/environmental-services.jpg";
-import sstServicesImage from "../assets/images/services/sst-services.jpg";
+import agriculturalServicesImage from "../assets/images/services/agricultural-services.webp";
+import forestryServicesImage from "../assets/images/services/forestry-services.webp";
+import environmentalServicesImage from "../assets/images/services/environmental-services.webp";
+import sstServicesImage from "../assets/images/services/sst-services.webp";
 
 export enum ServiceId {
 	Environmental = "Environmental",
