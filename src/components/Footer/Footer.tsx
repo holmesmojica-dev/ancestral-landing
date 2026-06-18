@@ -8,8 +8,10 @@ const Footer = () => (
 			<div className="row g-6 g-md-4">
 				<div className="col-sm-4 d-flex flex-column gap-4">
 					<img
-						src={`${import.meta.env.BASE_URL}images/logo-footer.png`}
-						className="w-75"
+						src={`${import.meta.env.BASE_URL}images/logo-footer.webp`}
+						width={365}
+						height={137}
+						className="w-75 h-auto"
 						alt="Logo Ancestral servicios ambientales"
 					/>
 					<div className="c-fc-light-gray">
@@ -19,15 +21,15 @@ const Footer = () => (
 				<div className="d-none d-lg-block col-1"></div>
 				<div className="col-sm-4 d-flex flex-column gap-2 justify-content-center">
 					<h4 className="c-ff-inter c-fc-white c-fs-md">Información de contacto</h4>
-					<div className="d-flex gap-5">
+					<div className="d-flex gap-4">
 						<MapPinIcon className="c-fc-accent" />
 						<span className="c-fc-white">Calle 54 # 22-12</span>
 					</div>
-					<div className="d-flex gap-5">
+					<div className="d-flex gap-4">
 						<MailIcon className="c-fc-accent" />
 						<span className="c-fc-white">info@ancestral.com</span>
 					</div>
-					<div className="d-flex gap-5">
+					<div className="d-flex gap-4">
 						<PhoneIcon className="c-fc-accent" />
 						<span className="c-fc-white">316 411 4933</span>
 					</div>

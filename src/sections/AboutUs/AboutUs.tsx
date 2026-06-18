@@ -2,9 +2,9 @@ import { PlusIcon } from "lucide-react";
 import { BaseSectionProps } from "../../types/baseSection";
 import { menuSectionClass } from "../../config/menuConfig";
 
-import aboutServicesImg from "../../assets/images/about/about-services-img.jpg";
-import aboutCompleteServicesImg1 from "../../assets/images/about/about-complete-services-img-1.jpg";
-import aboutCompleteServicesImg2 from "../../assets/images/about/about-complete-services-img-2.jpg";
+import aboutServicesImg from "../../assets/images/about/about-services-img.webp";
+import aboutCompleteServicesImg1 from "../../assets/images/about/about-complete-services-img-1.webp";
+import aboutCompleteServicesImg2 from "../../assets/images/about/about-complete-services-img-2.webp";
 
 const AboutUs: React.FC<BaseSectionProps> = ({ id }) => (
 	<section className={`${menuSectionClass} container px-5 px-md-1 py-9`} id={id}>
@@ -26,7 +26,13 @@ const AboutUs: React.FC<BaseSectionProps> = ({ id }) => (
 
 				<div className="d-flex flex-column flex-sm-row align-items-center gap-7 pt-5 pt-lg-6 pt-xl-8">
 					<div className="col-12 col-md-6">
-						<img className="rounded-3 w-100" src={aboutServicesImg} alt="Proyectos ambientales" />
+						<img
+							className="rounded-3 w-100 h-auto"
+							src={aboutServicesImg}
+							alt="Proyectos ambientales"
+							width={512}
+							height={612}
+						/>
 					</div>
 
 					<div className="col-lg-6">
@@ -45,12 +51,16 @@ const AboutUs: React.FC<BaseSectionProps> = ({ id }) => (
 					className="w-100 rounded-3"
 					src={aboutCompleteServicesImg1}
 					alt="Proyectos ambientales completados"
+					width={645}
+					height={735}
 				/>
 				<div className="c-bg-white w-50 h-50 position-absolute rounded-top-4 bottom-0 end-0 p-3 p-sm-4">
 					<img
-						className="w-100"
+						className="w-100 h-auto"
 						src={aboutCompleteServicesImg2}
 						alt="Proyectos ambientales completados"
+						width={384}
+						height={479}
 					/>
 				</div>
 				<div className="position-absolute top-100 translate-middle projects-widget">
