@@ -10,14 +10,14 @@ const ContactUs: React.FC<BaseSectionProps> = ({ id }) => (
 			<div className="text-center position-relative p-3 p-sm-9">
 				<div className="position-absolute h-100 w-100 top-0 start-0"></div>
 				<div className="position-relative d-flex flex-column align-items-center gap-3 pt-1 pb-9 mb-9">
-					<h5 className="c-fc-secondary c-ff-inter c-fs-h4 ">Solicita un servicio</h5>
-					<h2 className="c-ff-inter c-fw-semibold c-fs-title c-fc-primary">
+					<h2 className="c-fc-secondary c-ff-inter c-fs-h4 ">Solicita un servicio</h2>
+					<h3 className="c-ff-inter c-fw-semibold c-fs-title c-fc-primary">
 						Listo para conectar con nosotros?
-					</h2>
-					<div className="-sm-7 pb-9 mb-9">
+					</h3>
+					<p className="col-11 col-md-9 col-lg-12 pb-9 mb-9">
 						Si deseas conocer mas sobre nuestros servicios puedes escribirnos y con gusto te
 						contactaremos
-					</div>
+					</p>
 					<div className="p-8"></div>
 				</div>
 			</div>

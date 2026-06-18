@@ -1,5 +1,5 @@
-import { FaTwitter, FaYoutube } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa6";
+import { FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaXTwitter } from "react-icons/fa6";
 import { AiFillInstagram } from "react-icons/ai";
 
 interface NetworkButtonsProps {
@@ -11,21 +11,25 @@ const NetworkButtons: React.FC<NetworkButtonsProps> = ({ className }) => {
 		{
 			id: 1,
 			icon: FaFacebookF,
+			label: "Facebook",
 			url: "https://facebook.com",
 		},
 		{
 			id: 2,
-			icon: FaTwitter,
-			url: "https://twitter.com",
+			icon: FaXTwitter,
+			label: "X",
+			url: "https://x.com",
 		},
 		{
 			id: 3,
 			icon: FaYoutube,
+			label: "YouTube",
 			url: "https://youtube.com",
 		},
 		{
 			id: 4,
 			icon: AiFillInstagram,
+			label: "Instagram",
 			url: "https://instagram.com",
 		},
 	];
@@ -39,6 +43,7 @@ const NetworkButtons: React.FC<NetworkButtonsProps> = ({ className }) => {
 					href={network.url}
 					target="_blank"
 					rel="noreferrer"
+					aria-label={network.label}
 				>
 					{<network.icon size={17} />}
 				</a>
