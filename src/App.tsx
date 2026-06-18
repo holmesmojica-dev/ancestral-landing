@@ -7,9 +7,13 @@ function App() {
 	return (
 		<Router basename="/ancestral-landing/">
 			<Header />
-			<Routes>
-				<Route path="/" element={<Home />} />
-			</Routes>
+
+			<main>
+				<Routes>
+					<Route path="/" element={<Home />} />
+				</Routes>
+			</main>
+
 			<Footer />
 		</Router>
 	);

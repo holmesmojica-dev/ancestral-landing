@@ -31,12 +31,12 @@ const WhyUs: React.FC<BaseSectionProps> = ({ id }) => {
 			<div className="row">
 				<div className="col-lg-6 why-us-image"></div>
 				<div className="col-lg-6 c-bg-primary p-7 p-sm-9">
-					<h5 className="c-fc-accent c-ff-inter c-fs-h4 c-fw-medium c-lh-compact">
+					<h2 className="c-fc-accent c-ff-inter c-fs-h4 c-fw-medium c-lh-compact">
 						Por qué Ancestral?
-					</h5>
-					<h2 className="c-ff-inter c-fs-title c-fw-semibold c-lh-compact c-fc-white py-4">
-						Compromiso Sostenible y Soluciones Certificadas
 					</h2>
+					<h3 className="c-ff-inter c-fs-title c-fw-semibold c-lh-compact c-fc-white py-4">
+						Compromiso Sostenible y Soluciones Certificadas
+					</h3>
 					<ul className="c-features-list">
 						<li>
 							Contamos con registro oficial como productor y comercializador de plántulas de

@@ -7,7 +7,7 @@ import aboutCompleteServicesImg1 from "../../assets/images/about/about-complete-
 import aboutCompleteServicesImg2 from "../../assets/images/about/about-complete-services-img-2.webp";
 
 const AboutUs: React.FC<BaseSectionProps> = ({ id }) => (
-	<section className={`${menuSectionClass} container px-5 px-md-1 py-9`} id={id}>
+	<section className={`${menuSectionClass} container px-4 px-md-1 py-9`} id={id}>
 		<div className="row gx-sm-9 gy-7 pt-4 pb-6">
 			<div className="col-lg-6">
 				<p className="c-fs-base c-lh-compact c-ff-inter c-fc-secondary c-fw-medium">
@@ -48,7 +48,7 @@ const AboutUs: React.FC<BaseSectionProps> = ({ id }) => (
 
 			<div className="col-lg-6 position-relative">
 				<img
-					className="w-100 rounded-3"
+					className="w-100 rounded-3 h-auto"
 					src={aboutCompleteServicesImg1}
 					alt="Proyectos ambientales completados"
 					width={645}
