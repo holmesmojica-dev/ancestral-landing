@@ -227,12 +227,13 @@ This process ensures that every production deployment has passed the required qu
 
 The repository includes detailed technical documentation covering architecture, development standards, testing strategy, and CI/CD processes.
 
-| Document                                           | Description                                                                                             |
-| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| [🏗️ Frontend Architecture](./docs/architecture.md) | Project structure, component organization, configuration-driven approach, and SCSS styling architecture |
-| [🛠️ Development Workflow](./docs/development.md)   | Development standards, Git workflow, branch strategy, and Conventional Commits strategy                 |
-| [🔄 CI/CD & Automation](./docs/cicd.md)            | GitHub Actions workflows, quality validation, Semantic Release, and deployment lifecycle                |
-| [🧪 Testing Strategy](./docs/testing.md)           | Testing tools, philosophy, execution commands, and quality approach                                     |
+| Document                                                            | Description                                                                                                             |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | --- |
+| [🏗️ Frontend Architecture](./docs/architecture.md)                  | Project structure, component organization, configuration-driven approach, and SCSS styling architecture                 |
+| [🛠️ Development Workflow](./docs/development.md)                    | Development standards, Git workflow, branch strategy, and Conventional Commits strategy                                 |
+| [🔄 CI/CD & Automation](./docs/cicd.md)                             | GitHub Actions workflows, quality validation, Semantic Release, and deployment lifecycle                                |
+| [🧪 Testing Strategy](./docs/testing.md)                            | Testing tools, philosophy, execution commands, and quality approach                                                     |
+| [⚡ Frontend Optimization](./docs/quality/frontend-optimization.md) | Lighthouse analysis, image optimization, accessibility improvements, performance tuning, and final optimization results |     |
 
 ## 🖼️ Visual Documentation
 
