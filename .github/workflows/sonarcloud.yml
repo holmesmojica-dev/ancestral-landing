@@ -4,12 +4,12 @@ on:
   push:
     branches:
       - main
-      - develop
+      - v2
       - feature/**
   pull_request:
     branches:
       - main
-      - develop
+      - v2
 
 jobs:
   quality-validation:
