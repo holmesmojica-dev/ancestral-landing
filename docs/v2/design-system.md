@@ -141,7 +141,7 @@ $color-border-default: #e6e9ec;
 $color-border-strong: #0d1b3d;
 
 $color-action-primary: #4caf37;
-$color-action-primary-text: #ffffff;
+$color-action-primary-text: #0d1b3d;
 
 $color-action-secondary: #ffffff;
 $color-action-secondary-text: #0d1b3d;
@@ -198,9 +198,31 @@ light-neutral borders.
 
 ### 5.4 Contrast
 
-All text/background combinations must meet accessible contrast
-requirements. Color alone must never communicate selected, error,
-success, active-navigation, or validation states.
+V2 targets **WCAG AA** as the minimum accessibility conformance level for text/background color contrast.
+
+For normal text, the minimum contrast ratio is `4.5:1`. For large text, the minimum contrast ratio is `3:1`.
+
+The following core V2 color combinations have been verified:
+
+| Foreground             | Background              | Contrast ratio | WCAG AA       |
+| ---------------------- | ----------------------- | -------------: | ------------- |
+| White `#FFFFFF`        | Navy `#0D1B3D`          |      `16.92:1` | Pass          |
+| Off-white `#F7F9F7`    | Navy `#0D1B3D`          |      `15.99:1` | Pass          |
+| Neutral-dark `#4B5563` | White `#FFFFFF`         |       `7.56:1` | Pass          |
+| Neutral-dark `#4B5563` | Off-white `#F7F9F7`     |       `7.14:1` | Pass          |
+| Navy `#0D1B3D`         | Green `#4CAF37`         |       `6.04:1` | Pass          |
+| White `#FFFFFF`        | Green `#4CAF37`         |       `2.80:1` | Fail for text |
+| White `#FFFFFF`        | Light-neutral `#E6E9EC` |   Insufficient | Fail for text |
+
+Rules:
+
+- Navy must be used as the foreground text color on `brand-green` interactive surfaces.
+- White text must not be used on `brand-green` for normal-size text.
+- `brand-green` should primarily function as an accent, interactive background, icon color, or decorative brand color rather than as body-text color on light surfaces.
+- `light-neutral` is intended primarily for borders, dividers, and subtle surfaces, not for text.
+- White or off-white text may be used on navy surfaces.
+- All new text/background combinations introduced during implementation must meet WCAG AA contrast requirements.
+- Color alone must never communicate selected, error, success, active-navigation, or validation states.
 
 ---
 
@@ -428,7 +450,7 @@ The primary CTA represents the preferred action within a section.
 Visual treatment:
 
 - Background: `brand-green` (`#4CAF37`).
-- Text: white.
+- Text: `brand-navy` (`#0D1B3D`) to maintain WCAG AA contrast.
 - Shape: pill.
 - Border: transparent.
 - Font: Poppins.
@@ -597,8 +619,8 @@ Hover should provide visible but restrained feedback.
 
 Primary CTA:
 
-- Slightly darken the green background.
-- Preserve white text.
+- Slightly darken the green background while preserving WCAG AA contrast.
+- Preserve `brand-navy` (`#0D1B3D`) text.
 - Do not dramatically change size or geometry.
 
 Secondary CTA:
@@ -771,11 +793,9 @@ decorative noise or introduce competing illustration styles.
 
 ### 14.1 Primary icon library
 
-**Lucide React** is the preferred icon library for functional and
-service-related interface icons.
+**Lucide React** is the preferred icon library for standard functional and interface iconography.
 
-The project already uses `lucide-react`, and V2 should continue using it
-whenever an appropriate icon exists.
+The project already uses `lucide-react`, and V2 should continue using it whenever an appropriate icon exists for navigation, contact, controls, status indicators, gallery actions, and other general UI purposes.
 
 Benefits include:
 
@@ -784,13 +804,17 @@ Benefits include:
 - Good React integration.
 - SVG-based rendering.
 - Easy sizing and color inheritance.
-- Broad coverage of functional and environmental concepts.
+- Broad coverage of common functional interface concepts.
 
-A second general-purpose icon library should not be introduced merely to
-obtain a slightly different version of an icon.
+The five approved service-category icons are an explicit exception to the Lucide-first rule.
 
-Custom SVG artwork is acceptable when the approved visual identity
-requires a symbol that Lucide cannot represent adequately.
+Those icons are custom Ancestral V2 assets derived from the approved preliminary design and must be reused from:
+
+`src/assets/icons/services/`
+
+A second general-purpose icon library should not be introduced merely to obtain a slightly different version of an icon.
+
+Custom artwork is acceptable when the approved Ancestral visual identity requires a symbol that Lucide cannot represent adequately.
 
 ### 14.2 Visual style
 
@@ -872,27 +896,69 @@ the same component group should be avoided.
 
 ### 14.6 Service iconography
 
-The five primary service categories defined in the V2 content
-architecture require distinct, recognizable icons.
+The five primary service categories use the custom iconography approved in the V2 preliminary design.
 
-The icon must communicate the service category at a glance while
-remaining consistent with the approved preliminary design.
+These icons are production assets and must not be replaced with approximate Lucide equivalents unless the Design System is explicitly updated.
 
-The implementation should select the closest appropriate Lucide symbol
-for each approved service category rather than inventing a new
-illustration style.
+Approved asset locations:
+
+```text
+src/assets/icons/services/
+├── environmental/
+│   ├── environmental.png
+│   ├── environmental-green.png
+│   ├── environmental-navy.png
+│   └── environmental-white.png
+│
+├── forestry/
+│   ├── forestry.png
+│   ├── forestry-green.png
+│   ├── forestry-navy.png
+│   └── forestry-white.png
+│
+├── agricultural/
+│   ├── agricultural.png
+│   ├── agricultural-green.png
+│   ├── agricultural-navy.png
+│   └── agricultural-white.png
+│
+├── water-resources/
+│   ├── water-resources.png
+│   ├── water-resources-green.png
+│   ├── water-resources-navy.png
+│   └── water-resources-white.png
+│
+└── occupational-safety/
+    ├── occupational-safety.png
+    ├── occupational-safety-green.png
+    ├── occupational-safety-navy.png
+    └── occupational-safety-white.png
+```
+
+Category mapping:
+
+| Service category                | Asset family          |
+| ------------------------------- | --------------------- |
+| Ambientales                     | `environmental`       |
+| Forestales                      | `forestry`            |
+| Agrícolas                       | `agricultural`        |
+| Manejo del Recurso Hídrico      | `water-resources`     |
+| Seguridad y Salud en el Trabajo | `occupational-safety` |
+
+The default asset preserves the approved preliminary-design appearance.
+
+The `green`, `navy`, and `white` variants may be used only when required by the component state or surrounding surface.
 
 Service icons should:
 
-- Use the prominent icon sizing range (`40–48px`) when displayed on
-  service cards.
-- Use green and/or navy according to the card composition.
-- Remain visually consistent across all five cards.
+- Render at approximately `40–48px` within service cards unless responsive behavior requires adjustment.
+- Preserve their original aspect ratio.
 - Preserve sufficient whitespace around the symbol.
+- Remain visually consistent across all five service cards.
 - Never replace the visible service title.
+- Avoid CSS recoloring when an approved state-specific asset already exists.
 
-The icon supports recognition; the service name remains the primary
-semantic label.
+The icon supports recognition; the visible service name remains the primary semantic label.
 
 ### 14.7 Statistics and trust indicators
 
@@ -1097,7 +1163,8 @@ Detailed responsive composition must follow the principles and breakpoint strate
 
 Do:
 
-- Prefer Lucide for standard interface and service icons.
+- Prefer Lucide for standard functional and interface icons.
+- Reuse the approved custom Ancestral assets for the five service-category icons.
 - Reuse semantic size and color tokens.
 - Keep stroke style consistent.
 - Pair service icons with visible labels.
@@ -1243,20 +1310,36 @@ The exact values may be refined during implementation according to the responsiv
 
 The Ancestral logo is the primary brand identifier in the header.
 
+The approved production asset for the light/white V2 header is:
+
+`src/assets/images/logo/full/ancestral-logo.svg`
+
+The inverse logo asset is reserved for dark surfaces:
+
+`src/assets/images/logo/full/ancestral-logo-white.svg`
+
+Symbol-only assets are available at:
+
+```text
+src/assets/images/logo/symbol/
+├── ancestral-symbol.svg
+└── ancestral-symbol-white.svg
+```
+
 Rules:
 
+- Use `ancestral-logo.svg` in the standard white Header.
 - Preserve the original aspect ratio.
 - Do not stretch or distort the asset.
 - Maintain adequate whitespace around it.
-- Use the approved logo variant appropriate for the white header.
-- Do not apply unnecessary shadows, outlines, or decorative effects.
+- Do not rebuild the complete logo with separate HTML text.
+- Do not apply unnecessary shadows, outlines, filters, or decorative effects.
 - Ensure the logo remains legible at mobile sizes.
+- Use symbol-only variants only when the complete lockup is not appropriate for the available space or context.
 
 The logo should function as navigation to the main/home experience.
 
-When the user is already on the homepage, activating the logo should
-return to the beginning of the page without introducing confusing
-behavior.
+When the user is already on the homepage, activating the logo should return to the beginning of the page without introducing confusing behavior.
 
 ### 15.7 Primary navigation
 
@@ -4284,19 +4367,25 @@ The footer should not duplicate every piece of homepage content.
 
 ### 23.4 Brand area
 
-The brand area should contain the appropriate Ancestral logo variant for
-the dark background.
+The Footer uses the approved inverse Ancestral logo for dark/navy surfaces.
+
+Production asset:
+
+`src/assets/images/logo/full/ancestral-logo-white.svg`
+
+The standard light-background logo must not be used on the navy Footer when it reduces contrast or visual consistency.
 
 Rules:
 
 - Preserve logo proportions.
-- Use sufficient contrast.
-- Maintain clear space.
+- Use the approved white/inverse variant.
+- Maintain clear space around the lockup.
 - Avoid unnecessary visual effects.
+- Do not reconstruct the brand name or descriptor separately with HTML.
 - Keep supporting brand copy short.
+- Use the symbol-only white variant only when the complete lockup is intentionally not required.
 
-If a concise brand statement is included, it should align with the
-approved V2 narrative rather than introducing new marketing claims.
+If a concise brand statement is included, it should align with the approved V2 narrative rather than introducing new marketing claims.
 
 ### 23.5 Footer navigation
 
@@ -5463,7 +5552,41 @@ Botanical line art, dots, organic shapes, and brand motifs are decorative media 
 
 ### 26.15 Asset organization and naming
 
-Production assets should be organized by purpose, such as brand, Hero, services, institutional logos, and decorative graphics. Use descriptive stable filenames such as `hero-territory.webp` or `service-restoration-01.webp`; avoid ambiguous camera filenames and do not encode unverified client/project facts.
+Production assets should be organized by purpose and should use descriptive, stable filenames.
+
+Approved V2 brand-asset locations include:
+
+```text
+src/assets/images/logo/
+├── full/
+│   ├── ancestral-logo.svg
+│   └── ancestral-logo-white.svg
+└── symbol/
+    ├── ancestral-symbol.svg
+    └── ancestral-symbol-white.svg
+
+src/assets/icons/services/
+├── environmental/
+├── forestry/
+├── agricultural/
+├── water-resources/
+└── occupational-safety/
+
+public/
+├── favicon.svg
+├── favicon.ico
+└── apple-touch-icon.png
+```
+
+These locations are part of the approved V2 asset architecture.
+
+Codex and developers should reuse these production assets rather than recreating equivalent logos, symbols, service icons, or browser identity assets.
+
+Other media should follow the same purpose-oriented organization, such as Hero, service photography, institutional logos, and decorative graphics.
+
+Use descriptive stable filenames such as `hero-territory.webp` or `service-restoration-01.webp`.
+
+Avoid ambiguous camera filenames and do not encode unverified client/project facts into asset names.
 
 ### 26.16 Rights and approval
 
@@ -7219,6 +7342,12 @@ For each issue, Codex should be instructed to:
 7. Add/update tests for changed behavior.
 8. Run the applicable quality checks.
 9. Report intentional deviations or unresolved assumptions.
+10. Reuse the approved V2 brand assets before creating, replacing, or approximating visual assets:
+    - Logos and symbols: `src/assets/images/logo/`
+    - Service-category iconography: `src/assets/icons/services/`
+    - Browser/public identity assets: `public/favicon.svg`, `public/favicon.ico`, and `public/apple-touch-icon.png`
+
+Approved production assets are part of the V2 implementation contract. Codex should not replace them with approximate Lucide icons, generated artwork, reconstructed logos, or alternative visual assets unless the Design System is intentionally updated first.
 
 Codex should implement documented decisions, not independently redesign the experience.
 
