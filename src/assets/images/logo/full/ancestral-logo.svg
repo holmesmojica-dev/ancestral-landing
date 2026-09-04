@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 210" role="img" aria-labelledby="title desc">
+  <title id="title">Ancestral</title>
+  <desc id="desc">Ancestral Servicios Ambientales</desc>
+  <g transform="translate(176 8) scale(0.1574074074074074 0.13026819923371646)">
+    <path fill="#4CAF37" d="M 345 0 L 259 0 L 259 77 L 258 78 L 173 78 L 172 77 L 172 4 L 86 4 L 86 111 L 171 111 L 172 112 L 172 177 L 171 178 L 87 178 L 86 177 L 86 124 L 1 124 L 1 233 L 85 233 L 86 234 L 86 264 L 171 264 L 172 265 L 172 335 L 171 336 L 86 336 L 85 335 L 85 282 L 0 282 L 0 393 L 85 393 L 86 394 L 86 422 L 171 422 L 172 423 L 172 521 L 259 521 L 259 423 L 260 422 L 345 422 L 345 394 L 346 393 L 431 393 L 431 282 L 346 282 L 346 335 L 345 336 L 260 336 L 259 335 L 259 265 L 260 264 L 345 264 L 345 234 L 346 233 L 430 233 L 430 124 L 345 124 L 345 177 L 344 178 L 260 178 L 259 177 L 259 108 L 260 107 L 345 107 Z"/>
+  </g>
+  <text x="210" y="128" text-anchor="middle"
+        fill="#0D1B3D" font-family="Poppins, Arial, sans-serif"
+        font-size="52" font-weight="700">Ancestral</text>
+  <text x="210" y="157" text-anchor="middle"
+        fill="#0D1B3D" font-family="Poppins, Arial, sans-serif"
+        font-size="13" font-weight="600" letter-spacing="2.3">SERVICIOS AMBIENTALES</text>
+</svg>
