@@ -2,103 +2,66 @@
 
 ## Overview
 
-Ancestral Landing is a modern frontend application built with React, TypeScript, and Vite. The project follows a modular architecture focused on component reusability, maintainability, and scalability.
+Ancestral Landing V2 is a React, TypeScript, and Vite single-page frontend. Its current implementation is the technical foundation for the approved V2 experience; the final content sections and service-detail pages belong to Issue #117.
 
-The application is structured around reusable UI components, independent page sections, centralized configuration, and a customizable SCSS styling system.
+The architecture is intentionally small. Bootstrap provides the grid, containers, responsive layout, and common utilities. SCSS owns Ancestral's visual identity and component contracts.
 
----
-
-## Project Structure
-
-The frontend source code is organized as follows:
+## Source structure
 
 ```text
 src/
-├── assets/
-├── components/
-├── config/
-├── pages/
-├── sections/
-├── styles/
-├── tests/
+├── assets/       # Approved V2 brand, service, partner, and photography assets
+├── components/   # Reusable visual and semantic primitives
+├── config/       # Typed canonical navigation and service data
+├── pages/        # Route-level composition
+├── styles/       # Tokens, Bootstrap integration, base rules, and component styles
+├── tests/        # Shared test setup and infrastructure tests
+├── types/        # Shared domain-oriented TypeScript contracts
 ├── App.tsx
 └── main.tsx
 ```
 
-### Assets
+The dependency direction is composition toward reusable foundations:
 
-Contains static resources used by the application, such as images, icons, and other frontend resources.
+```text
+App → pages → components → shared types/configuration
+```
 
-### Components
+Lower-level components do not import pages. Configuration contains data and stable identifiers, not React components or page-composition instructions.
 
-Contains reusable UI elements that can be shared across different sections or pages.
+## Application shell
 
-Examples:
+`App.tsx` renders a minimal V2 foundation page. It proves the application entry point, typography, brand assets, responsive styling, and accessible main-content navigation without implementing the final Header, Hero, service presentation, Contact, or Footer sections planned for Issue #117.
 
-- Header
-- Footer
-- Navbar
-- Buttons
-- Cards
-- Widgets
+## Configuration
 
-### Sections
+`navigation.ts` is the single source of truth for the four approved primary navigation items. `services.ts` defines exactly the five approved service categories, stable slugs/routes, supplied icon variants, and replaceable development photography.
 
-Contains complete and independent blocks that compose the landing page.
+Environmental Compensation is intentionally not modeled as a sixth service. It remains a transversal experience and impact narrative defined by the V2 content architecture.
 
-Examples:
+## Styling architecture
 
-- Home
-- About Us
-- Why Us
-- Services
-- Contact
+```text
+src/styles/
+├── abstracts/              # Color, typography, spacing, responsive, and shared tokens
+├── base/                   # Global document foundations
+├── components/             # Reusable component contracts
+├── utilities/              # Small, generic project utilities
+├── bootstrap-extensions.scss
+└── index.scss              # Explicit style entry point
+```
 
-Each section is responsible for its own presentation and business information.
+The Bootstrap customization uses the canonical V2 palette, Poppins, a 4 px spacing base, and layout breakpoints aligned with the documented reference modes:
 
-### Configuration
+- Mobile: below 768 px
+- Tablet: 768 px and above
+- Desktop: 1024 px and above
+- Large screen: 1440 px and above
 
-The application follows a configuration-driven approach where common information is centralized in configuration files.
+Component styles are mobile-first and use shared tokens. Final section-specific styles will be added with their sections in Issue #117.
 
-Examples:
+## Assets
 
-- Navigation menu items
-- Section identifiers
-- Application constants
+Approved logos are consumed from `src/assets/images/logo/`, and service configuration imports the supplied category icons from `src/assets/icons/services/`. Partner marks and V2 photography remain organized by content role. These files must not be reconstructed or replaced with approximations.
 
-This approach reduces duplicated information and simplifies future modifications.
-
----
-
-## Styling Architecture
-
-The project uses SCSS as the main styling solution combined with Bootstrap.
-
-The styling strategy includes:
-
-- Modular SCSS organization.
-- Design variables and reusable utilities.
-- Bootstrap customization and extensions.
-- Responsive design principles.
-
-Custom Bootstrap utilities were implemented to extend the default spacing system, including additional gutter classes:
-
-- `g-6` to `g-9`
-- `gx-6` to `gx-9`
-- `gy-6` to `gy-9`
-
-This provides additional flexibility for responsive layouts while maintaining Bootstrap conventions.
-
----
-
-## Component Design Principles
-
-The frontend architecture follows these principles:
-
-- Separation of concerns.
-- Reusable components.
-- Configuration-driven behavior.
-- Maintainable styling.
-- Responsive-first development.
-
-This architecture allows the project to grow while keeping the codebase organized and easy to maintain.
+Lucide remains the standard dependency for future generic functional icons. It does not replace the supplied service-category assets.

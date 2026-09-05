@@ -1,120 +1,46 @@
-/* ==========================================================
-   Bootstrap Extensions
-   Extends Bootstrap's default styles with custom utilities and components
-   ========================================================== */
+@use "abstracts/colors" as colors;
+@use "abstracts/fonts" as fonts;
+@use "abstracts/variables" as variables;
 
-/* Opacity */
+$primary: colors.$brand-green;
+$secondary: colors.$brand-navy;
+$body-bg: colors.$off-white;
+$body-color: colors.$neutral-dark;
+$headings-color: colors.$brand-navy;
+$font-family-sans-serif: fonts.$font-family-primary;
+$border-color: colors.$neutral-light;
+$border-radius: variables.$radius-sm;
+$border-radius-lg: variables.$radius-md;
+$border-radius-pill: variables.$radius-pill;
+$focus-ring-color: rgb(76 175 55 / 35%);
+$grid-breakpoints: (
+	xs: 0,
+	sm: 36rem,
+	md: 48rem,
+	lg: 64rem,
+	xl: 75rem,
+	xxl: 90rem,
+);
+$container-max-widths: (
+	sm: 33.75rem,
+	md: 45rem,
+	lg: 60rem,
+	xl: 71.25rem,
+	xxl: 82.5rem,
+);
+$spacer: 0.25rem;
+$spacers: (
+	0: 0,
+	1: $spacer,
+	2: $spacer * 2,
+	3: $spacer * 3,
+	4: $spacer * 4,
+	5: $spacer * 6,
+	6: $spacer * 8,
+	7: $spacer * 12,
+	8: $spacer * 16,
+	9: $spacer * 24,
+	10: $spacer * 32,
+);
 
-.opacity-60 {
-	opacity: 0.6 !important;
-}
-
-/* Spacing Scale */
-
-$spacing-6: 1.5rem;
-$spacing-7: 2rem;
-$spacing-8: 3rem;
-$spacing-9: 3.5rem;
-
-/* Margin */
-
-@each $index, $value in (6: $spacing-6, 7: $spacing-7, 8: $spacing-8, 9: $spacing-9) {
-	.m-#{$index} {
-		margin: $value !important;
-	}
-
-	.mt-#{$index} {
-		margin-top: $value !important;
-	}
-
-	.mb-#{$index} {
-		margin-bottom: $value !important;
-	}
-
-	.ms-#{$index} {
-		margin-left: $value !important;
-	}
-
-	.me-#{$index} {
-		margin-right: $value !important;
-	}
-
-	.mx-#{$index} {
-		margin-left: $value !important;
-		margin-right: $value !important;
-	}
-
-	.my-#{$index} {
-		margin-top: $value !important;
-		margin-bottom: $value !important;
-	}
-}
-
-/* Padding */
-
-@each $index, $value in (6: $spacing-6, 7: $spacing-7, 8: $spacing-8, 9: $spacing-9) {
-	.p-#{$index} {
-		padding: $value !important;
-	}
-
-	.pt-#{$index} {
-		padding-top: $value !important;
-	}
-
-	.pb-#{$index} {
-		padding-bottom: $value !important;
-	}
-
-	.ps-#{$index} {
-		padding-left: $value !important;
-	}
-
-	.pe-#{$index} {
-		padding-right: $value !important;
-	}
-
-	.px-#{$index} {
-		padding-left: $value !important;
-		padding-right: $value !important;
-	}
-
-	.py-#{$index} {
-		padding-top: $value !important;
-		padding-bottom: $value !important;
-	}
-}
-
-/* Gutter */
-
-@each $index, $value in (6: $spacing-6, 7: $spacing-7, 8: $spacing-8, 9: $spacing-9) {
-	.g-#{$index} {
-		--bs-gutter-x: #{$value} !important;
-		--bs-gutter-y: #{$value} !important;
-	}
-
-	.gx-#{$index} {
-		--bs-gutter-x: #{$value} !important;
-	}
-
-	.gy-#{$index} {
-		--bs-gutter-y: #{$value} !important;
-	}
-}
-
-/* Gap */
-
-.gap-6 {
-	gap: $spacing-6 !important;
-}
-
-.gap-7 {
-	gap: $spacing-7 !important;
-}
-
-.gap-8 {
-	gap: $spacing-8 !important;
-}
-
-.gap-9 {
-	gap: $spacing-9 !important;
-}
+@import "bootstrap/scss/bootstrap";

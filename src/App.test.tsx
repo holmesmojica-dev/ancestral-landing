@@ -1,27 +1,23 @@
-import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+
 import App from "./App";
 
-vi.mock("./components/Header/Header", () => ({
-	default: () => <div>Header</div>,
-}));
-
-vi.mock("./components/Footer/Footer", () => ({
-	default: () => <div>Footer</div>,
-}));
-
-vi.mock("./pages/Home/Home", () => ({
-	default: () => <div>Home</div>,
-}));
-
 describe("App", () => {
-	it("should render application layout", () => {
-		window.history.pushState({}, "", "/ancestral-landing/");
-
+	it("renders the accessible V2 foundation shell", () => {
 		render(<App />);
 
-		expect(screen.getByText("Header")).toBeInTheDocument();
-		expect(screen.getByText("Home")).toBeInTheDocument();
-		expect(screen.getByText("Footer")).toBeInTheDocument();
+		expect(screen.getByRole("main")).toHaveAttribute("id", "main-content");
+		expect(
+			screen.getByRole("heading", {
+				level: 1,
+				name: "La nueva experiencia de Ancestral está en camino.",
+			})
+		).toBeInTheDocument();
+		expect(screen.getByRole("link", { name: "Saltar al contenido principal" })).toHaveAttribute(
+			"href",
+			"#main-content"
+		);
+		expect(screen.getByRole("img", { name: "Ancestral Servicios Ambientales" })).toBeVisible();
 	});
 });

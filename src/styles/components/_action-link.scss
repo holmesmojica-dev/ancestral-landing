@@ -1,0 +1,56 @@
+@use "../abstracts/colors";
+@use "../abstracts/fonts";
+@use "../abstracts/variables";
+
+.action-link {
+	display: inline-flex;
+	min-height: 3rem;
+	align-items: center;
+	justify-content: center;
+	padding: variables.get-space("3") variables.get-space("6");
+	border: 0.125rem solid transparent;
+	border-radius: variables.$radius-pill;
+	font-weight: fonts.get-font-weight("semibold");
+	line-height: 1.2;
+	text-align: center;
+	text-decoration: none;
+	transition:
+		background-color variables.$motion-fast variables.$ease-standard,
+		border-color variables.$motion-fast variables.$ease-standard,
+		box-shadow variables.$motion-fast variables.$ease-standard,
+		transform variables.$motion-fast variables.$ease-standard;
+
+	&:active {
+		transform: translateY(0.0625rem);
+	}
+
+	&--primary {
+		background: colors.$brand-green;
+		color: colors.$brand-navy;
+	}
+
+	&--secondary {
+		border-color: colors.$brand-navy;
+		background: colors.$white;
+		color: colors.$brand-navy;
+	}
+
+	&--large {
+		min-height: 3.25rem;
+		padding-inline: variables.get-space("7");
+	}
+}
+
+@media (hover: hover) {
+	.action-link--primary:hover {
+		background: colors.$brand-green-hover;
+		color: colors.$brand-navy;
+		box-shadow: variables.$shadow-sm;
+	}
+
+	.action-link--secondary:hover {
+		background: colors.$off-white;
+		color: colors.$brand-navy;
+		box-shadow: variables.$shadow-sm;
+	}
+}

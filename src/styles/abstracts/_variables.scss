@@ -1,48 +1,43 @@
-// Colors map definitions
-$custom-colors: (
-	primary: #00160e,
-	secondary: #006943,
-	text: #7f7f7f,
-	accent: #96cf24,
-	white: #ffffff,
-	medium-gray: #c4c4c4,
-	light-gray: #e1e1e1,
+@use "sass:map";
+
+$spacing: (
+	"1": 0.25rem,
+	"2": 0.5rem,
+	"3": 0.75rem,
+	"4": 1rem,
+	"5": 1.5rem,
+	"6": 2rem,
+	"7": 3rem,
+	"8": 4rem,
+	"9": 6rem,
+	"10": 8rem,
 );
 
-// Font families map definition
-$custom-font-families: (
-	inter: "Inter",
-	roboto: "Roboto",
-	heebo: "Heebo",
-);
+$radius-sm: 0.5rem;
+$radius-md: 1rem;
+$radius-lg: 1.5rem;
+$radius-pill: 999rem;
 
-// Font sizes map definitions
-$custom-font-sizes: (
-	h1: 50px,
-	h2: 34px,
-	h3: 24px,
-	h4: 18px,
-	title: 30px,
-	base: 16px,
-	md: 20px,
-	sm: 14px,
-	xs: 12px,
-);
+$shadow-sm: 0 0.25rem 0.75rem rgb(13 27 61 / 8%);
+$shadow-md: 0 0.625rem 1.875rem rgb(13 27 61 / 12%);
+$shadow-lg: 0 1.125rem 3rem rgb(13 27 61 / 16%);
 
-// Font weights map definitions
-$custom-font-weights: (
-	bold: 700,
-	semibold: 600,
-	medium: 500,
-	normal: 400,
-	light: 300,
-);
+$motion-fast: 150ms;
+$motion-standard: 250ms;
+$ease-standard: ease-out;
 
-// Line heights map definitions
-$custom-line-heights: (
-	normal: 1em,
-	tight: 1.1em,
-	compact: 1.2em,
-	relaxed: 1.3em,
-	loose: 1.5em,
-);
+$z-content: 1;
+$z-decorative: 10;
+$z-header: 100;
+$z-navigation: 200;
+$z-dialog: 300;
+
+$content-measure: 70ch;
+
+@function get-space($token) {
+	@if not map.has-key($spacing, $token) {
+		@error "Unknown spacing token: #{$token}.";
+	}
+
+	@return map.get($spacing, $token);
+}
