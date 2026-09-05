@@ -4,7 +4,7 @@ export interface SectionProps extends ComponentPropsWithoutRef<"section"> {
 	readonly tone?: "page" | "surface" | "dark";
 }
 
-export function Section({ children, className, tone = "page", ...props }: SectionProps) {
+export function Section({ children, className, tone = "page", ...props }: Readonly<SectionProps>) {
 	const classes = ["content-section", `content-section--${tone}`, className]
 		.filter(Boolean)
 		.join(" ");

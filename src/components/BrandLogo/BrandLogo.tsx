@@ -29,7 +29,7 @@ export function BrandLogo({
 	symbolOnly = false,
 	variant = "default",
 	...props
-}: BrandLogoProps) {
+}: Readonly<BrandLogoProps>) {
 	const asset = logoAssets[variant][symbolOnly ? "symbol" : "full"];
 	const classes = ["brand-logo", symbolOnly && "brand-logo--symbol", className]
 		.filter(Boolean)

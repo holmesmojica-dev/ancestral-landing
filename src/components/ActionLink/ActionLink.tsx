@@ -14,7 +14,7 @@ export function ActionLink({
 	className,
 	children,
 	...props
-}: ActionLinkProps) {
+}: Readonly<ActionLinkProps>) {
 	const classes = ["action-link", `action-link--${variant}`, `action-link--${size}`, className]
 		.filter(Boolean)
 		.join(" ");
