@@ -1,14 +1,10 @@
-@use "sass:map";
+@use "colors";
 @use "variables";
 
-@function get-color($color-key) {
-	@return map.get(variables.$custom-colors, $color-key);
+@function color($token) {
+	@return colors.get-color($token);
 }
 
-@function get-font-family($font-family) {
-	@return map.get(variables.$custom-font-families, $font-family);
-}
-
-@function get-font-size($font-size) {
-	@return map.get(variables.$custom-font-sizes, $font-size);
+@function space($token) {
+	@return variables.get-space($token);
 }

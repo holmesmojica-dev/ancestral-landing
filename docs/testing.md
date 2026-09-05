@@ -2,94 +2,48 @@
 
 ## Overview
 
-Ancestral Landing uses automated testing to ensure component reliability, application stability, and confidence during future changes.
+Ancestral Landing uses Vitest, React Testing Library, `@testing-library/jest-dom`, and jsdom. Tests prioritize observable behavior, accessible roles and names, and stable content/configuration contracts.
 
-The testing strategy focuses on validating the behavior of components and user-visible functionality.
+## Test organization
 
----
+- Reusable component tests are colocated with their components.
+- Application-shell tests remain near `App.tsx`.
+- Configuration tests are colocated with their typed data modules.
+- `src/tests/setup.ts` contains only setup shared by the active test suite.
 
-## Testing Stack
+The V2 foundation tests currently protect:
 
-The project uses the following testing tools:
+- The accessible application shell and skip navigation.
+- Supplied brand-asset selection.
+- Reusable action and section-heading semantics.
+- The approved navigation order and destinations.
+- Exactly five canonical service definitions, stable routes, and supplied asset associations.
+- The rule that Environmental Compensation is not a service category.
 
-### Vitest
+Issue #117 tests should cover each final section's user-visible behavior without duplicating every child-component assertion.
 
-Vitest is the main testing framework responsible for running unit and component tests.
+## Commands
 
-### React Testing Library
-
-React Testing Library is used to render components and validate the application behavior from the user's perspective.
-
-Tests focus on what users can see and interact with rather than implementation details.
-
-### jsdom
-
-jsdom provides a browser-like environment that allows React components to be tested outside a real browser.
-
----
-
-## Testing Philosophy
-
-Tests should follow these principles:
-
-- Validate user-facing behavior.
-- Avoid testing implementation details.
-- Keep tests simple and maintainable.
-- Ensure components can evolve without unnecessary test failures.
-
-The goal is to guarantee confidence when refactoring or adding new features.
-
----
-
-## Running Tests
-
-Execute the complete test suite:
+Run the complete suite once:
 
 ```bash
 npm run test:run
 ```
 
-Run tests in watch mode during development:
+Run in watch mode:
 
 ```bash
 npm run test:watch
 ```
 
----
-
-## Coverage Reports
-
-Generate a test coverage report:
+Generate the V8 coverage reports consumed by SonarCloud:
 
 ```bash
 npm run coverage
 ```
 
-Coverage reports help identify untested areas and improve overall reliability.
+Coverage is written to `coverage/` as text, HTML, and LCOV output. Tests must not be added only to inflate a metric; they should protect meaningful behavior or contracts.
 
----
+## Manual validation
 
-## CI Integration
-
-Automated tests are executed as part of the Frontend Quality Validation workflow.
-
-The CI pipeline ensures that:
-
-- All tests pass successfully.
-- The application can be built.
-- Code quality standards are maintained.
-
-A Pull Request cannot be merged into the protected `main` branch if required validations fail.
-
----
-
-## Future Improvements
-
-The testing strategy can evolve to include additional quality practices such as:
-
-- End-to-end testing.
-- Visual regression testing.
-- Performance testing.
-- Accessibility testing.
-
-The current foundation allows the testing ecosystem to grow while maintaining the existing quality standards.
+Automated tests do not replace manual responsive and accessibility review. Final V2 sections must also be reviewed at the viewport matrix defined in `docs/v2/responsive-design.md`, including keyboard focus, reduced motion, image crops, text reflow, and intermediate widths.

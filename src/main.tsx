@@ -1,29 +1,20 @@
+import "@fontsource/poppins/latin-400.css";
+import "@fontsource/poppins/latin-500.css";
+import "@fontsource/poppins/latin-600.css";
+import "@fontsource/poppins/latin-700.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "bootstrap/scss/bootstrap.scss";
+
+import App from "./App";
 import "./styles/index.scss";
 
-import "@fontsource/inter/300.css";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/inter/700.css";
+const rootElement = document.getElementById("root");
 
-import "@fontsource/heebo/300.css";
-import "@fontsource/heebo/400.css";
-import "@fontsource/heebo/500.css";
-import "@fontsource/heebo/600.css";
-import "@fontsource/heebo/700.css";
+if (!rootElement) {
+	throw new Error("The application root element was not found.");
+}
 
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/600.css";
-import "@fontsource/roboto/700.css";
-
-import App from "./App.tsx";
-
-createRoot(document.getElementById("root")!).render(
+createRoot(rootElement).render(
 	<StrictMode>
 		<App />
 	</StrictMode>

@@ -1,16 +1,8 @@
-@use "./bootstrap-extensions";
-@use "./base/base";
-
-@use "./utilities/utilities";
-
-@use "./components/buttons";
-@use "./components/custom-popup";
-@use "./components/footer";
-@use "./components/header";
-@use "./components/navbar";
-
-@use "./sections/about-us";
-@use "./sections/contact-us";
-@use "./sections/full-screen-banner";
-@use "./sections/our-services";
-@use "./sections/why-us";
+@use "bootstrap-extensions";
+@use "base/base";
+@use "utilities/utilities";
+@use "components/action-link";
+@use "components/brand-logo";
+@use "components/content-section";
+@use "components/section-heading";
+@use "components/foundation-page";

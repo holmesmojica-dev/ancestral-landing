@@ -1,0 +1,61 @@
+@use "../abstracts/colors";
+@use "../abstracts/fonts";
+@use "../abstracts/responsive";
+@use "../abstracts/variables";
+
+.foundation-page {
+	min-height: 100vh;
+
+	&__intro {
+		display: flex;
+		min-height: 70vh;
+		align-items: center;
+
+		> .container {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+
+	&__logo {
+		margin-block-end: variables.get-space("7");
+	}
+
+	&__eyebrow {
+		padding-inline-start: variables.get-space("3");
+		margin-block-end: variables.get-space("3");
+		border-inline-start: 0.25rem solid colors.$brand-green;
+		color: colors.$brand-navy;
+		font-size: fonts.get-font-size("body-small");
+		font-weight: fonts.get-font-weight("semibold");
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	&__title {
+		max-width: 18ch;
+		margin-block-end: variables.get-space("5");
+		color: colors.$brand-navy;
+		font-size: clamp(2.25rem, 8vw, fonts.get-font-size("display"));
+		font-weight: fonts.get-font-weight("bold");
+		line-height: fonts.get-line-height("display");
+	}
+
+	&__description {
+		max-width: variables.$content-measure;
+		margin-block-end: variables.get-space("6");
+		color: colors.$neutral-dark;
+		font-size: fonts.get-font-size("body-large");
+	}
+
+	&__details {
+		min-height: 30vh;
+	}
+
+	@include responsive.from("tablet") {
+		&__intro > .container {
+			padding-inline-end: 20%;
+		}
+	}
+}

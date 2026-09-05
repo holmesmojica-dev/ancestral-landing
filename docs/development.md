@@ -2,113 +2,61 @@
 
 ## Requirements
 
-Before running the project locally, ensure the following tools are installed:
-
-- Node.js
-- npm
-
----
+- Node.js 22, matching GitHub Actions
+- npm 10 or newer
 
 ## Installation
 
-Clone the repository and install the dependencies:
-
-```bash
-npm install
-```
-
-For a clean and reproducible installation, especially in CI environments, use:
+Install the locked dependency graph:
 
 ```bash
 npm ci
 ```
 
----
+Use `npm install` only when intentionally changing dependencies and commit the resulting `package-lock.json` update with that change.
 
-## Development Server
+## Local development
 
-Start the local development server:
+Start Vite with hot module replacement:
 
 ```bash
 npm run dev
 ```
 
-The application will be available in the local Vite development environment with hot reload enabled.
+The configured GitHub Pages base path is `/ancestral-landing/`.
 
----
-
-## Production Build
-
-Generate a production-ready build:
+## Production build and preview
 
 ```bash
 npm run build
-```
-
-Preview the production build locally:
-
-```bash
 npm run preview
 ```
 
-This process is recommended to validate that the production output behaves as expected before deployment.
+The build command performs strict TypeScript project compilation before producing the Vite bundle.
 
----
+## Quality validation
 
-## Quality Validation
-
-The project includes automated quality validation scripts.
-
-### Linting
-
-```bash
-npm run lint
-```
-
-Validates code quality and detects potential issues using ESLint.
-
-### Testing
-
-```bash
-npm run test:run
-```
-
-Runs the automated test suite using Vitest.
-
-### Coverage
-
-```bash
-npm run coverage
-```
-
-Generates the test coverage report.
-
-### Code Formatting
-
-Format the code:
-
-```bash
-npm run format
-```
-
-Verify formatting without modifying files:
+Run the same local checks expected by the quality pipeline:
 
 ```bash
 npm run format:check
+npm run lint
+npm run test:run
+npm run coverage
+npm run build
 ```
 
----
+Use `npm run format` to apply Prettier formatting. Husky and lint-staged preserve the same formatting and linting conventions for staged source files.
 
-## Development Standards
+## V2 implementation rules
 
-All code contributions should follow the established project standards:
+- Review `docs/v2/content-architecture.md`, `docs/v2/design-system.md`, and `docs/v2/responsive-design.md` before implementing a section.
+- Keep strict TypeScript enabled.
+- Use Bootstrap for generic grid, container, responsive, and spacing behavior.
+- Use shared SCSS tokens and semantic component classes for Ancestral-specific presentation.
+- Keep canonical navigation and service data in typed configuration.
+- Preserve exactly five service categories; Environmental Compensation is not a sixth service.
+- Reuse the supplied brand, service-icon, partner, and photography assets.
+- Add dependencies only when the browser platform, React, Bootstrap, or the existing toolchain cannot solve the requirement cleanly.
 
-- Write clean and readable code.
-- Prefer reusable components.
-- Keep sections independent and maintainable.
-- Follow the existing project architecture.
-- Maintain test coverage.
-- Follow ESLint and Prettier rules.
-- Use Conventional Commit messages.
-
-These practices ensure consistency across the codebase and support automated CI/CD workflows.
+Issue #116 establishes the foundation only. The final V2 sections and route-level service experience are intentionally deferred to Issue #117.
