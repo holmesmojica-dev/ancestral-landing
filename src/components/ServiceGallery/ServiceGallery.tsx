@@ -10,7 +10,7 @@ export interface ServiceGalleryProps {
 export function ServiceGallery({ images }: Readonly<ServiceGalleryProps>) {
 	const [selectedImageSrc, setSelectedImageSrc] = useState(images[0]?.src ?? "");
 	const selectedImageIndex = images.findIndex((image) => image.src === selectedImageSrc);
-	const activeImageIndex = selectedImageIndex >= 0 ? selectedImageIndex : 0;
+	const activeImageIndex = Math.max(selectedImageIndex, 0);
 	const hasMultipleImages = images.length > 1;
 	const activeImage = images[activeImageIndex];
 

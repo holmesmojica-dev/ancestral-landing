@@ -30,9 +30,7 @@ export function Header({ isHomePage = true }: Readonly<HeaderProps>) {
 		initialSectionId,
 		isHomePage ? undefined : serviceDetailStickyOffset
 	);
-	const activeSectionId = currentSectionIds.some(
-		(sectionId) => sectionId === observedActiveSectionId
-	)
+	const activeSectionId = (currentSectionIds as readonly string[]).includes(observedActiveSectionId)
 		? observedActiveSectionId
 		: initialSectionId;
 	const menuButtonRef = useRef<HTMLButtonElement>(null);
