@@ -4,6 +4,7 @@ import "@fontsource/poppins/latin-600.css";
 import "@fontsource/poppins/latin-700.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
 import "./styles/index.scss";
@@ -16,6 +17,11 @@ if (!rootElement) {
 
 createRoot(rootElement).render(
 	<StrictMode>
-		<App />
+		<BrowserRouter
+			basename={import.meta.env.BASE_URL}
+			future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+		>
+			<App />
+		</BrowserRouter>
 	</StrictMode>
 );

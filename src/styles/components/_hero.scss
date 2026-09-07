@@ -1,0 +1,214 @@
+@use "sass:color";
+
+@use "../abstracts/colors";
+@use "../abstracts/fonts";
+@use "../abstracts/responsive";
+@use "../abstracts/variables";
+
+.hero {
+	position: relative;
+	overflow-x: clip;
+	background: colors.$off-white;
+	isolation: isolate;
+
+	&__shape {
+		position: absolute;
+		z-index: variables.$z-content-overlay;
+		inset-block: 0;
+		inset-inline-start: 0;
+
+		height: 100%;
+		width: 18.8rem;
+
+		color: colors.$brand-navy;
+		pointer-events: none;
+
+		svg {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	&__content {
+		position: relative;
+		z-index: variables.$z-content;
+		padding-top: variables.get-space("6");
+		padding-bottom: variables.get-space("10");
+	}
+
+	&__title {
+		max-width: 16ch;
+		margin-block-end: variables.get-space("4");
+		color: colors.$brand-navy;
+		font-size: clamp(2.25rem, 9vw, fonts.get-font-size("display"));
+		font-weight: fonts.get-font-weight("bold");
+		line-height: fonts.get-line-height("display");
+
+		span {
+			color: colors.$brand-green-hover;
+		}
+	}
+
+	&__description {
+		max-width: 48ch;
+		margin-block-end: variables.get-space("5");
+		color: colors.$neutral-dark;
+		font-size: fonts.get-font-size("body");
+	}
+
+	&__actions {
+		align-items: stretch;
+
+		.action-link {
+			gap: variables.get-space("2");
+			white-space: nowrap;
+		}
+	}
+
+	&__layout {
+		position: relative;
+	}
+
+	&__visual {
+		position: absolute;
+		height: 100%;
+		margin-block-start: variables.get-space("7");
+	}
+
+	&__image-frame {
+		height: 100%;
+
+		&::after {
+			position: absolute;
+			z-index: 1;
+			inset: 0;
+			background: linear-gradient(
+				85deg,
+				color.change(colors.$off-white, $alpha: 0.9) 0%,
+				color.change(colors.$off-white, $alpha: 0.85) 30%,
+				color.change(colors.$off-white, $alpha: 0.8) 46%,
+				color.change(colors.$off-white, $alpha: 0.75) 70%,
+				color.change(colors.$off-white, $alpha: 0.7) 90%
+			);
+			content: "";
+			pointer-events: none;
+		}
+	}
+
+	&__image {
+		min-height: 100%;
+		min-width: 100%;
+		object-fit: cover;
+		position: relative;
+		bottom: 0;
+		left: 0;
+	}
+
+	@include responsive.from("tablet") {
+		&__actions {
+			align-items: center;
+		}
+
+		&__visual {
+			margin-block-start: variables.get-space("7");
+		}
+
+		&__content {
+			padding-inline-start: variables.get-space("10") !important;
+		}
+	}
+
+	@include responsive.from("desktop") {
+		min-height: 31rem;
+		padding-block: 0;
+
+		> .container {
+			position: relative;
+		}
+
+		&__layout {
+			min-height: 31rem;
+		}
+
+		&__content {
+			z-index: 3;
+			width: 50%;
+			max-width: 50%;
+			padding-block: variables.get-space("6") variables.get-space("8");
+			padding-inline-start: variables.get-space("9");
+			padding-bottom: variables.get-space("10");
+		}
+
+		&__title {
+			max-width: 16ch;
+			font-size: clamp(fonts.get-font-size("h1"), 3.6vw, fonts.get-font-size("display"));
+		}
+
+		&__description {
+			max-width: 44ch;
+			font-size: fonts.get-font-size("body-small");
+			line-height: fonts.get-line-height("body");
+		}
+
+		&__actions {
+			gap: variables.get-space("3") !important;
+
+			.action-link {
+				min-height: 3rem;
+				padding-inline: variables.get-space("5");
+				font-size: fonts.get-font-size("body-small");
+			}
+		}
+
+		&__visual {
+			position: absolute;
+			z-index: 0;
+			inset-block: 0;
+			inset-inline-start: calc((100vw - 100%) / -2);
+			inset-inline-end: calc((100vw - 100%) / -2);
+			width: auto;
+			height: 100%;
+			max-width: none;
+			padding: 0;
+			margin-block-start: 0;
+		}
+
+		&__image-frame {
+			border-radius: 0;
+			isolation: auto;
+
+			&::before {
+				display: none;
+			}
+
+			&::after {
+				z-index: 2;
+				display: block;
+				inset-block-end: 0;
+				inset-inline-end: 0;
+				background: colors.$brand-green;
+				background: linear-gradient(
+					120deg,
+					color.change(colors.$off-white, $alpha: 1) 0%,
+					color.change(colors.$off-white, $alpha: 0.9) 30%,
+					color.change(colors.$off-white, $alpha: 0.7) 40%,
+					color.change(colors.$off-white, $alpha: 0.5) 50%,
+					color.change(colors.$off-white, $alpha: 0) 60%
+				);
+			}
+		}
+
+		&__image {
+			aspect-ratio: auto;
+			object-position: center;
+		}
+	}
+
+	@include responsive.from("large") {
+		&__content {
+			padding-inline-start: variables.get-space("7");
+			padding-bottom: variables.get-space("9");
+		}
+	}
+}

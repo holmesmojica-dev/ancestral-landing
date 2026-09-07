@@ -2,7 +2,7 @@
 
 Frontend for the institutional website of Ancestral Servicios Ambientales, built with React, TypeScript, Vite, Bootstrap, and SCSS.
 
-The current branch contains the technical foundation for Ancestral Landing V2. It intentionally does not contain the final V2 landing-page sections or service-detail experiences; those are planned for Issue #117.
+The current implementation includes the complete approved Ancestral Landing V2 interface delivered in Issue #117: application routing, responsive navigation, Home sections, the five official service areas, and the reusable Service Detail experience. Contact API integration and CAPTCHA remain intentionally deferred to the integration stage.
 
 ## V2 sources of truth
 
@@ -19,6 +19,7 @@ Historical V1 screenshots under `docs/screenshots/` remain project evidence only
 | Area             | Technology                                           |
 | ---------------- | ---------------------------------------------------- |
 | UI               | React 18                                             |
+| Routing          | React Router 6                                       |
 | Language         | Strict TypeScript                                    |
 | Build            | Vite 5                                               |
 | Layout           | Bootstrap 5                                          |
@@ -34,13 +35,16 @@ Poppins is the only application font family. Supplied Ancestral logos, service-c
 
 The repository currently provides:
 
-- A minimal accessible React application shell.
-- Reusable brand, action, section, and section-heading primitives.
-- Typed navigation configuration for Inicio, Nosotros, Servicios, and Contacto.
-- Typed configuration for exactly five canonical service categories and their supplied assets.
-- A token-driven SCSS system for color, typography, spacing, radius, elevation, motion, layering, and responsive behavior.
-- Bootstrap customization aligned with the V2 palette, Poppins, spacing scale, containers, and reference breakpoints.
-- Mobile-first defaults, visible focus states, skip navigation, and reduced-motion support.
+- An accessible routed React application shell compatible with the GitHub Pages base path.
+- The approved responsive Header and contextual navigation.
+- The complete approved Ancestral Landing V2 Home experience.
+- The five official service areas and their reusable Service Detail experience.
+- Environmental Compensation and territorial impact content integrated as transversal content.
+- The approved Contact UI, including service context and the CAPTCHA placeholder.
+- The approved Footer and institutional navigation.
+- Reusable brand, action, section, navigation, gallery, and service UI primitives.
+- Typed configuration for navigation, services, contact information, and trusted entities.
+- Automated component and behavior tests for the implemented V2 experience.
 
 Environmental Compensation is not a sixth service. It remains a transversal experience and impact narrative, as defined by the V2 content architecture.
 

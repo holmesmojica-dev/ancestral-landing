@@ -1,0 +1,102 @@
+@use "../abstracts/colors";
+@use "../abstracts/fonts";
+@use "../abstracts/responsive";
+@use "../abstracts/variables";
+
+.territorial-commitment {
+	position: relative;
+	padding-block: variables.get-space("7");
+
+	&__panel {
+		overflow: hidden;
+		border-radius: variables.$radius-md;
+		background: colors.$brand-navy;
+		box-shadow: variables.$shadow-md;
+		color: colors.$white;
+	}
+
+	&__visual {
+		min-height: 18rem;
+
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			min-height: 18rem;
+			object-fit: cover;
+		}
+	}
+
+	&__content {
+		padding: variables.get-space("7");
+
+		h2 {
+			margin-block-end: variables.get-space("5");
+			color: colors.$white;
+			font-size: clamp(1.8rem, 4vw, fonts.get-font-size("h2"));
+			font-weight: fonts.get-font-weight("bold");
+			line-height: fonts.get-line-height("heading");
+
+			span {
+				color: colors.$brand-green;
+			}
+		}
+
+		> p:not(.territorial-commitment__statement) {
+			color: colors.$off-white;
+		}
+	}
+
+	&__impact {
+		display: inline-flex;
+		align-items: center;
+		padding: variables.get-space("3") variables.get-space("4");
+		margin-block: variables.get-space("3") variables.get-space("5");
+		border: 0.0625rem solid rgb(255 255 255 / 24%);
+		border-radius: variables.$radius-pill;
+		color: colors.$brand-green;
+		column-gap: variables.get-space("3");
+
+		p {
+			display: flex;
+			align-items: baseline;
+			margin: 0;
+			color: colors.$white;
+			column-gap: variables.get-space("2");
+		}
+
+		strong {
+			font-size: fonts.get-font-size("h3");
+		}
+	}
+
+	&__statement {
+		padding-inline-start: variables.get-space("4");
+		margin: 0;
+		border-inline-start: 0.25rem solid colors.$brand-green;
+		font-size: fonts.get-font-size("body-large");
+		font-weight: fonts.get-font-weight("semibold");
+	}
+
+	@include responsive.from("desktop") {
+		&__panel {
+			display: grid;
+			grid-template-columns: minmax(0, 1.05fr) minmax(26rem, 0.95fr);
+		}
+
+		&__visual {
+			min-height: 38rem;
+
+			img {
+				min-height: 38rem;
+			}
+		}
+
+		&__content {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding: variables.get-space("8");
+		}
+	}
+}

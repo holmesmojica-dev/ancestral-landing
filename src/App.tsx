@@ -1,5 +1,28 @@
-import { FoundationPage } from "./pages/FoundationPage/FoundationPage";
+import { Route, Routes, useLocation } from "react-router-dom";
+
+import { Header } from "./components/Header/Header";
+import { Footer } from "./components/Footer/Footer";
+import { routePaths } from "./config/routes";
+import { HomePage } from "./pages/HomePage/HomePage";
+import { ServiceDetailPage } from "./pages/ServiceDetailPage/ServiceDetailPage";
 
 export default function App() {
-	return <FoundationPage />;
+	const location = useLocation();
+	const isHomePage = location.pathname === routePaths.home;
+
+	return (
+		<>
+			<a className="skip-link" href="#main-content">
+				Saltar al contenido principal
+			</a>
+			<Header isHomePage={isHomePage} />
+			<main id="main-content" tabIndex={-1}>
+				<Routes>
+					<Route element={<HomePage />} path={routePaths.home} />
+					<Route element={<ServiceDetailPage />} path={routePaths.serviceDetail} />
+				</Routes>
+			</main>
+			<Footer isHomePage={isHomePage} />
+		</>
+	);
 }

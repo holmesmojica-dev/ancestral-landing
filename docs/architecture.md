@@ -2,7 +2,7 @@
 
 ## Overview
 
-Ancestral Landing V2 is a React, TypeScript, and Vite single-page frontend. Its current implementation is the technical foundation for the approved V2 experience; the final content sections and service-detail pages belong to Issue #117.
+Ancestral Landing V2 is a React, TypeScript, Vite, and React Router single-page frontend. Its current implementation contains the technical foundation and the approved opening composition for Issue #117. Later home sections and service-detail content remain staged work within Issue #117.
 
 The architecture is intentionally small. Bootstrap provides the grid, containers, responsive layout, and common utilities. SCSS owns Ancestral's visual identity and component contracts.
 
@@ -31,7 +31,9 @@ Lower-level components do not import pages. Configuration contains data and stab
 
 ## Application shell
 
-`App.tsx` renders a minimal V2 foundation page. It proves the application entry point, typography, brand assets, responsive styling, and accessible main-content navigation without implementing the final Header, Hero, service presentation, Contact, or Footer sections planned for Issue #117.
+`main.tsx` provides the browser router using Vite's configured base path. `App.tsx` owns the shared accessible shell, persistent Header, main landmark, and route table: the home route renders `HomePage`, while the shared `/servicios/:serviceSlug` route shape is reserved for the future reusable service-detail experience without implementing its content prematurely.
+
+`HomePage` currently composes the Header-adjacent opening experience: Hero, experience indicators, and About. The indicators bridge the Hero photography into the dark About surface without changing their semantic independence. Services, Environmental Compensation, Contact, Footer, and service-detail content remain outside the current implementation.
 
 ## Configuration
 

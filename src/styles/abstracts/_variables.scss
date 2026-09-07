@@ -16,6 +16,8 @@ $spacing: (
 $radius-sm: 0.5rem;
 $radius-md: 1rem;
 $radius-lg: 1.5rem;
+$radius-xl: 3rem;
+$radius-circle: 50%;
 $radius-pill: 999rem;
 
 $shadow-sm: 0 0.25rem 0.75rem rgb(13 27 61 / 8%);
@@ -27,12 +29,18 @@ $motion-standard: 250ms;
 $ease-standard: ease-out;
 
 $z-content: 1;
+$z-content-overlay: 2;
+$z-overlay: 5;
 $z-decorative: 10;
 $z-header: 100;
 $z-navigation: 200;
 $z-dialog: 300;
 
 $content-measure: 70ch;
+$site-header-height-mobile: 4.5rem;
+$site-header-height-desktop: 4.75rem;
+$service-breadcrumb-height: 2.25rem;
+$sticky-navigation-breathing-space: 1rem;
 
 @function get-space($token) {
 	@if not map.has-key($spacing, $token) {
