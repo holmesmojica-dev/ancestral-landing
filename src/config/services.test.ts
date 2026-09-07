@@ -21,9 +21,15 @@ describe("services", () => {
 	it("associates every service with a stable route and supplied asset variants", () => {
 		for (const service of services) {
 			expect(service.route).toBe(`/servicios/${service.slug}`);
+			expect(service.description.length).toBeGreaterThan(0);
 			expect(service.image).toMatch(/\.webp$/);
 			expect(Object.values(service.icons)).toHaveLength(4);
 			expect(Object.values(service.icons).every((icon) => icon.endsWith(".png"))).toBe(true);
+			expect(service.detail.heroCopy.length).toBeGreaterThan(0);
+			expect(service.detail.valueProposition.length).toBeGreaterThan(0);
+			expect(service.detail.capabilities.length).toBeGreaterThan(0);
+			expect(service.detail.gallery.length).toBeGreaterThan(0);
+			expect(service.detail.contact.heading.length).toBeGreaterThan(0);
 		}
 	});
 });

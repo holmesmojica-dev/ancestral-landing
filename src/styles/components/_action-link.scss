@@ -26,7 +26,7 @@
 
 	&--primary {
 		background: colors.$brand-green;
-		color: colors.$brand-navy;
+		color: colors.$off-white;
 	}
 
 	&--secondary {
@@ -44,7 +44,7 @@
 @media (hover: hover) {
 	.action-link--primary:hover {
 		background: colors.$brand-green-hover;
-		color: colors.$brand-navy;
+		color: colors.$white;
 		box-shadow: variables.$shadow-sm;
 	}
 

@@ -1,0 +1,64 @@
+@use "../abstracts/colors";
+@use "../abstracts/fonts";
+@use "../abstracts/variables";
+
+.service-card {
+	display: flex;
+	width: 100%;
+	min-height: 100%;
+	align-items: center;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding: variables.get-space("5") variables.get-space("4");
+	border: 0.0625rem solid colors.$neutral-light;
+	border-radius: variables.$radius-md;
+	background: colors.$white;
+	box-shadow: variables.$shadow-sm;
+	color: colors.$brand-navy;
+	row-gap: variables.get-space("3");
+	text-align: center;
+	text-decoration: none;
+	transition:
+		border-color variables.$motion-fast variables.$ease-standard,
+		box-shadow variables.$motion-fast variables.$ease-standard,
+		transform variables.$motion-fast variables.$ease-standard;
+
+	&__icon {
+		display: inline-flex;
+		width: 4rem;
+		height: 4rem;
+		flex: 0 0 4rem;
+		align-items: center;
+		justify-content: center;
+		border-radius: variables.$radius-circle;
+		background: colors.$off-white;
+
+		img {
+			object-fit: contain;
+		}
+	}
+
+	&__title {
+		display: flex;
+		min-height: 2.4em;
+		align-items: center;
+		justify-content: center;
+		font-weight: fonts.get-font-weight("semibold");
+		line-height: fonts.get-line-height("heading");
+	}
+
+	&__description {
+		margin: 0;
+		color: colors.$neutral-dark;
+		font-size: fonts.get-font-size("caption");
+		line-height: fonts.get-line-height("body");
+	}
+}
+
+@media (hover: hover) {
+	.service-card:hover {
+		border-color: colors.$brand-green;
+		box-shadow: variables.$shadow-sm;
+		transform: translateY(-0.125rem);
+	}
+}

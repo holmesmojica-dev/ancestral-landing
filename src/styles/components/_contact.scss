@@ -1,0 +1,199 @@
+@use "../abstracts/colors";
+@use "../abstracts/fonts";
+@use "../abstracts/responsive";
+@use "../abstracts/variables";
+
+.contact {
+	padding-block: variables.get-space("8");
+
+	&__header {
+		max-width: variables.$content-measure;
+		margin-block-end: variables.get-space("7");
+
+		h2 {
+			margin-block-end: variables.get-space("4");
+			color: colors.$brand-navy;
+			font-size: clamp(2rem, 5vw, fonts.get-font-size("h2"));
+			font-weight: fonts.get-font-weight("bold");
+			line-height: fonts.get-line-height("heading");
+		}
+
+		p:not(.contact__eyebrow) {
+			margin-block-end: variables.get-space("2");
+			color: colors.$neutral-dark;
+		}
+	}
+
+	&__eyebrow {
+		margin-block-end: variables.get-space("3");
+		color: colors.$brand-green;
+		font-size: fonts.get-font-size("body-small");
+		font-weight: fonts.get-font-weight("semibold");
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	&__layout {
+		display: grid;
+		gap: variables.get-space("6");
+	}
+
+	&__form,
+	&__aside {
+		border-radius: variables.$radius-lg;
+		background: colors.$white;
+		box-shadow: variables.$shadow-sm;
+		height: 100%;
+	}
+
+	&__form {
+		padding: variables.get-space("6");
+	}
+
+	&__field {
+		display: grid;
+		margin-block-end: variables.get-space("4");
+		gap: variables.get-space("2");
+
+		label {
+			color: colors.$brand-navy;
+			font-size: fonts.get-font-size("body-small");
+			font-weight: fonts.get-font-weight("semibold");
+		}
+
+		input,
+		select,
+		textarea {
+			width: 100%;
+			min-height: 3rem;
+			padding: variables.get-space("3") variables.get-space("4");
+			border: 0.0625rem solid colors.$neutral-light;
+			border-radius: variables.$radius-sm;
+			background: colors.$white;
+			color: colors.$brand-navy;
+			font: inherit;
+		}
+
+		textarea {
+			min-height: 8rem;
+			resize: vertical;
+		}
+	}
+
+	&__fields-row {
+		display: grid;
+		gap: variables.get-space("4");
+	}
+
+	&__help {
+		margin-block: calc(#{variables.get-space("3")} * -1) variables.get-space("4");
+		color: colors.$neutral-dark;
+		font-size: fonts.get-font-size("caption");
+	}
+
+	&__captcha {
+		display: flex;
+		min-height: 4rem;
+		align-items: center;
+		padding: variables.get-space("3") variables.get-space("4");
+		margin-block-end: variables.get-space("5");
+		border: 0.0625rem dashed colors.$neutral-dark;
+		border-radius: variables.$radius-sm;
+		color: colors.$neutral-dark;
+		column-gap: variables.get-space("3");
+	}
+
+	&__submit {
+		display: inline-flex;
+		min-height: 3.25rem;
+		align-items: center;
+		justify-content: center;
+		padding-inline: variables.get-space("7");
+		border: 0.125rem solid transparent;
+		border-radius: variables.$radius-pill;
+		background: colors.$brand-green;
+		color: colors.$white;
+		font: inherit;
+		font-weight: fonts.get-font-weight("semibold");
+		transition:
+			background-color variables.$motion-fast variables.$ease-standard,
+			box-shadow variables.$motion-fast variables.$ease-standard;
+	}
+
+	&__aside {
+		overflow: hidden;
+	}
+
+	&__whatsapp {
+		padding: variables.get-space("6");
+		background: colors.$brand-navy;
+		color: colors.$white;
+
+		> svg {
+			margin-block-end: variables.get-space("4");
+			color: colors.$brand-green;
+		}
+
+		h3 {
+			margin-block-end: variables.get-space("3");
+			color: colors.$white;
+			font-size: fonts.get-font-size("h3");
+		}
+	}
+
+	&__address {
+		display: grid;
+		padding: variables.get-space("5") variables.get-space("6");
+		margin: 0;
+		color: colors.$brand-navy;
+		font-style: normal;
+		gap: variables.get-space("3");
+
+		p {
+			display: flex;
+			align-items: flex-start;
+			margin: 0;
+			column-gap: variables.get-space("3");
+		}
+
+		a {
+			color: inherit;
+		}
+	}
+
+	&__map {
+		display: block;
+		width: 100%;
+		height: 16rem;
+		border: 0;
+	}
+
+	@include responsive.from("tablet") {
+		&__fields-row {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		&__form,
+		&__whatsapp {
+			padding: variables.get-space("7");
+		}
+	}
+
+	@include responsive.from("desktop") {
+		&__map {
+			height: 17.7rem;
+		}
+
+		&__layout {
+			align-items: start;
+			grid-template-columns: minmax(0, 1.1fr) minmax(22rem, 0.9fr);
+		}
+	}
+}
+
+@media (hover: hover) {
+	.contact__submit:hover {
+		background: colors.$brand-green-hover;
+		box-shadow: variables.$shadow-sm;
+	}
+}

@@ -11,7 +11,7 @@ Ancestral Landing uses Vitest, React Testing Library, `@testing-library/jest-dom
 - Configuration tests are colocated with their typed data modules.
 - `src/tests/setup.ts` contains only setup shared by the active test suite.
 
-The V2 foundation tests currently protect:
+The V2 foundation and Issue #117 Stage 1 tests currently protect:
 
 - The accessible application shell and skip navigation.
 - Supplied brand-asset selection.
@@ -19,8 +19,13 @@ The V2 foundation tests currently protect:
 - The approved navigation order and destinations.
 - Exactly five canonical service definitions, stable routes, and supplied asset associations.
 - The rule that Environmental Compensation is not a service category.
+- The routed home shell and reserved service-detail route model.
+- Canonical Header navigation and responsive-menu interaction.
+- Hero content, imagery, and CTA destinations.
+- The four approved experience indicators and their semantic grouping.
+- About content, approved imagery, landmark semantics, and mobile-first reading order.
 
-Issue #117 tests should cover each final section's user-visible behavior without duplicating every child-component assertion.
+Later Issue #117 stages should continue covering each final section's user-visible behavior without duplicating every child-component assertion.
 
 ## Commands
 
