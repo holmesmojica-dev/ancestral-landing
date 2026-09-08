@@ -80,6 +80,12 @@ describe("SEO configuration", () => {
 		);
 	});
 
+	it("normalizes only trailing slashes while preserving the root route", () => {
+		expect(getSeoMetadata("/")?.route).toBe("/");
+		expect(getSeoMetadata("/servicios/ambientales///")?.route).toBe("/servicios/ambientales");
+		expect(getSeoMetadata("/servicios//ambientales///")).toBeUndefined();
+	});
+
 	it("does not assign Home metadata to unknown routes", () => {
 		expect(getSeoMetadata("/ruta-desconocida")).toBeUndefined();
 		expect(getStructuredData("/ruta-desconocida")).toBeUndefined();
