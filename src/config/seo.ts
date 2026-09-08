@@ -30,7 +30,13 @@ function normalizePathname(pathname: string) {
 		return pathname;
 	}
 
-	return pathname.replace(/\/+$/, "");
+	let endIndex = pathname.length;
+
+	while (endIndex > 0 && pathname[endIndex - 1] === "/") {
+		endIndex -= 1;
+	}
+
+	return pathname.slice(0, endIndex);
 }
 
 export function createCanonicalUrl(route: string) {

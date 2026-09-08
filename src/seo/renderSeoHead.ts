@@ -16,7 +16,7 @@ function escapeHtml(value: string) {
 }
 
 function serializeStructuredData(value: Readonly<Record<string, unknown>>) {
-	return JSON.stringify(value).replace(/</g, "\\u003c");
+	return JSON.stringify(value).replace(/</g, String.raw`\u003c`);
 }
 
 export function renderSeoHead(pathname: string) {

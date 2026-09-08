@@ -3,13 +3,12 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 
 import App from "./App";
-import { createSitemap, indexableRoutes } from "./config/seo";
 import { renderSeoHead } from "./seo/renderSeoHead";
+
+export { createSitemap, indexableRoutes } from "./config/seo";
 
 const seoHeadPlaceholder = "<!--seo-head-->";
 const appHtmlPlaceholder = "<!--app-html-->";
-
-export { createSitemap, indexableRoutes };
 
 export function renderDocument(template: string, pathname: string) {
 	if (!template.includes(seoHeadPlaceholder) || !template.includes(appHtmlPlaceholder)) {
