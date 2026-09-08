@@ -21,7 +21,7 @@ describe("Hero", () => {
 		);
 		expect(within(hero).getByRole("link", { name: "Conócenos" })).toHaveAttribute(
 			"href",
-			"#nosotros"
+			"#contacto"
 		);
 		expect(
 			within(hero).getByRole("img", {

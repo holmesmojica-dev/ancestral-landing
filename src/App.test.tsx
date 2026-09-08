@@ -52,6 +52,37 @@ describe("App", () => {
 		expect(screen.getByRole("contentinfo")).toBeVisible();
 	});
 
+	it("moves focus from the skip link to the Home main content", async () => {
+		const user = userEvent.setup();
+		renderApp();
+
+		const skipLink = screen.getByRole("link", { name: "Saltar al contenido principal" });
+		skipLink.focus();
+		await user.keyboard("{Enter}");
+
+		expect(screen.getByRole("main")).toHaveFocus();
+	});
+
+	it("moves focus beyond the Service Detail breadcrumb", async () => {
+		const user = userEvent.setup();
+		renderApp(services[0].route);
+
+		const skipLink = screen.getByRole("link", { name: "Saltar al contenido principal" });
+		const serviceHeading = screen.getByRole("heading", { level: 1, name: services[0].name });
+		const breadcrumbLink = screen.getByRole("link", { name: "Todos los servicios" });
+
+		expect(skipLink).toHaveAttribute("href", "#service-detail-title");
+		skipLink.focus();
+		await user.keyboard("{Enter}");
+
+		expect(serviceHeading).toHaveFocus();
+
+		await user.tab();
+
+		expect(breadcrumbLink).not.toHaveFocus();
+		expect(screen.getByRole("button", { name: "Mostrar imagen anterior" })).toHaveFocus();
+	});
+
 	it("navigates from a Home service card to the reusable service detail route", async () => {
 		const user = userEvent.setup();
 		renderApp();

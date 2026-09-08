@@ -53,7 +53,7 @@ export function Hero() {
 									<Leaf aria-hidden="true" size={20} strokeWidth={2} />
 									<span>Nuestros servicios</span>
 								</ActionLink>
-								<ActionLink href="#nosotros" size="large" variant="secondary">
+								<ActionLink href="#contacto" size="large" variant="secondary">
 									<UsersRound aria-hidden="true" size={20} strokeWidth={2} />
 									<span>Conócenos</span>
 								</ActionLink>
