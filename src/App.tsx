@@ -9,10 +9,14 @@ import { ServiceDetailPage } from "./pages/ServiceDetailPage/ServiceDetailPage";
 export default function App() {
 	const location = useLocation();
 	const isHomePage = location.pathname === routePaths.home;
+	const skipTargetId = isHomePage ? "main-content" : "service-detail-title";
+	const focusSkipTarget = () => {
+		document.getElementById(skipTargetId)?.focus({ preventScroll: true });
+	};
 
 	return (
 		<>
-			<a className="skip-link" href="#main-content">
+			<a className="skip-link" href={`#${skipTargetId}`} onClick={focusSkipTarget}>
 				Saltar al contenido principal
 			</a>
 			<Header isHomePage={isHomePage} />

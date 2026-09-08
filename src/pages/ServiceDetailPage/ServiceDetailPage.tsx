@@ -43,7 +43,9 @@ export function ServiceDetailPage() {
 				<div className="container service-detail__hero-layout">
 					<div className="service-detail__hero-content">
 						<p className="service-detail__eyebrow">Servicio</p>
-						<h1 id="service-detail-title">{service.name}</h1>
+						<h1 id="service-detail-title" tabIndex={-1}>
+							{service.name}
+						</h1>
 						<p>{service.detail.heroCopy}</p>
 					</div>
 
