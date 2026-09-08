@@ -172,7 +172,7 @@ describe("Header", () => {
 		expect(within(navigation).queryByRole("link", { name: "Servicios" })).not.toBeInTheDocument();
 		expect(screen.getByRole("link", { name: "Ir al inicio de Ancestral" })).toHaveAttribute(
 			"href",
-			"/ancestral-landing/#inicio"
+			"/#inicio"
 		);
 	});
 

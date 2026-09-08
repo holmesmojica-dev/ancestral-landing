@@ -3,7 +3,7 @@ import "@fontsource/poppins/latin-500.css";
 import "@fontsource/poppins/latin-600.css";
 import "@fontsource/poppins/latin-700.css";
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
@@ -15,7 +15,7 @@ if (!rootElement) {
 	throw new Error("The application root element was not found.");
 }
 
-createRoot(rootElement).render(
+const application = (
 	<StrictMode>
 		<BrowserRouter
 			basename={import.meta.env.BASE_URL}
@@ -25,3 +25,9 @@ createRoot(rootElement).render(
 		</BrowserRouter>
 	</StrictMode>
 );
+
+if (rootElement.children.length > 0) {
+	hydrateRoot(rootElement, application);
+} else {
+	createRoot(rootElement).render(application);
+}

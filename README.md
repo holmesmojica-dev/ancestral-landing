@@ -35,7 +35,8 @@ Poppins is the only application font family. Supplied Ancestral logos, service-c
 
 The repository currently provides:
 
-- An accessible routed React application shell compatible with the GitHub Pages base path.
+- An accessible routed React application shell prepared for the production domain root.
+- Build-time prerendering and route-specific SEO for Home and the five service pages.
 - The approved responsive Header and contextual navigation.
 - The complete approved Ancestral Landing V2 Home experience.
 - The five official service areas and their reusable Service Detail experience.
@@ -67,7 +68,7 @@ Start the development server:
 npm run dev
 ```
 
-The application uses the `/ancestral-landing/` base path configured for GitHub Pages.
+The application uses the domain root (`/`) as its Vite base path.
 
 ## Commands
 
@@ -125,11 +126,9 @@ These are content-oriented reference modes, not a device whitelist. Components m
 
 ## Delivery
 
-GitHub Actions preserves the existing quality, SonarCloud, semantic-release, and GitHub Pages workflows. Pull requests must pass the repository quality checks before merge.
-
-The production application is deployed from `main` to:
-
-<https://holmesmojica-dev.github.io/ancestral-landing/>
+Pull requests must pass the repository quality checks before merge. The production target is
+<https://ancestral-col.com/>; deployment of this static build and the corresponding Nginx routing
+validation are deferred to Issue #120.
 
 ## Documentation
 
@@ -139,6 +138,7 @@ The production application is deployed from `main` to:
 - [CI/CD and deployment](./docs/cicd.md)
 - [Contributing guidelines](./docs/contributing.md)
 - [Frontend optimization](./docs/quality/frontend-optimization.md)
+- [Organic SEO](./docs/v2/seo.md)
 
 ## License
 

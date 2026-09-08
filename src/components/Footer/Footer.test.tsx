@@ -45,11 +45,8 @@ describe("Footer", () => {
 
 		expect(screen.getByRole("link", { name: "Ir al inicio de Ancestral" })).toHaveAttribute(
 			"href",
-			"/ancestral-landing/#inicio"
+			"/#inicio"
 		);
-		expect(screen.getByRole("link", { name: "Servicios" })).toHaveAttribute(
-			"href",
-			"/ancestral-landing/#servicios"
-		);
+		expect(screen.getByRole("link", { name: "Servicios" })).toHaveAttribute("href", "/#servicios");
 	});
 });

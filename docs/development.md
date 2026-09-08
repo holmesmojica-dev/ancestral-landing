@@ -23,7 +23,7 @@ Start Vite with hot module replacement:
 npm run dev
 ```
 
-The configured GitHub Pages base path is `/ancestral-landing/`.
+The configured production base path is the domain root (`/`).
 
 ## Production build and preview
 
