@@ -2,6 +2,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
+import { SeoMetadata } from "./components/SeoMetadata/SeoMetadata";
 import { routePaths } from "./config/routes";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { ServiceDetailPage } from "./pages/ServiceDetailPage/ServiceDetailPage";
@@ -16,6 +17,7 @@ export default function App() {
 
 	return (
 		<>
+			<SeoMetadata />
 			<a className="skip-link" href={`#${skipTargetId}`} onClick={focusSkipTarget}>
 				Saltar al contenido principal
 			</a>

@@ -42,6 +42,11 @@ export interface ServiceContactContent {
 	readonly description: string;
 }
 
+export interface ServiceSeoContent {
+	readonly title: string;
+	readonly description: string;
+}
+
 export interface ServiceDetailContent {
 	readonly heroCopy: string;
 	readonly valueProposition: string;
@@ -57,6 +62,7 @@ export interface ServiceDefinition {
 	readonly name: string;
 	readonly description: string;
 	readonly route: `/servicios/${ServiceSlug}`;
+	readonly seo: ServiceSeoContent;
 	readonly icons: ServiceIconSet;
 	readonly image: string;
 	readonly detail: ServiceDetailContent;

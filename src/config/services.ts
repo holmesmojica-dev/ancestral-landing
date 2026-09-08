@@ -36,6 +36,11 @@ export const services = [
 		name: "Servicios Ambientales",
 		description: "Formulación, asesoría y ejecución de proyectos ambientales integrales.",
 		route: "/servicios/ambientales",
+		seo: {
+			title: "Servicios Ambientales en Colombia | Ancestral",
+			description:
+				"Formulamos, planificamos, ejecutamos y acompañamos proyectos ambientales para organizaciones públicas y privadas, con experiencia técnica y trabajo en territorio.",
+		},
 		icons: {
 			default: environmentalIcon,
 			green: environmentalGreenIcon,
@@ -115,6 +120,11 @@ export const services = [
 		name: "Servicios Forestales",
 		description: "Manejo, conservación y aprovechamiento sostenible de los recursos forestales.",
 		route: "/servicios/forestales",
+		seo: {
+			title: "Servicios Forestales en Colombia | Ancestral",
+			description:
+				"Acompañamos proyectos de manejo, intervención, recuperación y conservación de recursos forestales con conocimiento técnico y experiencia en campo.",
+		},
 		icons: {
 			default: forestryIcon,
 			green: forestryGreenIcon,
@@ -200,6 +210,11 @@ export const services = [
 		name: "Servicios Agrícolas",
 		description: "Asesoría en obras agrícolas, manejo de tierras e insumos agrícolas.",
 		route: "/servicios/agricolas",
+		seo: {
+			title: "Servicios Agrícolas en Colombia | Ancestral",
+			description:
+				"Desarrollamos soluciones para proyectos agrícolas mediante asesoría técnica, preparación de tierras, infraestructura, caracterización de suelos y apoyo operativo.",
+		},
 		icons: {
 			default: agriculturalIcon,
 			green: agriculturalGreenIcon,
@@ -272,6 +287,11 @@ export const services = [
 		name: "Manejo del Recurso Hídrico",
 		description: "Gestión, protección y aprovechamiento sostenible de fuentes hídricas.",
 		route: "/servicios/recurso-hidrico",
+		seo: {
+			title: "Manejo del Recurso Hídrico en Colombia | Ancestral",
+			description:
+				"Acompañamos proyectos de planificación, protección y manejo sostenible del recurso hídrico, incluyendo acuíferos, vertimientos, cuencas y cauces.",
+		},
 		icons: {
 			default: waterResourcesIcon,
 			green: waterResourcesGreenIcon,
@@ -342,6 +362,11 @@ export const services = [
 		name: "Seguridad y Salud en el Trabajo",
 		description: "Implementación de sistemas de gestión y auditorías para entornos seguros.",
 		route: "/servicios/seguridad-salud-trabajo",
+		seo: {
+			title: "Seguridad y Salud en el Trabajo | Ancestral",
+			description:
+				"Diseñamos, implementamos y fortalecemos sistemas de Seguridad y Salud en el Trabajo, auditorías y procesos de gestión para organizaciones públicas y privadas.",
+		},
 		icons: {
 			default: occupationalSafetyIcon,
 			green: occupationalSafetyGreenIcon,

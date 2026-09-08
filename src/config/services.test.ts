@@ -22,6 +22,8 @@ describe("services", () => {
 		for (const service of services) {
 			expect(service.route).toBe(`/servicios/${service.slug}`);
 			expect(service.description.length).toBeGreaterThan(0);
+			expect(service.seo.title).toContain("Ancestral");
+			expect(service.seo.description.length).toBeGreaterThan(0);
 			expect(service.image).toMatch(/\.webp$/);
 			expect(Object.values(service.icons)).toHaveLength(4);
 			expect(Object.values(service.icons).every((icon) => icon.endsWith(".png"))).toBe(true);
