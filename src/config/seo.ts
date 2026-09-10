@@ -14,6 +14,12 @@ export const homeSeo = {
 		"Formulamos, asesoramos y ejecutamos proyectos ambientales, forestales, agrícolas, hídricos y de seguridad y salud en el trabajo en Colombia.",
 } as const;
 
+export const notFoundSeo = {
+	title: "Página no encontrada | Ancestral",
+	description: "La página que buscas no existe, fue movida o ya no está disponible.",
+	robots: "noindex,follow",
+} as const;
+
 export const indexableRoutes = [routePaths.home, ...services.map((service) => service.route)];
 
 export interface RouteSeoMetadata {

@@ -1,0 +1,354 @@
+name: Production CI/CD
+
+on:
+  push:
+    branches:
+      - v2
+    paths:
+      - "src/**"
+      - "public/**"
+      - "scripts/**"
+      - "index.html"
+      - "package.json"
+      - "package-lock.json"
+      - "vite.config.ts"
+      - "tsconfig*.json"
+      - "sonar-project.properties"
+      - ".github/workflows/production.yml"
+
+  pull_request:
+    branches:
+      - v2
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - "src/**"
+      - "public/**"
+      - "scripts/**"
+      - "index.html"
+      - "package.json"
+      - "package-lock.json"
+      - "vite.config.ts"
+      - "tsconfig*.json"
+      - "sonar-project.properties"
+      - ".github/workflows/production.yml"
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ancestral-landing-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  NODE_VERSION: 22.12.0
+  DEPLOY_ROOT: /var/www/ancestral-col.com
+
+jobs:
+  quality:
+    name: Frontend Quality Validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify formatting
+        run: npm run format:check
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test:run
+
+      - name: Generate coverage
+        run: npm run coverage
+
+      - name: Build production artifact
+        run: npm run build
+
+      - name: Cache SonarQube Cloud scanner
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: |
+            ${{ runner.os }}-sonar
+
+      - name: SonarQube Cloud scan
+        uses: SonarSource/sonarqube-scan-action@22918119ff8e1ca75a623e15c8296b6ea4fbe28f # v8.2.1
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: SonarQube Cloud Quality Gate
+        uses: SonarSource/sonarqube-quality-gate-action@7a5fffe8e523c40e0c740b6bc2712ab503e52efa # v1.2.1
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Package production artifact
+        if: >
+          (github.event_name == 'push' && github.ref == 'refs/heads/v2') ||
+          (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/v2')
+        run: tar -czf ancestral-landing.tar.gz -C dist .
+
+      - name: Upload production artifact
+        if: >
+          (github.event_name == 'push' && github.ref == 'refs/heads/v2') ||
+          (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/v2')
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: ancestral-landing-${{ github.sha }}
+          path: ancestral-landing.tar.gz
+          retention-days: 7
+          if-no-files-found: error
+
+  deploy:
+    name: Deploy to production VPS
+    if: >
+      (github.event_name == 'push' && github.ref == 'refs/heads/v2') ||
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/v2')
+    needs: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: production
+
+    env:
+      VPS_HOST: ${{ vars.VPS_HOST }}
+      VPS_USER: ${{ vars.VPS_USER }}
+      VPS_SSH_PORT: ${{ vars.VPS_SSH_PORT || '22' }}
+      RELEASE_SHA: ${{ github.sha }}
+
+    steps:
+      - name: Download production artifact
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
+        with:
+          name: ancestral-landing-${{ github.sha }}
+          path: artifact
+
+      - name: Configure SSH
+        shell: bash
+        env:
+          VPS_SSH_PRIVATE_KEY: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
+          VPS_SSH_KNOWN_HOSTS: ${{ secrets.VPS_SSH_KNOWN_HOSTS }}
+        run: |
+          test -n "$VPS_HOST"
+          test -n "$VPS_USER"
+          test -n "$VPS_SSH_PRIVATE_KEY"
+          test -n "$VPS_SSH_KNOWN_HOSTS"
+
+          install -d -m 700 "$HOME/.ssh"
+          printf '%s\n' "$VPS_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_ed25519"
+          printf '%s\n' "$VPS_SSH_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/id_ed25519" "$HOME/.ssh/known_hosts"
+
+      - name: Upload production artifact to VPS
+        shell: bash
+        run: |
+          scp \
+            -P "$VPS_SSH_PORT" \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            artifact/ancestral-landing.tar.gz \
+            "$VPS_USER@$VPS_HOST:/tmp/ancestral-landing-${RELEASE_SHA}.tar.gz"
+
+      - name: Install and activate release
+        shell: bash
+        run: |
+          ssh \
+            -p "$VPS_SSH_PORT" \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            "$VPS_USER@$VPS_HOST" \
+            "DEPLOY_ROOT='$DEPLOY_ROOT' RELEASE_SHA='$RELEASE_SHA' bash -s" <<'REMOTE'
+          set -euo pipefail
+
+          RELEASES_DIR="$DEPLOY_ROOT/releases"
+          RELEASE_DIR="$RELEASES_DIR/$RELEASE_SHA"
+          ARCHIVE="/tmp/ancestral-landing-$RELEASE_SHA.tar.gz"
+          CURRENT="$DEPLOY_ROOT/current"
+
+          mkdir -p "$RELEASES_DIR"
+
+          if [ ! -d "$RELEASE_DIR" ]; then
+            STAGING_DIR="$RELEASES_DIR/.${RELEASE_SHA}.staging"
+
+            rm -rf "$STAGING_DIR"
+            mkdir -p "$STAGING_DIR"
+
+            tar -xzf "$ARCHIVE" -C "$STAGING_DIR"
+
+            test -f "$STAGING_DIR/index.html"
+            test -f "$STAGING_DIR/404.html"
+            test -f "$STAGING_DIR/robots.txt"
+            test -f "$STAGING_DIR/sitemap.xml"
+
+            mv "$STAGING_DIR" "$RELEASE_DIR"
+          fi
+
+          rm -f "$ARCHIVE"
+
+          test -f "$RELEASE_DIR/index.html"
+          test -f "$RELEASE_DIR/404.html"
+          test -f "$RELEASE_DIR/robots.txt"
+          test -f "$RELEASE_DIR/sitemap.xml"
+
+          PREVIOUS_RELEASE=""
+          if [ -L "$CURRENT" ]; then
+            PREVIOUS_RELEASE="$(readlink -f "$CURRENT")"
+          fi
+
+          rm -f "${CURRENT}.new"
+          ln -s "$RELEASE_DIR" "${CURRENT}.new"
+          mv -Tf "${CURRENT}.new" "$CURRENT"
+
+          HOME_BODY="$(mktemp)"
+
+          if ! curl \
+            --fail \
+            --silent \
+            --show-error \
+            --retry 6 \
+            --retry-delay 5 \
+            --output "$HOME_BODY" \
+            https://ancestral-col.com/ \
+            || ! grep -Fq "<title>Ancestral | Servicios Ambientales en Colombia</title>" "$HOME_BODY"
+          then
+            rm -f "$HOME_BODY"
+            echo "Production smoke test failed."
+
+            if [ -n "$PREVIOUS_RELEASE" ] && [ -d "$PREVIOUS_RELEASE" ]; then
+              rm -f "${CURRENT}.rollback"
+              ln -s "$PREVIOUS_RELEASE" "${CURRENT}.rollback"
+              mv -Tf "${CURRENT}.rollback" "$CURRENT"
+              echo "Rolled back to $PREVIOUS_RELEASE."
+            fi
+
+            exit 1
+          fi
+
+          rm -f "$HOME_BODY"
+
+          CURRENT_RELEASE="$(readlink -f "$CURRENT")"
+
+          find "$RELEASES_DIR" \
+            -mindepth 1 \
+            -maxdepth 1 \
+            -type d \
+            ! -name ".*" \
+            -printf '%T@ %p\n' \
+            | sort -nr \
+            | awk 'NR > 5 {sub(/^[^ ]+ /, ""); print}' \
+            | while IFS= read -r OLD_RELEASE; do
+                if [ "$(readlink -f "$OLD_RELEASE")" != "$CURRENT_RELEASE" ]; then
+                  rm -rf "$OLD_RELEASE"
+                fi
+              done
+          REMOTE
+
+      - name: Verify production
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          assert_contains() {
+            local url="$1"
+            local expected="$2"
+            local body
+
+            body="$(mktemp)"
+
+            if ! curl \
+              --fail \
+              --silent \
+              --show-error \
+              --retry 3 \
+              --retry-delay 2 \
+              --output "$body" \
+              "$url"
+            then
+              rm -f "$body"
+              return 1
+            fi
+
+            if ! grep -Fq "$expected" "$body"; then
+              rm -f "$body"
+              return 1
+            fi
+
+            rm -f "$body"
+          }
+
+          assert_contains \
+            "https://ancestral-col.com/" \
+            "<title>Ancestral | Servicios Ambientales en Colombia</title>"
+
+          assert_contains \
+            "https://ancestral-col.com/servicios/ambientales" \
+            "<title>Servicios Ambientales en Colombia | Ancestral</title>"
+
+          assert_contains \
+            "https://ancestral-col.com/servicios/forestales" \
+            "<title>Servicios Forestales en Colombia | Ancestral</title>"
+
+          assert_contains \
+            "https://ancestral-col.com/servicios/agricolas" \
+            "<title>Servicios Agrícolas en Colombia | Ancestral</title>"
+
+          assert_contains \
+            "https://ancestral-col.com/servicios/recurso-hidrico" \
+            "<title>Manejo del Recurso Hídrico en Colombia | Ancestral</title>"
+
+          assert_contains \
+            "https://ancestral-col.com/servicios/seguridad-salud-trabajo" \
+            "<title>Seguridad y Salud en el Trabajo | Ancestral</title>"
+
+          curl \
+            --fail \
+            --silent \
+            --show-error \
+            "https://ancestral-col.com/robots.txt" \
+            >/dev/null
+
+          curl \
+            --fail \
+            --silent \
+            --show-error \
+            "https://ancestral-col.com/sitemap.xml" \
+            >/dev/null
+
+          NOT_FOUND_BODY="$(mktemp)"
+          trap 'rm -f "$NOT_FOUND_BODY"' EXIT
+
+          NOT_FOUND_STATUS="$(
+            curl \
+              --silent \
+              --show-error \
+              --output "$NOT_FOUND_BODY" \
+              --write-out "%{http_code}" \
+              "https://ancestral-col.com/deployment-smoke-test-not-found"
+          )"
+
+          test "$NOT_FOUND_STATUS" = "404"
+          grep -Fq "<title>Página no encontrada | Ancestral</title>" "$NOT_FOUND_BODY"
+          grep -Fq "Página no encontrada" "$NOT_FOUND_BODY"
+          grep -Fq 'content="noindex,follow"' "$NOT_FOUND_BODY"

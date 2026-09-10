@@ -1,6 +1,7 @@
 import { Clock3, MapPin, Phone } from "lucide-react";
 import { contactDetails } from "../../config/contact";
 import { navigationItems } from "../../config/navigation";
+import { createBaseAwarePath, routePaths } from "../../config/routes";
 import { BrandLogo } from "../BrandLogo/BrandLogo";
 
 import facebookIcon from "../../assets/icons/social/facebook-circle.webp";
@@ -13,7 +14,7 @@ export interface FooterProps {
 
 export function Footer({ isHomePage = true }: Readonly<FooterProps>) {
 	const getNavigationHref = (sectionHref: (typeof navigationItems)[number]["href"]) =>
-		isHomePage ? sectionHref : `${import.meta.env.BASE_URL}${sectionHref}`;
+		isHomePage ? sectionHref : createBaseAwarePath(`${routePaths.home}${sectionHref}`);
 
 	return (
 		<footer className="site-footer px-3">
