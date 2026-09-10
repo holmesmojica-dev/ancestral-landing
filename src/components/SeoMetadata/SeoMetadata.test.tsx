@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import { Link, MemoryRouter, Route, Routes } from "react-router-dom";
 
 import { services } from "../../config/services";
+import { notFoundSeo } from "../../config/seo";
 import { SeoMetadata } from "./SeoMetadata";
 
 function getMetaContent(selector: string) {
@@ -83,9 +84,9 @@ describe("SeoMetadata", () => {
 		await waitFor(() => {
 			expect(getMetaContent('meta[name="robots"]')).toBe("noindex,follow");
 		});
-		expect(document.head.querySelector('meta[name="description"]')).not.toBeInTheDocument();
+		expect(getMetaContent('meta[name="description"]')).toBe(notFoundSeo.description);
 		expect(document.head.querySelector('link[rel="canonical"]')).not.toBeInTheDocument();
 		expect(document.getElementById("seo-structured-data")).not.toBeInTheDocument();
-		expect(document.title).toBe("Página no encontrada | Ancestral");
+		expect(document.title).toBe(notFoundSeo.title);
 	});
 });

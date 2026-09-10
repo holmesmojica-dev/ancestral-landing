@@ -4,7 +4,9 @@ import {
 	SOCIAL_IMAGE_URL,
 	getSeoMetadata,
 	getStructuredData,
+	notFoundSeo,
 } from "../config/seo";
+import { routePaths } from "../config/routes";
 
 function escapeHtml(value: string) {
 	return value
@@ -24,6 +26,12 @@ export function renderSeoHead(pathname: string) {
 	const structuredData = getStructuredData(pathname);
 
 	if (!metadata || !structuredData) {
+		if (pathname === routePaths.notFound) {
+			return `<title>${escapeHtml(notFoundSeo.title)}</title>
+		<meta name="description" content="${escapeHtml(notFoundSeo.description)}" />
+		<meta name="robots" content="${notFoundSeo.robots}" />`;
+		}
+
 		throw new Error(`Cannot render SEO metadata for non-indexable route: ${pathname}`);
 	}
 

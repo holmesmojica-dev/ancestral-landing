@@ -2,6 +2,7 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { navigationItems, serviceDetailNavigationItems } from "../../config/navigation";
+import { createBaseAwarePath, routePaths } from "../../config/routes";
 import { useActiveSection } from "../../hooks/useActiveSection";
 import { ActionLink } from "../ActionLink/ActionLink";
 import { BrandLogo } from "../BrandLogo/BrandLogo";
@@ -16,15 +17,19 @@ const serviceDetailStickyOffset = 120;
 
 export interface HeaderProps {
 	readonly isHomePage?: boolean;
+	readonly isServiceDetailPage?: boolean;
 }
 
-export function Header({ isHomePage = true }: Readonly<HeaderProps>) {
+export function Header({ isHomePage = true, isServiceDetailPage }: Readonly<HeaderProps>) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const currentNavigationItems = isHomePage ? navigationItems : serviceDetailNavigationItems;
-	const currentSectionIds = isHomePage
-		? homeNavigationSectionIds
-		: serviceDetailNavigationSectionIds;
-	const initialSectionId = isHomePage ? "inicio" : "servicio";
+	const showsServiceDetailNavigation = isServiceDetailPage ?? !isHomePage;
+	const currentNavigationItems = showsServiceDetailNavigation
+		? serviceDetailNavigationItems
+		: navigationItems;
+	const currentSectionIds = showsServiceDetailNavigation
+		? serviceDetailNavigationSectionIds
+		: homeNavigationSectionIds;
+	const initialSectionId = showsServiceDetailNavigation ? "servicio" : "inicio";
 	const [observedActiveSectionId, setActiveSectionId] = useActiveSection(
 		currentSectionIds,
 		initialSectionId,
@@ -65,7 +70,11 @@ export function Header({ isHomePage = true }: Readonly<HeaderProps>) {
 		setActiveSectionId(sectionId);
 		closeMenu();
 	};
-	const homeHref = isHomePage ? "#inicio" : `${import.meta.env.BASE_URL}#inicio`;
+	const homeHref = isHomePage ? "#inicio" : createBaseAwarePath(`${routePaths.home}#inicio`);
+	const getNavigationHref = (href: (typeof currentNavigationItems)[number]["href"]) =>
+		isHomePage || showsServiceDetailNavigation
+			? href
+			: createBaseAwarePath(`${routePaths.home}${href}`);
 
 	return (
 		<header className="site-header">
@@ -100,9 +109,13 @@ export function Header({ isHomePage = true }: Readonly<HeaderProps>) {
 						{currentNavigationItems.map((item) => (
 							<li key={item.id}>
 								<a
-									aria-current={item.id === activeSectionId ? "location" : undefined}
+									aria-current={
+										(isHomePage || showsServiceDetailNavigation) && item.id === activeSectionId
+											? "location"
+											: undefined
+									}
 									className="site-header__navigation-link"
-									href={item.href}
+									href={getNavigationHref(item.href)}
 									onClick={() => handleNavigation(item.id)}
 								>
 									{item.label}

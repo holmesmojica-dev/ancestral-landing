@@ -4,6 +4,7 @@ import {
 	SOCIAL_IMAGE_URL,
 	getSeoMetadata,
 	getStructuredData,
+	notFoundSeo,
 } from "../config/seo";
 
 type MetadataAttribute = "name" | "property";
@@ -50,9 +51,10 @@ export function applySeoMetadata(pathname: string) {
 	const structuredData = getStructuredData(pathname);
 
 	if (!metadata || !structuredData) {
-		document.title = "Página no encontrada | Ancestral";
-		setMetaTag("name", "robots", "noindex,follow");
 		removeIndexableRouteMetadata();
+		document.title = notFoundSeo.title;
+		setMetaTag("name", "description", notFoundSeo.description);
+		setMetaTag("name", "robots", notFoundSeo.robots);
 		return;
 	}
 

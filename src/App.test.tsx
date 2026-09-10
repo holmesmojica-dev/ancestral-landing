@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, useLocation } from "react-router-dom";
 import { describe, expect, it } from "vitest";
@@ -100,5 +100,36 @@ describe("App", () => {
 		expect(
 			screen.getByRole("heading", { level: 1, name: "Transformamos entornos, generamos vida." })
 		).toBeInTheDocument();
+	});
+
+	it("renders the custom 404 page with shared navigation back to Home", () => {
+		renderApp("/ruta-desconocida");
+
+		expect(
+			screen.getByRole("heading", { level: 1, name: "Página no encontrada" })
+		).toBeInTheDocument();
+		expect(
+			screen.getByText("La página que buscas no existe, fue movida o ya no está disponible.")
+		).toBeInTheDocument();
+		expect(screen.getByRole("link", { name: "Volver al inicio" })).toHaveAttribute("href", "/");
+		expect(screen.getByRole("link", { name: "Ver nuestros servicios" })).toHaveAttribute(
+			"href",
+			"/#servicios"
+		);
+		const primaryNavigation = within(
+			screen.getByRole("navigation", { name: "Navegación principal" })
+		);
+
+		expect(primaryNavigation.getByRole("link", { name: "Inicio" })).toHaveAttribute(
+			"href",
+			"/#inicio"
+		);
+		expect(primaryNavigation.queryByRole("link", { name: "Capacidades" })).not.toBeInTheDocument();
+		expect(screen.getByRole("link", { name: "Saltar al contenido principal" })).toHaveAttribute(
+			"href",
+			"#main-content"
+		);
+		expect(screen.getAllByRole("img", { name: "Ancestral Servicios Ambientales" })).toHaveLength(2);
+		expect(screen.getByRole("contentinfo")).toBeVisible();
 	});
 });

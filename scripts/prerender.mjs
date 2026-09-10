@@ -20,6 +20,9 @@ try {
 		await writeFile(outputPath, html, "utf8");
 	}
 
+	const notFoundHtml = serverEntry.renderDocument(template, serverEntry.notFoundRoute);
+
+	await writeFile(resolve(outputDirectory, "404.html"), notFoundHtml, "utf8");
 	await writeFile(resolve(outputDirectory, "sitemap.xml"), serverEntry.createSitemap(), "utf8");
 } finally {
 	await rm(serverOutputDirectory, { force: true, recursive: true });
