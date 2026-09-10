@@ -91,16 +91,50 @@
 		font-size: fonts.get-font-size("caption");
 	}
 
+	&__error {
+		margin: 0;
+		color: colors.$neutral-dark;
+		font-size: fonts.get-font-size("caption");
+		font-weight: fonts.get-font-weight("semibold");
+	}
+
 	&__captcha {
-		display: flex;
+		display: grid;
+		min-width: 0;
 		min-height: 4rem;
 		align-items: center;
-		padding: variables.get-space("3") variables.get-space("4");
 		margin-block-end: variables.get-space("5");
-		border: 0.0625rem dashed colors.$neutral-dark;
-		border-radius: variables.$radius-sm;
+		gap: variables.get-space("2");
+	}
+
+	&__captcha-widget {
+		width: 100%;
+		min-width: 0;
+		min-height: 4rem;
+	}
+
+	&__captcha-feedback {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
 		color: colors.$neutral-dark;
-		column-gap: variables.get-space("3");
+		font-size: fonts.get-font-size("caption");
+		gap: variables.get-space("2") variables.get-space("3");
+
+		p {
+			margin: 0;
+		}
+
+		button {
+			padding: 0;
+			border: 0;
+			background: transparent;
+			color: colors.$brand-navy;
+			font: inherit;
+			font-weight: fonts.get-font-weight("semibold");
+			text-decoration: underline;
+			text-underline-offset: 0.2em;
+		}
 	}
 
 	&__submit {
@@ -118,6 +152,24 @@
 		transition:
 			background-color variables.$motion-fast variables.$ease-standard,
 			box-shadow variables.$motion-fast variables.$ease-standard;
+
+		&:disabled {
+			cursor: not-allowed;
+			opacity: 0.65;
+		}
+	}
+
+	&__status {
+		padding: variables.get-space("3") variables.get-space("4");
+		border-inline-start: 0.25rem solid colors.$brand-navy;
+		margin-block-start: variables.get-space("4");
+		background: colors.$off-white;
+		color: colors.$neutral-dark;
+		font-size: fonts.get-font-size("body-small");
+
+		&--success {
+			border-inline-start-color: colors.$brand-green;
+		}
 	}
 
 	&__aside {

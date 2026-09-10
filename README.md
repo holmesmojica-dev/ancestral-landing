@@ -68,6 +68,14 @@ Start the development server:
 npm run dev
 ```
 
+Copy `.env.example` to `.env.local` before starting the application. The example uses
+Cloudflare's public always-pass Turnstile test Site Key for local development. Set
+`VITE_TURNSTILE_SITE_KEY` to the environment-specific public Site Key when building another
+environment. Set `VITE_API_BASE_URL` to the public origin of the Ancestral API without the
+`/api/contact` path. Both variables are public frontend configuration; never place private
+Turnstile keys, API credentials, or other secrets in `VITE_*` variables. Because Vite embeds
+these public values in the client bundle, provide the environment-specific values at build time.
+
 The application uses the domain root (`/`) as its Vite base path.
 
 ## Commands
