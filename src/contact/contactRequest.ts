@@ -73,6 +73,18 @@ function hasValidPlusSign(phone: string): boolean {
 	);
 }
 
+function canOpenParenthesis(index: number, depth: number, previousCharacter: string): boolean {
+	return depth === 0 && (index === 0 || !"()-".includes(previousCharacter));
+}
+
+function canCloseParenthesis(
+	depth: number,
+	digitCount: number,
+	previousCharacter: string
+): boolean {
+	return depth === 1 && digitCount > 0 && isDigit(previousCharacter);
+}
+
 function hasValidParentheses(phone: string): boolean {
 	let parenthesisDepth = 0;
 	let digitsInsideParentheses = 0;
@@ -82,10 +94,7 @@ function hasValidParentheses(phone: string): boolean {
 		const previousCharacter = phone[index - 1];
 
 		if (character === "(") {
-			if (
-				parenthesisDepth !== 0 ||
-				(index > 0 && previousCharacter !== undefined && "()-".includes(previousCharacter))
-			) {
+			if (!canOpenParenthesis(index, parenthesisDepth, previousCharacter)) {
 				return false;
 			}
 
@@ -95,12 +104,7 @@ function hasValidParentheses(phone: string): boolean {
 		}
 
 		if (character === ")") {
-			if (
-				parenthesisDepth !== 1 ||
-				digitsInsideParentheses === 0 ||
-				previousCharacter === undefined ||
-				!isDigit(previousCharacter)
-			) {
+			if (!canCloseParenthesis(parenthesisDepth, digitsInsideParentheses, previousCharacter)) {
 				return false;
 			}
 
@@ -148,16 +152,56 @@ function isValidPhone(phone: string): boolean {
 	);
 }
 
+function getNameError(name: string): string | undefined {
+	if (!name) {
+		return "El nombre es obligatorio.";
+	}
+
+	if (name.length < 4) {
+		return "El nombre debe tener al menos 4 caracteres.";
+	}
+
+	return name.length > 200 ? "El nombre no puede superar los 200 caracteres." : undefined;
+}
+
+function getEmailError(email: string | null): string | undefined {
+	if (!email) {
+		return undefined;
+	}
+
+	if (email.length > 200) {
+		return "El correo electrónico no puede superar los 200 caracteres.";
+	}
+
+	return isValidEmail(email) ? undefined : "Ingresa un correo electrónico válido y sin espacios.";
+}
+
+function getMessageError(message: string): string | undefined {
+	if (!message) {
+		return "El mensaje es obligatorio.";
+	}
+
+	if (message.length < 10) {
+		return "El mensaje debe tener al menos 10 caracteres.";
+	}
+
+	return message.length > 2000 ? "El mensaje no puede superar los 2000 caracteres." : undefined;
+}
+
+function setError(
+	errors: ContactValidationErrors,
+	field: ContactField,
+	message: string | undefined
+): void {
+	if (message) {
+		errors[field] = message;
+	}
+}
+
 export function validateContactRequest(request: ContactRequest): ContactValidationErrors {
 	const errors: ContactValidationErrors = {};
 
-	if (!request.name) {
-		errors.name = "El nombre es obligatorio.";
-	} else if (request.name.length < 4) {
-		errors.name = "El nombre debe tener al menos 4 caracteres.";
-	} else if (request.name.length > 200) {
-		errors.name = "El nombre no puede superar los 200 caracteres.";
-	}
+	setError(errors, "name", getNameError(request.name));
 
 	if (!request.email && !request.phone) {
 		const contactError = "Ingresa al menos un correo electrónico o un teléfono.";
@@ -165,13 +209,7 @@ export function validateContactRequest(request: ContactRequest): ContactValidati
 		errors.phone = contactError;
 	}
 
-	if (request.email) {
-		if (request.email.length > 200) {
-			errors.email = "El correo electrónico no puede superar los 200 caracteres.";
-		} else if (!isValidEmail(request.email)) {
-			errors.email = "Ingresa un correo electrónico válido y sin espacios.";
-		}
-	}
+	setError(errors, "email", getEmailError(request.email));
 
 	if (request.phone && !isValidPhone(request.phone)) {
 		errors.phone =
@@ -182,13 +220,7 @@ export function validateContactRequest(request: ContactRequest): ContactValidati
 		errors.service = "Selecciona un servicio válido.";
 	}
 
-	if (!request.message) {
-		errors.message = "El mensaje es obligatorio.";
-	} else if (request.message.length < 10) {
-		errors.message = "El mensaje debe tener al menos 10 caracteres.";
-	} else if (request.message.length > 2000) {
-		errors.message = "El mensaje no puede superar los 2000 caracteres.";
-	}
+	setError(errors, "message", getMessageError(request.message));
 
 	if (!request.captchaToken) {
 		errors.captchaToken = "Completa la verificación de seguridad.";

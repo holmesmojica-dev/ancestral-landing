@@ -115,7 +115,9 @@ describe("Contact", () => {
 		submitForm();
 
 		expect(screen.getByRole("button", { name: "Enviando solicitud…" })).toBeDisabled();
-		expect(screen.getByRole("status")).toHaveTextContent("Enviando solicitud…");
+		const loadingStatus = screen.getByRole("status");
+		expect(loadingStatus).toHaveTextContent("Enviando solicitud…");
+		expect(loadingStatus.tagName).toBe("OUTPUT");
 		submitForm();
 		expect(apiClient).toHaveBeenCalledOnce();
 

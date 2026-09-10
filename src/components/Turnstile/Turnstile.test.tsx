@@ -44,7 +44,9 @@ describe("Turnstile", () => {
 		render(<Turnstile onTokenChange={onTokenChange} siteKey="test-site-key" />);
 
 		await waitFor(() => expect(turnstile.renderWidget).toHaveBeenCalledOnce());
-		expect(screen.getByRole("group", { name: "Verificación de seguridad" })).toBeVisible();
+		const securityControl = screen.getByRole("group", { name: "Verificación de seguridad" });
+		expect(securityControl).toBeVisible();
+		expect(securityControl.tagName).toBe("FIELDSET");
 		expect(turnstile.getRenderOptions()).toMatchObject({
 			sitekey: "test-site-key",
 			appearance: "interaction-only",

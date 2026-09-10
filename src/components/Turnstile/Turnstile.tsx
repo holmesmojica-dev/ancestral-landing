@@ -236,15 +236,10 @@ export function Turnstile({ onTokenChange, resetSignal = 0, siteKey }: Readonly<
 	}, [resetSignal, resetWidget]);
 
 	return (
-		<div
-			aria-describedby={feedback ? feedbackId : undefined}
-			aria-labelledby={labelId}
-			className="contact__captcha"
-			role="group"
-		>
-			<span className="visually-hidden" id={labelId}>
+		<fieldset aria-describedby={feedback ? feedbackId : undefined} className="contact__captcha">
+			<legend className="visually-hidden" id={labelId}>
 				Verificación de seguridad
-			</span>
+			</legend>
 			<div className="contact__captcha-widget" ref={containerRef} />
 			{feedback ? (
 				<div className="contact__captcha-feedback" id={feedbackId}>
@@ -254,6 +249,6 @@ export function Turnstile({ onTokenChange, resetSignal = 0, siteKey }: Readonly<
 					</button>
 				</div>
 			) : null}
-		</div>
+		</fieldset>
 	);
 }

@@ -1,5 +1,5 @@
 import { MapPin, Phone } from "lucide-react";
-import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent, type RefObject } from "react";
 
 import WhatsappIcon from "../../assets/icons/social/whatsapp-green.webp";
 import {
@@ -16,6 +16,7 @@ import {
 	submitContactRequest,
 	type ContactApiClient,
 	type ContactApiFailure,
+	type ContactApiResult,
 } from "../../services/contactApi";
 import type { ContactRequest } from "../../types/contact";
 import type { ServiceDefinition } from "../../types/service";
@@ -27,6 +28,8 @@ interface SubmissionFeedback {
 	readonly kind: "pending" | "success" | "error";
 	readonly message: string;
 }
+
+type FocusTarget = ContactField | "feedback";
 
 const fieldOrder: readonly ContactField[] = [
 	"name",
@@ -71,15 +74,88 @@ function getFailureMessage(failure: ContactApiFailure): string {
 	}
 }
 
-export interface ContactProps {
-	readonly selectedService?: ServiceDefinition;
-	readonly apiClient?: ContactApiClient;
+function removeFieldError(
+	errors: ContactValidationErrors,
+	field: ContactField
+): ContactValidationErrors {
+	if (!errors[field]) {
+		return errors;
+	}
+
+	const nextErrors = { ...errors };
+	delete nextErrors[field];
+	return nextErrors;
 }
 
-export function Contact({
-	selectedService,
-	apiClient = submitContactRequest,
-}: Readonly<ContactProps> = {}) {
+function getFirstFocusTarget(
+	errors: ContactValidationErrors,
+	useFeedbackFallback = false
+): FocusTarget | undefined {
+	const firstInvalidField = fieldOrder.find((field) => errors[field]);
+
+	if (firstInvalidField === "captchaToken" || (!firstInvalidField && useFeedbackFallback)) {
+		return "feedback";
+	}
+
+	return firstInvalidField;
+}
+
+function getErrorDescription(
+	field: Exclude<ContactField, "captchaToken">,
+	error: string | undefined,
+	helpId?: string
+): string | undefined {
+	const errorId = error ? `contact-${field}-error` : undefined;
+	return [helpId, errorId].filter(Boolean).join(" ") || undefined;
+}
+
+function getInvalidState(error: string | undefined): true | undefined {
+	return error ? true : undefined;
+}
+
+interface FieldErrorProps {
+	readonly error?: string;
+	readonly field: Exclude<ContactField, "captchaToken">;
+}
+
+function FieldError({ error, field }: Readonly<FieldErrorProps>) {
+	if (!error) {
+		return null;
+	}
+
+	return (
+		<p className="contact__error" id={`contact-${field}-error`}>
+			{error}
+		</p>
+	);
+}
+
+interface FeedbackOutputProps {
+	readonly feedback?: SubmissionFeedback;
+	readonly outputRef: RefObject<HTMLOutputElement>;
+}
+
+function FeedbackOutput({ feedback, outputRef }: Readonly<FeedbackOutputProps>) {
+	if (!feedback) {
+		return null;
+	}
+
+	return (
+		<output
+			className={`contact__status contact__status--${feedback.kind}`}
+			ref={outputRef}
+			role={feedback.kind === "error" ? "alert" : undefined}
+			tabIndex={-1}
+		>
+			{feedback.message}
+		</output>
+	);
+}
+
+function useContactForm(
+	selectedService: ServiceDefinition | undefined,
+	apiClient: ContactApiClient
+) {
 	const [values, setValues] = useState<ContactFormValues>(() =>
 		createInitialValues(selectedService)
 	);
@@ -89,13 +165,10 @@ export function Contact({
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [retryAfterSeconds, setRetryAfterSeconds] = useState<number>();
 	const [turnstileResetSignal, setTurnstileResetSignal] = useState(0);
-	const [focusTarget, setFocusTarget] = useState<ContactField | "feedback">();
+	const [focusTarget, setFocusTarget] = useState<FocusTarget>();
 	const formRef = useRef<HTMLFormElement>(null);
-	const feedbackRef = useRef<HTMLDivElement>(null);
+	const feedbackRef = useRef<HTMLOutputElement>(null);
 	const submittingRef = useRef(false);
-	const whatsAppUrl = selectedService
-		? createWhatsAppUrl(`Quiero recibir información sobre ${selectedService.name}.`)
-		: contactDetails.whatsAppUrl;
 
 	useEffect(() => {
 		setValues((currentValues) => ({
@@ -130,33 +203,37 @@ export function Contact({
 		setFocusTarget(undefined);
 	}, [focusTarget]);
 
-	const updateField = (
-		field: keyof ContactFormValues,
-		event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-	) => {
-		setValues((currentValues) => ({ ...currentValues, [field]: event.target.value }));
-		setFieldErrors((currentErrors) => {
-			if (!currentErrors[field]) {
-				return currentErrors;
-			}
-
-			const nextErrors = { ...currentErrors };
-			delete nextErrors[field];
-			return nextErrors;
-		});
+	const updateField = (field: keyof ContactFormValues, value: string) => {
+		setValues((currentValues) => ({ ...currentValues, [field]: value }));
+		setFieldErrors((currentErrors) => removeFieldError(currentErrors, field));
 	};
 
 	const handleTokenChange = (token: string) => {
 		setCaptchaToken(token);
-		setFieldErrors((currentErrors) => {
-			if (!currentErrors.captchaToken) {
-				return currentErrors;
-			}
+		setFieldErrors((currentErrors) => removeFieldError(currentErrors, "captchaToken"));
+	};
 
-			const nextErrors = { ...currentErrors };
-			delete nextErrors.captchaToken;
-			return nextErrors;
-		});
+	const applySubmissionResult = (result: ContactApiResult) => {
+		if (result.tokenMayBeConsumed) {
+			setCaptchaToken("");
+			setTurnstileResetSignal((signal) => signal + 1);
+		}
+
+		if (result.ok) {
+			setValues(createInitialValues(selectedService));
+			setFeedback({ kind: "success", message: result.message });
+			setFocusTarget("feedback");
+			return;
+		}
+
+		const serverFieldErrors = result.fieldErrors ?? {};
+		setFieldErrors(serverFieldErrors);
+		setFeedback({ kind: "error", message: getFailureMessage(result) });
+		setFocusTarget(getFirstFocusTarget(serverFieldErrors, true));
+
+		if (result.kind === "rate-limited" && result.retryAfterSeconds) {
+			setRetryAfterSeconds(result.retryAfterSeconds);
+		}
 	};
 
 	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -170,14 +247,12 @@ export function Contact({
 		const validationErrors = validateContactRequest(request);
 
 		if (Object.keys(validationErrors).length > 0) {
-			const firstInvalidField = fieldOrder.find((field) => validationErrors[field]);
-
 			setFieldErrors(validationErrors);
 			setFeedback({
 				kind: "error",
 				message: "Revisa los campos señalados e intenta nuevamente.",
 			});
-			setFocusTarget(firstInvalidField === "captchaToken" ? "feedback" : firstInvalidField);
+			setFocusTarget(getFirstFocusTarget(validationErrors));
 			return;
 		}
 
@@ -186,7 +261,7 @@ export function Contact({
 		setFieldErrors({});
 		setFeedback({ kind: "pending", message: "Enviando solicitud…" });
 
-		let result;
+		let result: ContactApiResult;
 		try {
 			result = await apiClient(request);
 		} catch {
@@ -194,43 +269,58 @@ export function Contact({
 				ok: false,
 				kind: "network",
 				tokenMayBeConsumed: true,
-			} as const;
+			};
 		}
 
-		if (result.tokenMayBeConsumed) {
-			setCaptchaToken("");
-			setTurnstileResetSignal((signal) => signal + 1);
-		}
-
-		if (result.ok) {
-			setValues(createInitialValues(selectedService));
-			setFeedback({ kind: "success", message: result.message });
-			setFocusTarget("feedback");
-		} else {
-			const serverFieldErrors = result.fieldErrors ?? {};
-			const firstInvalidField = fieldOrder.find((field) => serverFieldErrors[field]);
-
-			setFieldErrors(serverFieldErrors);
-			setFeedback({ kind: "error", message: getFailureMessage(result) });
-			setFocusTarget(
-				firstInvalidField === "captchaToken" ? "feedback" : (firstInvalidField ?? "feedback")
-			);
-
-			if (result.kind === "rate-limited" && result.retryAfterSeconds) {
-				setRetryAfterSeconds(result.retryAfterSeconds);
-			}
-		}
-
+		applySubmissionResult(result);
 		submittingRef.current = false;
 		setIsSubmitting(false);
 	};
 
-	const emailHelp = ["contact-channel-help", fieldErrors.email ? "contact-email-error" : undefined]
-		.filter(Boolean)
-		.join(" ");
-	const phoneHelp = ["contact-channel-help", fieldErrors.phone ? "contact-phone-error" : undefined]
-		.filter(Boolean)
-		.join(" ");
+	return {
+		captchaToken,
+		feedback,
+		feedbackRef,
+		fieldErrors,
+		formRef,
+		handleSubmit,
+		handleTokenChange,
+		isSubmitting,
+		retryAfterSeconds,
+		turnstileResetSignal,
+		updateField,
+		values,
+	};
+}
+
+export interface ContactProps {
+	readonly selectedService?: ServiceDefinition;
+	readonly apiClient?: ContactApiClient;
+}
+
+export function Contact({
+	selectedService,
+	apiClient = submitContactRequest,
+}: Readonly<ContactProps> = {}) {
+	const {
+		captchaToken,
+		feedback,
+		feedbackRef,
+		fieldErrors,
+		formRef,
+		handleSubmit,
+		handleTokenChange,
+		isSubmitting,
+		retryAfterSeconds,
+		turnstileResetSignal,
+		updateField,
+		values,
+	} = useContactForm(selectedService, apiClient);
+	const whatsAppUrl = selectedService
+		? createWhatsAppUrl(`Quiero recibir información sobre ${selectedService.name}.`)
+		: contactDetails.whatsAppUrl;
+	const emailHelp = getErrorDescription("email", fieldErrors.email, "contact-channel-help");
+	const phoneHelp = getErrorDescription("phone", fieldErrors.phone, "contact-channel-help");
 	const submissionDisabled = !captchaToken || isSubmitting || Boolean(retryAfterSeconds);
 
 	return (
@@ -264,23 +354,19 @@ export function Contact({
 					<div className="contact__field">
 						<label htmlFor="contact-name">Nombre</label>
 						<input
-							aria-describedby={fieldErrors.name ? "contact-name-error" : undefined}
-							aria-invalid={fieldErrors.name ? true : undefined}
+							aria-describedby={getErrorDescription("name", fieldErrors.name)}
+							aria-invalid={getInvalidState(fieldErrors.name)}
 							autoComplete="name"
 							id="contact-name"
 							maxLength={200}
 							minLength={4}
 							name="name"
-							onChange={(event) => updateField("name", event)}
+							onChange={(event) => updateField("name", event.target.value)}
 							required
 							type="text"
 							value={values.name}
 						/>
-						{fieldErrors.name ? (
-							<p className="contact__error" id="contact-name-error">
-								{fieldErrors.name}
-							</p>
-						) : null}
+						<FieldError error={fieldErrors.name} field="name" />
 					</div>
 
 					<div className="contact__fields-row">
@@ -288,39 +374,31 @@ export function Contact({
 							<label htmlFor="contact-email">Correo electrónico</label>
 							<input
 								aria-describedby={emailHelp}
-								aria-invalid={fieldErrors.email ? true : undefined}
+								aria-invalid={getInvalidState(fieldErrors.email)}
 								autoComplete="email"
 								id="contact-email"
 								maxLength={200}
 								name="email"
-								onChange={(event) => updateField("email", event)}
+								onChange={(event) => updateField("email", event.target.value)}
 								type="email"
 								value={values.email}
 							/>
-							{fieldErrors.email ? (
-								<p className="contact__error" id="contact-email-error">
-									{fieldErrors.email}
-								</p>
-							) : null}
+							<FieldError error={fieldErrors.email} field="email" />
 						</div>
 
 						<div className="contact__field">
 							<label htmlFor="contact-phone">Teléfono</label>
 							<input
 								aria-describedby={phoneHelp}
-								aria-invalid={fieldErrors.phone ? true : undefined}
+								aria-invalid={getInvalidState(fieldErrors.phone)}
 								autoComplete="tel"
 								id="contact-phone"
 								name="phone"
-								onChange={(event) => updateField("phone", event)}
+								onChange={(event) => updateField("phone", event.target.value)}
 								type="tel"
 								value={values.phone}
 							/>
-							{fieldErrors.phone ? (
-								<p className="contact__error" id="contact-phone-error">
-									{fieldErrors.phone}
-								</p>
-							) : null}
+							<FieldError error={fieldErrors.phone} field="phone" />
 						</div>
 					</div>
 					<p className="contact__help" id="contact-channel-help">
@@ -330,11 +408,11 @@ export function Contact({
 					<div className="contact__field">
 						<label htmlFor="contact-service">Servicio</label>
 						<select
-							aria-describedby={fieldErrors.service ? "contact-service-error" : undefined}
-							aria-invalid={fieldErrors.service ? true : undefined}
+							aria-describedby={getErrorDescription("service", fieldErrors.service)}
+							aria-invalid={getInvalidState(fieldErrors.service)}
 							id="contact-service"
 							name="service"
-							onChange={(event) => updateField("service", event)}
+							onChange={(event) => updateField("service", event.target.value)}
 							value={values.service}
 						>
 							<option value="">Selecciona un servicio (opcional)</option>
@@ -344,32 +422,24 @@ export function Contact({
 								</option>
 							))}
 						</select>
-						{fieldErrors.service ? (
-							<p className="contact__error" id="contact-service-error">
-								{fieldErrors.service}
-							</p>
-						) : null}
+						<FieldError error={fieldErrors.service} field="service" />
 					</div>
 
 					<div className="contact__field">
 						<label htmlFor="contact-message">Mensaje</label>
 						<textarea
-							aria-describedby={fieldErrors.message ? "contact-message-error" : undefined}
-							aria-invalid={fieldErrors.message ? true : undefined}
+							aria-describedby={getErrorDescription("message", fieldErrors.message)}
+							aria-invalid={getInvalidState(fieldErrors.message)}
 							id="contact-message"
 							maxLength={2000}
 							minLength={10}
 							name="message"
-							onChange={(event) => updateField("message", event)}
+							onChange={(event) => updateField("message", event.target.value)}
 							required
 							rows={5}
 							value={values.message}
 						/>
-						{fieldErrors.message ? (
-							<p className="contact__error" id="contact-message-error">
-								{fieldErrors.message}
-							</p>
-						) : null}
+						<FieldError error={fieldErrors.message} field="message" />
 					</div>
 
 					<Turnstile
@@ -382,17 +452,7 @@ export function Contact({
 						{isSubmitting ? "Enviando solicitud…" : "Enviar solicitud"}
 					</button>
 
-					{feedback ? (
-						<div
-							aria-live={feedback.kind === "error" ? "assertive" : "polite"}
-							className={`contact__status contact__status--${feedback.kind}`}
-							ref={feedbackRef}
-							role={feedback.kind === "error" ? "alert" : "status"}
-							tabIndex={-1}
-						>
-							{feedback.message}
-						</div>
-					) : null}
+					<FeedbackOutput feedback={feedback} outputRef={feedbackRef} />
 				</form>
 
 				<aside className="contact__aside" aria-label="Otros canales de contacto">
