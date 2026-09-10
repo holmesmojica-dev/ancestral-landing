@@ -97,16 +97,49 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+  production-build:
+    name: Build production artifact
+    if: >
+      (github.event_name == 'push' && github.ref == 'refs/heads/v2') ||
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/v2')
+    needs: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate production frontend configuration
+        shell: bash
+        env:
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
+          VITE_TURNSTILE_SITE_KEY: ${{ vars.VITE_TURNSTILE_SITE_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$VITE_API_BASE_URL"
+          test -n "$VITE_TURNSTILE_SITE_KEY"
+
+      - name: Build production artifact
+        env:
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
+          VITE_TURNSTILE_SITE_KEY: ${{ vars.VITE_TURNSTILE_SITE_KEY }}
+        run: npm run build
+
       - name: Package production artifact
-        if: >
-          (github.event_name == 'push' && github.ref == 'refs/heads/v2') ||
-          (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/v2')
         run: tar -czf ancestral-landing.tar.gz -C dist .
 
       - name: Upload production artifact
-        if: >
-          (github.event_name == 'push' && github.ref == 'refs/heads/v2') ||
-          (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/v2')
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: ancestral-landing-${{ github.sha }}
@@ -119,7 +152,7 @@ jobs:
     if: >
       (github.event_name == 'push' && github.ref == 'refs/heads/v2') ||
       (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/v2')
-    needs: quality
+    needs: production-build
     runs-on: ubuntu-latest
     timeout-minutes: 10
     environment: production
