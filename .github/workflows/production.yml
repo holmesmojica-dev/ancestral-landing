@@ -29,6 +29,8 @@ on:
       - "src/**"
       - "public/**"
       - "scripts/**"
+      - "docs/**"
+      - "README.md"
       - "index.html"
       - "package.json"
       - "package-lock.json"
