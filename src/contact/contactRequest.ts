@@ -152,7 +152,7 @@ function isValidPhone(phone: string): boolean {
 	);
 }
 
-function getNameError(name: string): string | undefined {
+export function getContactNameError(name: string): string | undefined {
 	if (!name) {
 		return "El nombre es obligatorio.";
 	}
@@ -201,7 +201,7 @@ function setError(
 export function validateContactRequest(request: ContactRequest): ContactValidationErrors {
 	const errors: ContactValidationErrors = {};
 
-	setError(errors, "name", getNameError(request.name));
+	setError(errors, "name", getContactNameError(request.name));
 
 	if (!request.email && !request.phone) {
 		const contactError = "Ingresa al menos un correo electrónico o un teléfono.";

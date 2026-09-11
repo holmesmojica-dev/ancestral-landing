@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { navigationItems, serviceDetailNavigationItems } from "../../config/navigation";
+import { genericWebsiteWhatsAppUrl } from "../../contact/whatsApp";
 import { Header } from "./Header";
 
 const intersectionObservers: IntersectionObserverMock[] = [];
@@ -103,7 +104,7 @@ describe("Header", () => {
 		);
 		expect(within(navigation).getByRole("link", { name: "Hablemos por WhatsApp" })).toHaveAttribute(
 			"href",
-			"https://wa.me/573164114933"
+			genericWebsiteWhatsAppUrl
 		);
 	});
 

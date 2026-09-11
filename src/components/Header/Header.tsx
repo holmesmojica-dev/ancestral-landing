@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { navigationItems, serviceDetailNavigationItems } from "../../config/navigation";
 import { createBaseAwarePath, routePaths } from "../../config/routes";
+import { genericWebsiteWhatsAppUrl } from "../../contact/whatsApp";
 import { useActiveSection } from "../../hooks/useActiveSection";
 import { ActionLink } from "../ActionLink/ActionLink";
 import { BrandLogo } from "../BrandLogo/BrandLogo";
@@ -10,7 +11,6 @@ import { BrandLogo } from "../BrandLogo/BrandLogo";
 import WhatsappIcon from "../../assets/icons/social/whatsapp.webp";
 
 const navigationId = "primary-navigation";
-const whatsAppUrl = "https://wa.me/573164114933";
 const homeNavigationSectionIds = navigationItems.map((item) => item.id);
 const serviceDetailNavigationSectionIds = serviceDetailNavigationItems.map((item) => item.id);
 const serviceDetailStickyOffset = 120;
@@ -127,7 +127,7 @@ export function Header({ isHomePage = true, isServiceDetailPage }: Readonly<Head
 					<ActionLink
 						aria-label="Hablemos por WhatsApp"
 						className="site-header__whatsapp"
-						href={whatsAppUrl}
+						href={genericWebsiteWhatsAppUrl}
 						onClick={closeMenu}
 						rel="noreferrer"
 						target="_blank"

@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import { contactDetails } from "../../config/contact";
 import { services } from "../../config/services";
+import { createContactFormWhatsAppMessage } from "../../contact/whatsApp";
 import type { ContactApiClient, ContactApiResult } from "../../services/contactApi";
 import { Contact } from "./Contact";
 
@@ -72,8 +73,8 @@ describe("Contact", () => {
 		expect(screen.getByRole("group", { name: "Verificación de seguridad" })).toBeVisible();
 		expect(screen.getByRole("button", { name: "Enviar solicitud" })).toBeDisabled();
 		expect(screen.getByRole("link", { name: "Hablemos por WhatsApp" })).toHaveAttribute(
-			"href",
-			contactDetails.whatsAppUrl
+			"target",
+			"_blank"
 		);
 		expect(screen.getByRole("link", { name: contactDetails.phoneDisplay })).toHaveAttribute(
 			"href",
@@ -82,6 +83,107 @@ describe("Contact", () => {
 		expect(screen.getByTitle("Ubicación de Ancestral Servicios Ambientales")).toHaveAttribute(
 			"loading",
 			"lazy"
+		);
+	});
+
+	it("validates and focuses Name without opening WhatsApp or altering Turnstile", () => {
+		const apiClient = vi.fn<ContactApiClient>();
+		render(<Contact apiClient={apiClient} />);
+		const whatsAppLink = screen.getByRole("link", { name: "Hablemos por WhatsApp" });
+
+		expect(fireEvent.click(whatsAppLink)).toBe(false);
+		expect(screen.getByLabelText("Nombre")).toHaveAccessibleDescription(
+			"El nombre es obligatorio."
+		);
+		expect(screen.getByLabelText("Nombre")).toHaveAttribute("aria-invalid", "true");
+		expect(screen.getByLabelText("Nombre")).toHaveFocus();
+		expect(apiClient).not.toHaveBeenCalled();
+		expect(screen.getByRole("group", { name: "Verificación de seguridad" })).toHaveAttribute(
+			"data-reset-signal",
+			"0"
+		);
+	});
+
+	it("opens WhatsApp when only Name is populated", () => {
+		const apiClient = vi.fn<ContactApiClient>();
+		render(<Contact apiClient={apiClient} />);
+		fireEvent.change(screen.getByLabelText("Nombre"), {
+			target: { value: "Carlos Pérez" },
+		});
+		const whatsAppLink = screen.getByRole("link", { name: "Hablemos por WhatsApp" });
+		const expectedMessage = createContactFormWhatsAppMessage({
+			name: "Carlos Pérez",
+			email: "",
+			phone: "",
+			service: "",
+			message: "",
+		});
+
+		expect(new URL(whatsAppLink.getAttribute("href") ?? "").searchParams.get("text")).toBe(
+			expectedMessage
+		);
+		expect(fireEvent.click(whatsAppLink)).toBe(true);
+		expect(screen.getByLabelText("Nombre")).toHaveValue("Carlos Pérez");
+		expect(apiClient).not.toHaveBeenCalled();
+		expect(screen.getByRole("group", { name: "Verificación de seguridad" })).toHaveAttribute(
+			"data-reset-signal",
+			"0"
+		);
+	});
+
+	it("opens the populated WhatsApp message without submitting, resetting fields, or altering Turnstile", () => {
+		const apiClient = vi.fn<ContactApiClient>();
+		render(<Contact apiClient={apiClient} />);
+		fireEvent.change(screen.getByLabelText("Nombre"), {
+			target: { value: "  Carlos Pérez  " },
+		});
+		fireEvent.change(screen.getByLabelText("Correo electrónico"), {
+			target: { value: "  carlos+campo@example.com  " },
+		});
+		fireEvent.change(screen.getByLabelText("Teléfono"), {
+			target: { value: "  300 123 4567  " },
+		});
+		fireEvent.change(screen.getByLabelText("Servicio"), {
+			target: { value: services[0].id },
+		});
+		fireEvent.change(screen.getByLabelText("Mensaje"), {
+			target: { value: "  Necesito información sobre árboles & agua.\nSegunda línea.  " },
+		});
+		fireEvent.click(screen.getByRole("button", { name: "Completar verificación" }));
+
+		const whatsAppLink = screen.getByRole("link", { name: "Hablemos por WhatsApp" });
+		const expectedMessage = createContactFormWhatsAppMessage({
+			name: "Carlos Pérez",
+			email: "carlos+campo@example.com",
+			phone: "300 123 4567",
+			service: services[0].id,
+			message: "Necesito información sobre árboles & agua.\nSegunda línea.",
+		});
+		const fields = {
+			name: screen.getByLabelText<HTMLInputElement>("Nombre"),
+			email: screen.getByLabelText<HTMLInputElement>("Correo electrónico"),
+			phone: screen.getByLabelText<HTMLInputElement>("Teléfono"),
+			service: screen.getByLabelText<HTMLSelectElement>("Servicio"),
+			message: screen.getByLabelText<HTMLTextAreaElement>("Mensaje"),
+		};
+		const valuesBeforeOpening = Object.fromEntries(
+			Object.entries(fields).map(([field, element]) => [field, element.value])
+		);
+
+		expect(new URL(whatsAppLink.getAttribute("href") ?? "").searchParams.get("text")).toBe(
+			expectedMessage
+		);
+		expect(fireEvent.click(whatsAppLink)).toBe(true);
+		expect(apiClient).not.toHaveBeenCalled();
+		expect(fields.name).toHaveValue(valuesBeforeOpening.name);
+		expect(fields.email).toHaveValue(valuesBeforeOpening.email);
+		expect(fields.phone).toHaveValue(valuesBeforeOpening.phone);
+		expect(fields.service).toHaveValue(valuesBeforeOpening.service);
+		expect(fields.message).toHaveValue(valuesBeforeOpening.message);
+		expect(screen.getByRole("button", { name: "Enviar solicitud" })).toBeEnabled();
+		expect(screen.getByRole("group", { name: "Verificación de seguridad" })).toHaveAttribute(
+			"data-reset-signal",
+			"0"
 		);
 	});
 
