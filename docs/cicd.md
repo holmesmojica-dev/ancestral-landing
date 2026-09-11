@@ -2,19 +2,27 @@
 
 ## Overview
 
-Ancestral Landing implements an automated Continuous Integration and Continuous Deployment (CI/CD) pipeline designed to ensure code quality, maintainability, automated releases, and reliable production deployments.
+Ancestral Landing implements an automated Continuous Integration and
+Continuous Deployment (CI/CD) pipeline designed to ensure code quality,
+maintainability, automated releases, and reliable production
+deployments.
 
-The delivery lifecycle is powered by GitHub Actions and integrates automated validation, static analysis, semantic versioning, release generation, and deployment to GitHub Pages.
+The delivery lifecycle is powered by GitHub Actions and integrates
+automated validation, static analysis, semantic versioning, release
+generation, and deployment to the production VPS. GitHub Pages remains a
+secondary, non-canonical target.
 
 ---
 
 # GitHub Actions Workflows
 
-The project uses multiple automated workflows to validate and deliver software changes.
+The project uses multiple automated workflows to validate and deliver
+software changes.
 
 ## Frontend Quality Validation
 
-This workflow validates the frontend codebase before allowing changes to be merged.
+This workflow validates the frontend codebase before allowing changes to
+be merged.
 
 Validation steps include:
 
@@ -25,7 +33,8 @@ Validation steps include:
 - Automated test execution with Vitest
 - Code formatting verification with Prettier
 
-This workflow guarantees that the application can be built and that the code follows the established quality standards.
+This workflow guarantees that the application can be built and that the
+code follows the established quality standards.
 
 ---
 
@@ -40,23 +49,27 @@ The analysis includes:
 - Quality metrics validation
 - Quality Gate verification
 
-The Quality Gate must pass before a Pull Request can be merged into the `main` branch.
+The Quality Gate must pass before a Pull Request can be merged into the
+`main` branch.
 
 ---
 
 ## Semantic Release
 
-The project uses Semantic Release to automate version management and GitHub Releases.
+The project uses Semantic Release to automate version management and
+GitHub Releases.
 
 The release process is based on Conventional Commits.
 
 Examples:
 
-| Commit type       | Version impact |
-| ----------------- | -------------- |
-| `feat`            | Minor release  |
-| `fix`             | Patch release  |
-| `BREAKING CHANGE` | Major release  |
+Commit type Version impact
+
+---
+
+`feat` Minor release
+`fix` Patch release
+`BREAKING CHANGE` Major release
 
 Semantic Release automatically:
 
@@ -67,18 +80,23 @@ Semantic Release automatically:
 
 ---
 
-## GitHub Pages Deployment
+## Production VPS Deployment
 
-Production deployments are fully automated using GitHub Actions.
+Production deployments are automated using GitHub Actions.
 
-After changes are merged into the `main` branch:
+The production workflow validates the repository, creates the static
+production artifact, transfers it to the Ancestral VPS, activates an
+immutable release through the Nginx `current` symlink, and performs
+public smoke tests. If activation verification fails, the workflow
+restores the previous known-good release when available.
 
-1. The application is validated.
-2. The production build is generated.
-3. The build artifacts are deployed to the GitHub Pages environment.
-4. The public website is automatically updated.
+The canonical production origin is `https://ancestral-col.com`. GitHub
+Pages remains a secondary deployment target and must never replace the
+production canonical URLs.
 
-The deployment process ensures that production always reflects the latest validated version of the repository.
+The exact production branch trigger and server procedure are defined by
+`.github/workflows/production.yml` and documented in
+[`docs/v2/deployment.md`](./v2/deployment.md).
 
 ---
 
@@ -99,7 +117,7 @@ Required checks include:
 - SonarCloud Code Analysis
 - Semantic Release
 - Build Application
-- Deploy to Production
+- Production deployment workflow
 
 ---
 
@@ -139,10 +157,12 @@ Semantic Release
 Build Production Application
        |
        v
-Deploy to GitHub Pages
+Deploy immutable release to production VPS
        |
        v
 Production Environment Updated
 ```
 
-This workflow guarantees that every production deployment has passed automated quality validations and follows the established repository standards.
+This workflow guarantees that every production deployment has passed
+automated quality validations and follows the established repository
+standards.
