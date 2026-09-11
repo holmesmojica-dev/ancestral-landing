@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import { contactDetails } from "../../config/contact";
 import { navigationItems } from "../../config/navigation";
+import { genericWebsiteWhatsAppUrl } from "../../contact/whatsApp";
 import { Footer } from "./Footer";
 
 describe("Footer", () => {
@@ -20,7 +21,7 @@ describe("Footer", () => {
 		);
 		expect(
 			within(footer).getByRole("link", { name: "Escribir a Ancestral por WhatsApp" })
-		).toHaveAttribute("href", contactDetails.whatsAppUrl);
+		).toHaveAttribute("href", genericWebsiteWhatsAppUrl);
 
 		const quickLinks = within(footer).getByRole("navigation", {
 			name: "Enlaces rápidos del pie de página",

@@ -2,6 +2,7 @@ import { Clock3, MapPin, Phone } from "lucide-react";
 import { contactDetails } from "../../config/contact";
 import { navigationItems } from "../../config/navigation";
 import { createBaseAwarePath, routePaths } from "../../config/routes";
+import { genericWebsiteWhatsAppUrl } from "../../contact/whatsApp";
 import { BrandLogo } from "../BrandLogo/BrandLogo";
 
 import facebookIcon from "../../assets/icons/social/facebook-circle.webp";
@@ -47,7 +48,7 @@ export function Footer({ isHomePage = true }: Readonly<FooterProps>) {
 					<div className="pt-4 mt-6 d-flex justify-content-around border-top">
 						<a
 							aria-label="Escribir a Ancestral por WhatsApp"
-							href={contactDetails.whatsAppUrl}
+							href={genericWebsiteWhatsAppUrl}
 							rel="noreferrer"
 							target="_blank"
 						>

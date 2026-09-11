@@ -1,17 +1,26 @@
 import { MapPin, Phone } from "lucide-react";
-import { useEffect, useRef, useState, type FormEvent, type RefObject } from "react";
+import {
+	useEffect,
+	useRef,
+	useState,
+	type FormEvent,
+	type MouseEvent,
+	type RefObject,
+} from "react";
 
 import WhatsappIcon from "../../assets/icons/social/whatsapp-green.webp";
 import {
 	createContactRequest,
+	getContactNameError,
 	validateContactRequest,
 	type ContactField,
 	type ContactFormValues,
 	type ContactValidationErrors,
 } from "../../contact/contactRequest";
-import { contactDetails, createWhatsAppUrl } from "../../config/contact";
+import { contactDetails } from "../../config/contact";
 import { services } from "../../config/services";
 import { turnstileConfig } from "../../config/turnstile";
+import { createContactFormWhatsAppUrl } from "../../contact/whatsApp";
 import {
 	submitContactRequest,
 	type ContactApiClient,
@@ -213,6 +222,18 @@ function useContactForm(
 		setFieldErrors((currentErrors) => removeFieldError(currentErrors, "captchaToken"));
 	};
 
+	const handleWhatsAppClick = (event: MouseEvent<HTMLAnchorElement>) => {
+		const nameError = getContactNameError(values.name.trim());
+
+		if (!nameError) {
+			return;
+		}
+
+		event.preventDefault();
+		setFieldErrors((currentErrors) => ({ ...currentErrors, name: nameError }));
+		setFocusTarget("name");
+	};
+
 	const applySubmissionResult = (result: ContactApiResult) => {
 		if (result.tokenMayBeConsumed) {
 			setCaptchaToken("");
@@ -285,6 +306,7 @@ function useContactForm(
 		formRef,
 		handleSubmit,
 		handleTokenChange,
+		handleWhatsAppClick,
 		isSubmitting,
 		retryAfterSeconds,
 		turnstileResetSignal,
@@ -310,15 +332,14 @@ export function Contact({
 		formRef,
 		handleSubmit,
 		handleTokenChange,
+		handleWhatsAppClick,
 		isSubmitting,
 		retryAfterSeconds,
 		turnstileResetSignal,
 		updateField,
 		values,
 	} = useContactForm(selectedService, apiClient);
-	const whatsAppUrl = selectedService
-		? createWhatsAppUrl(`Quiero recibir información sobre ${selectedService.name}.`)
-		: contactDetails.whatsAppUrl;
+	const whatsAppUrl = createContactFormWhatsAppUrl(values);
 	const emailHelp = getErrorDescription("email", fieldErrors.email, "contact-channel-help");
 	const phoneHelp = getErrorDescription("phone", fieldErrors.phone, "contact-channel-help");
 	const submissionDisabled = !captchaToken || isSubmitting || Boolean(retryAfterSeconds);
@@ -469,6 +490,7 @@ export function Contact({
 									: "Hablemos por WhatsApp"
 							}
 							href={whatsAppUrl}
+							onClick={handleWhatsAppClick}
 							rel="noreferrer"
 							target="_blank"
 						>
