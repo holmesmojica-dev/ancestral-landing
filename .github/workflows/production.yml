@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - v2
+      - main
     paths:
       - "src/**"
       - "public/**"
@@ -19,6 +20,7 @@ on:
   pull_request:
     branches:
       - v2
+      - main
     types:
       - opened
       - synchronize
@@ -100,8 +102,8 @@ jobs:
   production-build:
     name: Build production artifact
     if: >
-      (github.event_name == 'push' && github.ref == 'refs/heads/v2') ||
-      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/v2')
+      (github.event_name == 'push' && (github.ref == 'refs/heads/v2' || github.ref == 'refs/heads/main')) ||
+      (github.event_name == 'workflow_dispatch' && (github.ref == 'refs/heads/v2' || github.ref == 'refs/heads/main'))
     needs: quality
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -150,8 +152,8 @@ jobs:
   deploy:
     name: Deploy to production VPS
     if: >
-      (github.event_name == 'push' && github.ref == 'refs/heads/v2') ||
-      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/v2')
+      (github.event_name == 'push' && (github.ref == 'refs/heads/v2' || github.ref == 'refs/heads/main')) ||
+      (github.event_name == 'workflow_dispatch' && (github.ref == 'refs/heads/v2' || github.ref == 'refs/heads/main'))
     needs: production-build
     runs-on: ubuntu-latest
     timeout-minutes: 10
