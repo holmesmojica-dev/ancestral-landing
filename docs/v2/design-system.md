@@ -19,9 +19,10 @@ The purpose of this design system is to ensure that all V2 screens,
 sections, components, responsive states, and future extensions remain
 visually consistent with the approved Ancestral identity.
 
-Implementation issues may translate these rules into React, Bootstrap,
-SCSS, and reusable components, but they should not redefine the visual
-identity established here without first updating this document.
+The production implementation translates these rules into React,
+Bootstrap, SCSS, and reusable components. Future changes must not
+redefine the visual identity established here without first updating
+this document.
 
 ---
 
@@ -99,23 +100,18 @@ Token Hex Primary use
 
 ---
 
-`brand-navy` `#0D1B3D` Primary institutional
-color, dark surfaces,
+`brand-navy` `#0D1B3D` Primary institutional color, dark surfaces,
 headings, footer
 
-`brand-green` `#4CAF37` Environmental accent,
-primary actions,
+`brand-green` `#4CAF37` Environmental accent, primary actions,
 highlights, icons
 
-`surface-off-white` `#F7F9F7` Main page background
-and soft neutral
+`surface-off-white` `#F7F9F7` Main page background and soft neutral
 surfaces
 
-`neutral-light` `#E6E9EC` Borders, separators,
-subtle backgrounds
+`neutral-light` `#E6E9EC` Borders, separators, subtle backgrounds
 
-`neutral-dark` `#4B5563` Secondary text and
-supporting UI
+`neutral-dark` `#4B5563` Secondary text and supporting UI
 
 ---
 
@@ -198,31 +194,55 @@ light-neutral borders.
 
 ### 5.4 Contrast
 
-V2 targets **WCAG AA** as the minimum accessibility conformance level for text/background color contrast.
+V2 targets **WCAG AA** as the minimum accessibility conformance level
+for text/background color contrast.
 
-For normal text, the minimum contrast ratio is `4.5:1`. For large text, the minimum contrast ratio is `3:1`.
+For normal text, the minimum contrast ratio is `4.5:1`. For large text,
+the minimum contrast ratio is `3:1`.
 
 The following core V2 color combinations have been verified:
 
-| Foreground             | Background              | Contrast ratio | WCAG AA       |
-| ---------------------- | ----------------------- | -------------: | ------------- |
-| White `#FFFFFF`        | Navy `#0D1B3D`          |      `16.92:1` | Pass          |
-| Off-white `#F7F9F7`    | Navy `#0D1B3D`          |      `15.99:1` | Pass          |
-| Neutral-dark `#4B5563` | White `#FFFFFF`         |       `7.56:1` | Pass          |
-| Neutral-dark `#4B5563` | Off-white `#F7F9F7`     |       `7.14:1` | Pass          |
-| Navy `#0D1B3D`         | Green `#4CAF37`         |       `6.04:1` | Pass          |
-| White `#FFFFFF`        | Green `#4CAF37`         |       `2.80:1` | Fail for text |
-| White `#FFFFFF`        | Light-neutral `#E6E9EC` |   Insufficient | Fail for text |
+---
+
+Foreground Background Contrast ratio WCAG AA
+
+---
+
+White `#FFFFFF` Navy `#0D1B3D` `16.92:1` Pass
+
+Off-white `#F7F9F7` Navy `#0D1B3D` `15.99:1` Pass
+
+Neutral-dark White `#FFFFFF` `7.56:1` Pass
+`#4B5563`
+
+Neutral-dark Off-white `#F7F9F7` `7.14:1` Pass
+`#4B5563`
+
+Navy `#0D1B3D` Green `#4CAF37` `6.04:1` Pass
+
+White `#FFFFFF` Green `#4CAF37` `2.80:1` Fail for
+text
+
+White `#FFFFFF` Light-neutral Insufficient Fail for
+`#E6E9EC` text
+
+---
 
 Rules:
 
-- Navy must be used as the foreground text color on `brand-green` interactive surfaces.
+- Navy must be used as the foreground text color on `brand-green`
+  interactive surfaces.
 - White text must not be used on `brand-green` for normal-size text.
-- `brand-green` should primarily function as an accent, interactive background, icon color, or decorative brand color rather than as body-text color on light surfaces.
-- `light-neutral` is intended primarily for borders, dividers, and subtle surfaces, not for text.
+- `brand-green` should primarily function as an accent, interactive
+  background, icon color, or decorative brand color rather than as
+  body-text color on light surfaces.
+- `light-neutral` is intended primarily for borders, dividers, and
+  subtle surfaces, not for text.
 - White or off-white text may be used on navy surfaces.
-- All new text/background combinations introduced during implementation must meet WCAG AA contrast requirements.
-- Color alone must never communicate selected, error, success, active-navigation, or validation states.
+- All new text/background combinations introduced during
+  implementation must meet WCAG AA contrast requirements.
+- Color alone must never communicate selected, error, success,
+  active-navigation, or validation states.
 
 ---
 
@@ -240,10 +260,8 @@ Weight Recommended use
 
 ---
 
-`400` Body copy
-`500` Supporting emphasis, navigation, labels
-`600` Buttons, cards, subheadings
-`700` Major headings and strong metrics
+`400` Body copy `500` Supporting emphasis, navigation, labels `600`
+Buttons, cards, subheadings `700` Major headings and strong metrics
 
 ### 6.3 Type scale
 
@@ -276,11 +294,8 @@ Content Line height
 
 ---
 
-Display / Hero `1.05 – 1.15`
-Section headings `1.15 – 1.25`
-Card headings `1.2 – 1.3`
-Body copy `1.5 – 1.7`
-Captions `1.4 – 1.5`
+Display / Hero `1.05 – 1.15` Section headings `1.15 – 1.25` Card
+headings `1.2 – 1.3` Body copy `1.5 – 1.7` Captions `1.4 – 1.5`
 
 ### 6.6 Text width
 
@@ -297,16 +312,9 @@ Token Value
 
 ---
 
-`space-1` 4px
-`space-2` 8px
-`space-3` 12px
-`space-4` 16px
-`space-5` 24px
-`space-6` 32px
-`space-7` 48px
-`space-8` 64px
-`space-9` 96px
-`space-10` 128px
+`space-1` 4px `space-2` 8px `space-3` 12px `space-4` 16px `space-5` 24px
+`space-6` 32px `space-7` 48px `space-8` 64px `space-9` 96px `space-10`
+128px
 
 Desktop section spacing should generally range from `64px–96px`, with
 major narrative sections reaching `128px`. Mobile spacing should
@@ -351,12 +359,9 @@ Component Radius
 
 ---
 
-Form fields `8px`
-Small cards `16px`
-Large image/content panels `16–24px`
-Statistics container `16–24px`
-Buttons `999px`
-Decorative image compositions Context-dependent
+Form fields `8px` Small cards `16px` Large image/content panels
+`16–24px` Statistics container `16–24px` Buttons `999px` Decorative
+image compositions Context-dependent
 
 ---
 
@@ -372,10 +377,9 @@ Component Shadow
 
 ---
 
-Service cards `shadow-sm`
-Statistics card `shadow-md`
-Floating navigation/mobile panels `shadow-md`
-Modal-like overlays if introduced later `shadow-lg`
+Service cards `shadow-sm` Statistics card `shadow-md` Floating
+navigation/mobile panels `shadow-md` Modal-like overlays if introduced
+later `shadow-lg`
 
 Dark sections generally should not require heavy shadows.
 
@@ -541,16 +545,11 @@ Size Minimum height Horizontal padding Typical use
 
 ---
 
-Small `40px` `16–20px` Compact
-secondary
-actions
+Small `40px` `16–20px` Compact secondary actions
 
 Default `48px` `24–28px` Standard CTA
 
-Large `52–56px` `28–32px` Hero and
-high-priority
-conversion
-actions
+Large `52–56px` `28–32px` Hero and high-priority conversion actions
 
 ---
 
@@ -619,7 +618,8 @@ Hover should provide visible but restrained feedback.
 
 Primary CTA:
 
-- Slightly darken the green background while preserving WCAG AA contrast.
+- Slightly darken the green background while preserving WCAG AA
+  contrast.
 - Preserve `brand-navy` (`#0D1B3D`) text.
 - Do not dramatically change size or geometry.
 
@@ -720,7 +720,8 @@ When a primary and secondary CTA appear together, as in the Hero:
 - The group may wrap or stack at smaller viewports.
 - Responsive behavior must preserve action hierarchy.
 
-Section 24 defines the responsive principles that govern CTA wrapping and stacking across viewport ranges.
+Section 24 defines the responsive principles that govern CTA wrapping
+and stacking across viewport ranges.
 
 ### 13.10 Full-width mobile actions
 
@@ -793,9 +794,12 @@ decorative noise or introduce competing illustration styles.
 
 ### 14.1 Primary icon library
 
-**Lucide React** is the preferred icon library for standard functional and interface iconography.
+**Lucide React** is the preferred icon library for standard functional
+and interface iconography.
 
-The project already uses `lucide-react`, and V2 should continue using it whenever an appropriate icon exists for navigation, contact, controls, status indicators, gallery actions, and other general UI purposes.
+The project already uses `lucide-react`, and V2 should continue using it
+whenever an appropriate icon exists for navigation, contact, controls,
+status indicators, gallery actions, and other general UI purposes.
 
 Benefits include:
 
@@ -806,15 +810,19 @@ Benefits include:
 - Easy sizing and color inheritance.
 - Broad coverage of common functional interface concepts.
 
-The five approved service-category icons are an explicit exception to the Lucide-first rule.
+The five approved service-category icons are an explicit exception to
+the Lucide-first rule.
 
-Those icons are custom Ancestral V2 assets derived from the approved preliminary design and must be reused from:
+Those icons are custom Ancestral V2 assets derived from the approved
+preliminary design and must be reused from:
 
 `src/assets/icons/services/`
 
-A second general-purpose icon library should not be introduced merely to obtain a slightly different version of an icon.
+A second general-purpose icon library should not be introduced merely to
+obtain a slightly different version of an icon.
 
-Custom artwork is acceptable when the approved Ancestral visual identity requires a symbol that Lucide cannot represent adequately.
+Custom artwork is acceptable when the approved Ancestral visual identity
+requires a symbol that Lucide cannot represent adequately.
 
 ### 14.2 Visual style
 
@@ -870,11 +878,10 @@ Role Size Typical use
 
 ---
 
-`icon-xs` `16px` Inline metadata, compact controls
-`icon-sm` `20px` Buttons, navigation, form support
-`icon-md` `24px` Standard UI icons
-`icon-lg` `32px` Statistics and emphasized features
-`icon-xl` `40–48px` Service cards and prominent visual concepts
+`icon-xs` `16px` Inline metadata, compact controls `icon-sm` `20px`
+Buttons, navigation, form support `icon-md` `24px` Standard UI icons
+`icon-lg` `32px` Statistics and emphasized features `icon-xl` `40–48px`
+Service cards and prominent visual concepts
 
 Icons within the same component family should use the same nominal size.
 
@@ -896,9 +903,12 @@ the same component group should be avoided.
 
 ### 14.6 Service iconography
 
-The five primary service categories use the custom iconography approved in the V2 preliminary design.
+The five primary service categories use the custom iconography approved
+in the V2 preliminary design.
 
-These icons are production assets and must not be replaced with approximate Lucide equivalents unless the Design System is explicitly updated.
+These icons are production assets and must not be replaced with
+approximate Lucide equivalents unless the Design System is explicitly
+updated.
 
 Approved asset locations:
 
@@ -937,28 +947,34 @@ src/assets/icons/services/
 
 Category mapping:
 
-| Service category                | Asset family          |
-| ------------------------------- | --------------------- |
-| Ambientales                     | `environmental`       |
-| Forestales                      | `forestry`            |
-| Agrícolas                       | `agricultural`        |
-| Manejo del Recurso Hídrico      | `water-resources`     |
-| Seguridad y Salud en el Trabajo | `occupational-safety` |
+Service category Asset family
+
+---
+
+Ambientales `environmental`
+Forestales `forestry`
+Agrícolas `agricultural`
+Manejo del Recurso Hídrico `water-resources`
+Seguridad y Salud en el Trabajo `occupational-safety`
 
 The default asset preserves the approved preliminary-design appearance.
 
-The `green`, `navy`, and `white` variants may be used only when required by the component state or surrounding surface.
+The `green`, `navy`, and `white` variants may be used only when required
+by the component state or surrounding surface.
 
 Service icons should:
 
-- Render at approximately `40–48px` within service cards unless responsive behavior requires adjustment.
+- Render at approximately `40–48px` within service cards unless
+  responsive behavior requires adjustment.
 - Preserve their original aspect ratio.
 - Preserve sufficient whitespace around the symbol.
 - Remain visually consistent across all five service cards.
 - Never replace the visible service title.
-- Avoid CSS recoloring when an approved state-specific asset already exists.
+- Avoid CSS recoloring when an approved state-specific asset already
+  exists.
 
-The icon supports recognition; the visible service name remains the primary semantic label.
+The icon supports recognition; the visible service name remains the
+primary semantic label.
 
 ### 14.7 Statistics and trust indicators
 
@@ -1051,9 +1067,7 @@ Icon size Container
 
 ---
 
-`20px` `36–40px`
-`24px` `44–48px`
-`32px` `56–64px`
+`20px` `36–40px` `24px` `44–48px` `32px` `56–64px`
 
 These values may be optically adjusted during implementation while
 preserving consistency.
@@ -1157,14 +1171,16 @@ Instead:
 - Avoid removing meaningful icons solely because the viewport is
   small.
 
-Detailed responsive composition must follow the principles and breakpoint strategy defined in Section 24.
+Detailed responsive composition must follow the principles and
+breakpoint strategy defined in Section 24.
 
 ### 14.16 Consistency rules
 
 Do:
 
 - Prefer Lucide for standard functional and interface icons.
-- Reuse the approved custom Ancestral assets for the five service-category icons.
+- Reuse the approved custom Ancestral assets for the five
+  service-category icons.
 - Reuse semantic size and color tokens.
 - Keep stroke style consistent.
 - Pair service icons with visible labels.
@@ -1297,14 +1313,14 @@ Viewport Header height
 
 ---
 
-Desktop `72–80px`
-Tablet `64–72px`
-Mobile `56–64px`
+Desktop `72–80px` Tablet `64–72px` Mobile `56–64px`
 
 These are implementation targets rather than reasons to distort the
 approved logo proportions.
 
-The exact values may be refined during implementation according to the responsive principles defined in Section 24 and the behavior of real content at intermediate widths.
+The exact values may be refined during implementation according to the
+responsive principles defined in Section 24 and the behavior of real
+content at intermediate widths.
 
 ### 15.6 Logo
 
@@ -1333,13 +1349,17 @@ Rules:
 - Do not stretch or distort the asset.
 - Maintain adequate whitespace around it.
 - Do not rebuild the complete logo with separate HTML text.
-- Do not apply unnecessary shadows, outlines, filters, or decorative effects.
+- Do not apply unnecessary shadows, outlines, filters, or decorative
+  effects.
 - Ensure the logo remains legible at mobile sizes.
-- Use symbol-only variants only when the complete lockup is not appropriate for the available space or context.
+- Use symbol-only variants only when the complete lockup is not
+  appropriate for the available space or context.
 
 The logo should function as navigation to the main/home experience.
 
-When the user is already on the homepage, activating the logo should return to the beginning of the page without introducing confusing behavior.
+When the user is already on the homepage, activating the logo should
+return to the beginning of the page without introducing confusing
+behavior.
 
 ### 15.7 Primary navigation
 
@@ -1544,7 +1564,8 @@ When the mobile navigation is open:
   menu pattern.
 - Scrolling behavior must not become confusing.
 
-Detailed responsive behavior must follow the principles and breakpoint strategy defined in Section 24.
+Detailed responsive behavior must follow the principles and breakpoint
+strategy defined in Section 24.
 
 ### 15.16 Anchor navigation and sticky offset
 
@@ -2458,7 +2479,9 @@ The mobile design should preserve:
 - Comfortable spacing.
 - No horizontal scrolling.
 
-Exact breakpoint behavior should follow the responsive strategy defined in Section 24 and may be adjusted when content fit requires a component-specific breakpoint.
+Exact breakpoint behavior should follow the responsive strategy defined
+in Section 24 and may be adjusted when content fit requires a
+component-specific breakpoint.
 
 ### 17.12 Mobile relationship with the Hero
 
@@ -2827,7 +2850,8 @@ content order. - Reduce decorative complexity. - Keep imagery meaningful
 and appropriately cropped. - Avoid reproducing desktop overlaps
 literally.
 
-Section 24 remains authoritative for responsive behavior and breakpoint strategy.
+Section 24 remains authoritative for responsive behavior and breakpoint
+strategy.
 
 ### 18.14 Accessibility
 
@@ -3115,7 +3139,8 @@ Recommended progression:
   unless later usability evidence justifies one.
 - Maintain adequate spacing between interactive cards.
 
-Final breakpoint behavior must follow Section 24, with content fit determining when the service-card composition needs to adapt.
+Final breakpoint behavior must follow Section 24, with content fit
+determining when the service-card composition needs to adapt.
 
 ### 19.15 Mobile interaction
 
@@ -3830,7 +3855,9 @@ Recommended mobile priority:
 4.  Contact details.
 5.  Location/map.
 
-The final order may be refined during implementation according to the responsive principles in Section 24 while preserving usability and logical reading order.
+The final order may be refined during implementation according to the
+responsive principles in Section 24 while preserving usability and
+logical reading order.
 
 ### 21.22 Form spacing
 
@@ -4367,13 +4394,15 @@ The footer should not duplicate every piece of homepage content.
 
 ### 23.4 Brand area
 
-The Footer uses the approved inverse Ancestral logo for dark/navy surfaces.
+The Footer uses the approved inverse Ancestral logo for dark/navy
+surfaces.
 
 Production asset:
 
 `src/assets/images/logo/full/ancestral-logo-white.svg`
 
-The standard light-background logo must not be used on the navy Footer when it reduces contrast or visual consistency.
+The standard light-background logo must not be used on the navy Footer
+when it reduces contrast or visual consistency.
 
 Rules:
 
@@ -4381,11 +4410,14 @@ Rules:
 - Use the approved white/inverse variant.
 - Maintain clear space around the lockup.
 - Avoid unnecessary visual effects.
-- Do not reconstruct the brand name or descriptor separately with HTML.
+- Do not reconstruct the brand name or descriptor separately with
+  HTML.
 - Keep supporting brand copy short.
-- Use the symbol-only white variant only when the complete lockup is intentionally not required.
+- Use the symbol-only white variant only when the complete lockup is
+  intentionally not required.
 
-If a concise brand statement is included, it should align with the approved V2 narrative rather than introducing new marketing claims.
+If a concise brand statement is included, it should align with the
+approved V2 narrative rather than introducing new marketing claims.
 
 ### 23.5 Footer navigation
 
@@ -5492,67 +5524,121 @@ methods.
 
 ## 26. Photography and media guidelines
 
-Photography is central to Ancestral Landing V2 because it provides visual evidence of territory, environmental work, field activity, and the real contexts in which Ancestral operates. The preferred direction is authentic, environmental, territorial, and professional. Client-provided material should be prioritized whenever relevant and technically suitable.
+Photography is central to Ancestral Landing V2 because it provides
+visual evidence of territory, environmental work, field activity, and
+the real contexts in which Ancestral operates. The preferred direction
+is authentic, environmental, territorial, and professional.
+Client-provided material should be prioritized whenever relevant and
+technically suitable.
 
 ### 26.1 Core principles
 
-Photography should prioritize authentic Ancestral material; represent territory, ecosystems, environmental processes, field work and service contexts truthfully; reinforce environmental-compensation messaging where relevant; support the section in which it appears; preserve a natural visual character; and remain optimized for web delivery.
+Photography should prioritize authentic Ancestral material; represent
+territory, ecosystems, environmental processes, field work and service
+contexts truthfully; reinforce environmental-compensation messaging
+where relevant; support the section in which it appears; preserve a
+natural visual character; and remain optimized for web delivery.
 
 ### 26.2 Source priority
 
-Preferred order: approved Ancestral photographs; approved project/field material; brand-specific assets; and appropriately licensed external imagery only when required. Stock photography should not replace suitable authentic material merely because it appears more polished.
+Preferred order: approved Ancestral photographs; approved project/field
+material; brand-specific assets; and appropriately licensed external
+imagery only when required. Stock photography should not replace
+suitable authentic material merely because it appears more polished.
 
 ### 26.3 Selection and factual accuracy
 
-Select images for relevance, technical quality, composition, focal point, authenticity, responsive crop potential, and publication suitability. Do not infer project names, clients, locations, dates, species, certifications, environmental results, or scope of work from an image.
+Select images for relevance, technical quality, composition, focal
+point, authenticity, responsive crop potential, and publication
+suitability. Do not infer project names, clients, locations, dates,
+species, certifications, environmental results, or scope of work from an
+image.
 
 ### 26.4 Hero photography
 
-The Hero image must provide strong visual quality, environmental/territorial identity, a useful responsive focal area, and compatibility with the navy/green organic composition. Section 16 remains authoritative for Hero composition, responsive behavior, and LCP.
+The Hero image must provide strong visual quality,
+environmental/territorial identity, a useful responsive focal area, and
+compatibility with the navy/green organic composition. Section 16
+remains authoritative for Hero composition, responsive behavior, and
+LCP.
 
 ### 26.5 Narrative and service photography
 
-Images in institutional and territorial sections must reinforce their accompanying narrative. Service-detail imagery should be curated for the specific service rather than reused indiscriminately across every gallery. Section 22 remains authoritative for gallery behavior.
+Images in institutional and territorial sections must reinforce their
+accompanying narrative. Service-detail imagery should be curated for the
+specific service rather than reused indiscriminately across every
+gallery. Section 22 remains authoritative for gallery behavior.
 
 ### 26.6 Human subjects
 
-Use identifiable-person photography only when suitable for publication. Preserve professional context and do not add names, roles, affiliations, or implied endorsements unless supplied and approved.
+Use identifiable-person photography only when suitable for publication.
+Preserve professional context and do not add names, roles, affiliations,
+or implied endorsements unless supplied and approved.
 
 ### 26.7 Image treatment
 
-Acceptable adjustments include crop, exposure correction, mild contrast adjustment, compression, format conversion, and focal-point adjustment. Avoid heavy grading, artificial green tinting, excessive sharpening, strong filters, or effects that make authentic field photography appear synthetic.
+Acceptable adjustments include crop, exposure correction, mild contrast
+adjustment, compression, format conversion, and focal-point adjustment.
+Avoid heavy grading, artificial green tinting, excessive sharpening,
+strong filters, or effects that make authentic field photography appear
+synthetic.
 
 ### 26.8 Organic framing
 
-Photography may use rounded containers, organic masks, curved compositions, and layered navy/green forms consistent with the approved design. Do not invent a different complex mask for every image.
+Photography may use rounded containers, organic masks, curved
+compositions, and layered navy/green forms consistent with the approved
+design. Do not invent a different complex mask for every image.
 
 ### 26.9 Aspect ratio and cropping
 
-Use a small intentional family of proportions for Hero, editorial, gallery, and supporting imagery. Where a fixed frame is required, `object-fit: cover` is preferred, with `object-position` used to protect meaningful focal content. If cropping removes important information, use an alternative presentation.
+Use a small intentional family of proportions for Hero, editorial,
+gallery, and supporting imagery. Where a fixed frame is required,
+`object-fit: cover` is preferred, with `object-position` used to protect
+meaningful focal content. If cropping removes important information, use
+an alternative presentation.
 
 ### 26.10 Responsive art direction
 
-Where necessary use `<picture>`, responsive source variants, art-directed crops, `srcset`, `sizes`, and controlled `object-position`. Mobile should not receive a meaningless miniature of a desktop-wide composition.
+Where necessary use `<picture>`, responsive source variants,
+art-directed crops, `srcset`, `sizes`, and controlled `object-position`.
+Mobile should not receive a meaningless miniature of a desktop-wide
+composition.
 
 ### 26.11 Formats, resolution and compression
 
-Prefer efficient modern web formats such as AVIF or WebP where practical, optimized JPEG where needed, and SVG for vector graphics. Do not ship original oversized camera files. Delivery resolution and compression should reflect the rendered role and dimensions.
+Prefer efficient modern web formats such as AVIF or WebP where
+practical, optimized JPEG where needed, and SVG for vector graphics. Do
+not ship original oversized camera files. Delivery resolution and
+compression should reflect the rendered role and dimensions.
 
 ### 26.12 Loading and layout stability
 
-Critical above-the-fold imagery should be prioritized and should not be lazy-loaded when that harms LCP. Below-the-fold media may use native lazy loading. Always reserve layout space through intrinsic dimensions or `aspect-ratio` to avoid layout shift. Do not preload complete galleries.
+Critical above-the-fold imagery should be prioritized and should not be
+lazy-loaded when that harms LCP. Below-the-fold media may use native
+lazy loading. Always reserve layout space through intrinsic dimensions
+or `aspect-ratio` to avoid layout shift. Do not preload complete
+galleries.
 
 ### 26.13 Alternative text and captions
 
-Informative images require concise contextual alternative text. Atmospheric/decorative imagery should use the appropriate decorative treatment. Do not use filenames, invent facts, or unnecessarily repeat adjacent text. Captions are appropriate only when they provide useful approved context.
+Informative images require concise contextual alternative text.
+Atmospheric/decorative imagery should use the appropriate decorative
+treatment. Do not use filenames, invent facts, or unnecessarily repeat
+adjacent text. Captions are appropriate only when they provide useful
+approved context.
 
 ### 26.14 Decorative and future media
 
-Botanical line art, dots, organic shapes, and brand motifs are decorative media and should preferably use lightweight SVG/CSS. V2 does not require video. If introduced later, video must have a clear purpose, accessible controls/captions where required, no autoplay with sound, and an appropriate performance strategy.
+Botanical line art, dots, organic shapes, and brand motifs are
+decorative media and should preferably use lightweight SVG/CSS. V2 does
+not require video. If introduced later, video must have a clear purpose,
+accessible controls/captions where required, no autoplay with sound, and
+an appropriate performance strategy.
 
 ### 26.15 Asset organization and naming
 
-Production assets should be organized by purpose and should use descriptive, stable filenames.
+Production assets should be organized by purpose and should use
+descriptive, stable filenames.
 
 Approved V2 brand-asset locations include:
 
@@ -5580,127 +5666,212 @@ public/
 
 These locations are part of the approved V2 asset architecture.
 
-Codex and developers should reuse these production assets rather than recreating equivalent logos, symbols, service icons, or browser identity assets.
+Codex and developers should reuse these production assets rather than
+recreating equivalent logos, symbols, service icons, or browser identity
+assets.
 
-Other media should follow the same purpose-oriented organization, such as Hero, service photography, institutional logos, and decorative graphics.
+Other media should follow the same purpose-oriented organization, such
+as Hero, service photography, institutional logos, and decorative
+graphics.
 
-Use descriptive stable filenames such as `hero-territory.webp` or `service-restoration-01.webp`.
+Use descriptive stable filenames such as `hero-territory.webp` or
+`service-restoration-01.webp`.
 
-Avoid ambiguous camera filenames and do not encode unverified client/project facts into asset names.
+Avoid ambiguous camera filenames and do not encode unverified
+client/project facts into asset names.
 
 ### 26.16 Rights and approval
 
-Only media Ancestral has the right to publish should enter production. Receipt of a file does not automatically prove public-web approval. Uncertain assets should be flagged for client confirmation.
+Only media Ancestral has the right to publish should enter production.
+Receipt of a file does not automatically prove public-web approval.
+Uncertain assets should be flagged for client confirmation.
 
 ### 26.17 Consistency rules
 
-Do prioritize authentic photography, match imagery to real content, preserve natural color, curate galleries, control responsive focal points, optimize delivery, reserve dimensions, and verify publication suitability. Do not fill the site with generic stock imagery, invent facts from photographs, apply heavy filters, ship oversized originals, reuse imagery indiscriminately, or crop away meaningful content.
+Do prioritize authentic photography, match imagery to real content,
+preserve natural color, curate galleries, control responsive focal
+points, optimize delivery, reserve dimensions, and verify publication
+suitability. Do not fill the site with generic stock imagery, invent
+facts from photographs, apply heavy filters, ship oversized originals,
+reuse imagery indiscriminately, or crop away meaningful content.
 
-Photography should make V2 feel grounded in real territory and real environmental work while remaining efficient and coherent.
+Photography should make V2 feel grounded in real territory and real
+environmental work while remaining efficient and coherent.
 
 ---
 
 ## 27. Motion and transitions
 
-Motion in Ancestral Landing V2 should support clarity, feedback, and continuity. The approved identity does not require a highly animated experience. The default direction is restrained, purposeful, and professional.
+Motion in Ancestral Landing V2 should support clarity, feedback, and
+continuity. The approved identity does not require a highly animated
+experience. The default direction is restrained, purposeful, and
+professional.
 
 ### 27.1 Principles
 
-Motion should communicate interaction feedback and state changes, preserve spatial continuity, remain subtle, avoid delaying content, respect user preferences, avoid unnecessary JavaScript, and never be required to understand information.
+Motion should communicate interaction feedback and state changes,
+preserve spatial continuity, remain subtle, avoid delaying content,
+respect user preferences, avoid unnecessary JavaScript, and never be
+required to understand information.
 
 ### 27.2 Motion hierarchy
 
-Priority: functional feedback; navigation/state transitions; spatial continuity; optional decorative enhancement. Decorative motion has the lowest priority.
+Priority: functional feedback; navigation/state transitions; spatial
+continuity; optional decorative enhancement. Decorative motion has the
+lowest priority.
 
 ### 27.3 Duration and easing
 
 Recommended starting tokens:
 
-| Token         |    Duration | Use                                     |
-| ------------- | ----------: | --------------------------------------- |
-| `motion-fast` | `120–150ms` | Hover, color, compact controls          |
-| `motion-base` | `180–220ms` | Buttons, cards, simple UI states        |
-| `motion-slow` | `280–350ms` | Panels, offcanvas, restrained entrances |
+---
 
-Prefer a small easing family such as `ease` and `cubic-bezier(0.22, 1, 0.36, 1)`. Transitions longer than roughly `500ms` should require a clear reason.
+Token Duration Use
+
+---
+
+`motion-fast` `120–150ms` Hover, color, compact controls
+
+`motion-base` `180–220ms` Buttons, cards, simple UI states
+
+`motion-slow` `280–350ms` Panels, offcanvas, restrained entrances
+
+---
+
+Prefer a small easing family such as `ease` and
+`cubic-bezier(0.22, 1, 0.36, 1)`. Transitions longer than roughly
+`500ms` should require a clear reason.
 
 ### 27.4 Properties
 
-Prefer `opacity`, `transform`, `color`, `background-color`, `border-color`, and `box-shadow`. Avoid continuously animating layout-heavy properties when a transform can achieve the same result.
+Prefer `opacity`, `transform`, `color`, `background-color`,
+`border-color`, and `box-shadow`. Avoid continuously animating
+layout-heavy properties when a transform can achieve the same result.
 
 ### 27.5 Buttons, cards and navigation
 
-Buttons should use subtle color/border/shadow feedback and must not bounce or pulse. Service cards may use the approved `translateY(-2px)` hover treatment with subtle elevation. Navigation should use short color/indicator transitions without shifting surrounding content.
+Buttons should use subtle color/border/shadow feedback and must not
+bounce or pulse. Service cards may use the approved `translateY(-2px)`
+hover treatment with subtle elevation. Navigation should use short
+color/indicator transitions without shifting surrounding content.
 
 ### 27.6 Sticky header
 
-The top-to-scrolled state should be almost imperceptible: subtle shadow or border only. Avoid dramatic height collapse, logo zoom, repeated hide/show behavior, or strong transparency changes.
+The top-to-scrolled state should be almost imperceptible: subtle shadow
+or border only. Avoid dramatic height collapse, logo zoom, repeated
+hide/show behavior, or strong transparency changes.
 
 ### 27.7 Mobile menu
 
-Bootstrap offcanvas motion may be retained when suitable. It should be brief, predictable, accessible, and compatible with reduced-motion preferences.
+Bootstrap offcanvas motion may be retained when suitable. It should be
+brief, predictable, accessible, and compatible with reduced-motion
+preferences.
 
 ### 27.8 Hero and decorative elements
 
-The Hero does not require entrance animation. If later introduced, motion must not delay the H1 or CTAs, should remain short, and must respect reduced motion. Botanical lines, dots, and organic shapes should normally remain static.
+The Hero does not require entrance animation. If later introduced,
+motion must not delay the H1 or CTAs, should remain short, and must
+respect reduced motion. Botanical lines, dots, and organic shapes should
+normally remain static.
 
 ### 27.9 Statistics and trusted entities
 
-Statistics should remain static by default; animated counters are not required. Institutional logos should not use infinite marquees, automatic scrolling, or repeated attention-seeking motion.
+Statistics should remain static by default; animated counters are not
+required. Institutional logos should not use infinite marquees,
+automatic scrolling, or repeated attention-seeking motion.
 
 ### 27.10 Forms and feedback
 
-Use motion only to clarify focus, validation, loading, success, or failure. Avoid shaking fields as the primary error cue. Loading indicators should preserve control dimensions and communicate status accessibly.
+Use motion only to clarify focus, validation, loading, success, or
+failure. Avoid shaking fields as the primary error cue. Loading
+indicators should preserve control dimensions and communicate status
+accessibly.
 
 ### 27.11 Carousel
 
-Service-gallery transitions should be short and restrained, using a simple slide or fade. No autoplay, elaborate 3D effects, or large zoom transitions. The user controls when the gallery moves.
+Service-gallery transitions should be short and restrained, using a
+simple slide or fade. No autoplay, elaborate 3D effects, or large zoom
+transitions. The user controls when the gallery moves.
 
 ### 27.12 Smooth scrolling
 
-Smooth scrolling may support in-page navigation when it preserves browser expectations and sticky-header offsets. It must respect `prefers-reduced-motion`.
+Smooth scrolling may support in-page navigation when it preserves
+browser expectations and sticky-header offsets. It must respect
+`prefers-reduced-motion`.
 
 ### 27.13 Scroll-triggered animation
 
-Scroll-triggered entrances are optional rather than baseline. If introduced, use them sparingly, avoid hiding content while waiting for intersection, avoid replaying every time the user scrolls, and do not add a heavy dependency solely for this effect.
+Scroll-triggered entrances are optional rather than baseline. If
+introduced, use them sparingly, avoid hiding content while waiting for
+intersection, avoid replaying every time the user scrolls, and do not
+add a heavy dependency solely for this effect.
 
 ### 27.14 Parallax
 
-Parallax is not part of the default V2 direction because it can introduce motion discomfort, rendering cost, mobile complexity, and visual competition. It requires a specific approved reason.
+Parallax is not part of the default V2 direction because it can
+introduce motion discomfort, rendering cost, mobile complexity, and
+visual competition. It requires a specific approved reason.
 
 ### 27.15 Reduced motion
 
-V2 must respect `prefers-reduced-motion`. A baseline may disable smooth scrolling and reduce nonessential transition/animation durations. Functionality must remain fully available without motion.
+V2 must respect `prefers-reduced-motion`. A baseline may disable smooth
+scrolling and reduce nonessential transition/animation durations.
+Functionality must remain fully available without motion.
 
 ### 27.16 Performance
 
-Prefer CSS transitions for simple states. Avoid continuous decorative scroll listeners, large animation libraries without demonstrated value, expensive blurred-layer animation, and repeated layout-triggering effects. Motion must not materially degrade Core Web Vitals.
+Prefer CSS transitions for simple states. Avoid continuous decorative
+scroll listeners, large animation libraries without demonstrated value,
+expensive blurred-layer animation, and repeated layout-triggering
+effects. Motion must not materially degrade Core Web Vitals.
 
 ### 27.17 Interaction consistency
 
-Equivalent interactions should feel equivalent across V2. Hover timing, focus immediacy, card movement, button feedback, and service-card behavior should come from shared rules rather than individual animation personalities.
+Equivalent interactions should feel equivalent across V2. Hover timing,
+focus immediacy, card movement, button feedback, and service-card
+behavior should come from shared rules rather than individual animation
+personalities.
 
 ### 27.18 Consistency rules
 
-Do keep motion restrained, use shared duration/easing tokens, prioritize functional feedback, animate performant properties, keep the sticky header stable, keep galleries user-controlled, respect reduced motion, and ensure the site works perfectly without animation.
+Do keep motion restrained, use shared duration/easing tokens, prioritize
+functional feedback, animate performant properties, keep the sticky
+header stable, keep galleries user-controlled, respect reduced motion,
+and ensure the site works perfectly without animation.
 
-Do not animate merely to make the site feel modern, auto-advance important content, use animated counters by default, create infinite logo marquees, add parallax without approval, pulse CTAs, animate every element on scroll, delay important content for entrances, or add heavy dependencies for minor transitions.
+Do not animate merely to make the site feel modern, auto-advance
+important content, use animated counters by default, create infinite
+logo marquees, add parallax without approval, pulse CTAs, animate every
+element on scroll, delay important content for entrances, or add heavy
+dependencies for minor transitions.
 
-Motion in Ancestral V2 should be noticed mainly through the quality of interaction, not through the quantity of animation.
+Motion in Ancestral V2 should be noticed mainly through the quality of
+interaction, not through the quantity of animation.
 
 ---
 
 ## 28. Design tokens and SCSS implementation architecture
 
-Ancestral Landing V2 must evolve the SCSS architecture already established in V1 rather than replace it with a new styling methodology without a demonstrated need.
+Ancestral Landing V2 must evolve the SCSS architecture already
+established in V1 rather than replace it with a new styling methodology
+without a demonstrated need.
 
-V1 already separates styling responsibilities into `abstracts`, `base`, `components`, `sections`, and `utilities`, with `bootstrap-extensions.scss` and `index.scss` acting as transversal integration points. V2 should preserve that conceptual model while making the design system more explicit, token-driven, consistent, and scalable.
+V1 already separates styling responsibilities into `abstracts`, `base`,
+`components`, `sections`, and `utilities`, with
+`bootstrap-extensions.scss` and `index.scss` acting as transversal
+integration points. V2 should preserve that conceptual model while
+making the design system more explicit, token-driven, consistent, and
+scalable.
 
-The objective is not to reproduce every V1 implementation detail. The objective is to retain the architecture that works, correct inconsistencies, and materialize the V2 design decisions through a disciplined SCSS system.
+The objective is not to reproduce every V1 implementation detail. The
+objective is to retain the architecture that works, correct
+inconsistencies, and materialize the V2 design decisions through a
+disciplined SCSS system.
 
 ### 28.1 Architectural baseline
 
-The V2 styling architecture should continue to follow this conceptual structure:
+The V2 styling architecture should continue to follow this conceptual
+structure:
 
 ```text
 src/styles/
@@ -5727,7 +5898,9 @@ src/styles/
 └── index.scss
 ```
 
-New partials may be introduced when a responsibility becomes large or conceptually distinct, but the architecture should not be fragmented merely to create more files.
+New partials may be introduced when a responsibility becomes large or
+conceptually distinct, but the architecture should not be fragmented
+merely to create more files.
 
 ### 28.2 Responsibility of `abstracts`
 
@@ -5744,7 +5917,8 @@ Files in this layer should primarily define:
 
 They should generally avoid producing component-specific CSS directly.
 
-The V1 pattern of retrieving values through reusable functions should be preserved and extended where useful.
+The V1 pattern of retrieving values through reusable functions should be
+preserved and extended where useful.
 
 Conceptually:
 
@@ -5754,11 +5928,13 @@ font-family: functions.get-font-family(inter);
 font-size: functions.get-font-size(base);
 ```
 
-V2 should favor semantic access to design-system values instead of repeatedly introducing literal values inside components and sections.
+V2 should favor semantic access to design-system values instead of
+repeatedly introducing literal values inside components and sections.
 
 ### 28.3 Token ownership
 
-Tokens should live in the file that best represents their responsibility.
+Tokens should live in the file that best represents their
+responsibility.
 
 Recommended ownership:
 
@@ -5780,11 +5956,14 @@ _functions.scss
     Reusable token-access and calculation functions.
 ```
 
-The exact internal distribution may evolve during implementation, but `_variables.scss` must not become a catch-all file for every visual value.
+The exact internal distribution may evolve during implementation, but
+`_variables.scss` must not become a catch-all file for every visual
+value.
 
 ### 28.4 Color tokens
 
-The palette approved in this Design System must replace ad hoc color literals in V2 components.
+The palette approved in this Design System must replace ad hoc color
+literals in V2 components.
 
 Prefer semantic or design-system tokens for:
 
@@ -5806,35 +5985,44 @@ background: #007bff;
 
 when the value belongs to the established design language.
 
-A literal value is acceptable only when it is genuinely local, intentionally unique, and not a reusable design decision.
+A literal value is acceptable only when it is genuinely local,
+intentionally unique, and not a reusable design decision.
 
 ### 28.5 Typography tokens
 
-Typography should materialize the hierarchy defined earlier in this document.
+Typography should materialize the hierarchy defined earlier in this
+document.
 
-The V1 font-map/function approach provides the foundation, but V2 should ensure that:
+The V1 font-map/function approach provides the foundation, but V2 should
+ensure that:
 
 - Every loaded font weight is actually required.
 - Repeated font sizes come from the system.
 - Heading behavior remains responsive where defined.
 - Line-height is treated as part of typography.
-- Component-specific typography does not silently create a parallel scale.
+- Component-specific typography does not silently create a parallel
+  scale.
 
 Use `clamp()` selectively where Section 24 defines fluid behavior.
 
 ### 28.6 Spacing tokens
 
-V2 should establish a coherent spacing scale rather than accumulating unrelated margins and paddings.
+V2 should establish a coherent spacing scale rather than accumulating
+unrelated margins and paddings.
 
-Bootstrap spacing utilities remain the first option for common layout spacing.
+Bootstrap spacing utilities remain the first option for common layout
+spacing.
 
-`bootstrap-extensions.scss` may extend Bootstrap where the approved design requires additional reusable spacing values.
+`bootstrap-extensions.scss` may extend Bootstrap where the approved
+design requires additional reusable spacing values.
 
 Custom SCSS spacing should be introduced when:
 
 - The value represents a design token.
-- The relationship cannot be expressed cleanly with Bootstrap utilities.
-- The component requires an internal spacing rule that should not be encoded repeatedly in JSX.
+- The relationship cannot be expressed cleanly with Bootstrap
+  utilities.
+- The component requires an internal spacing rule that should not be
+  encoded repeatedly in JSX.
 
 Avoid arbitrary sequences such as:
 
@@ -5844,11 +6032,13 @@ padding-bottom: 53px;
 gap: 27px;
 ```
 
-unless those values are necessary to reproduce an approved composition and cannot reasonably belong to the shared scale.
+unless those values are necessary to reproduce an approved composition
+and cannot reasonably belong to the shared scale.
 
 ### 28.7 Radius, shadow, border and elevation tokens
 
-Repeated visual properties should be centralized when they form part of the V2 language.
+Repeated visual properties should be centralized when they form part of
+the V2 language.
 
 This includes:
 
@@ -5860,15 +6050,18 @@ This includes:
 - Sticky-header shadow.
 - Overlay treatments.
 
-Do not create multiple nearly identical shadows or radii for components serving equivalent visual roles.
+Do not create multiple nearly identical shadows or radii for components
+serving equivalent visual roles.
 
 ### 28.8 Motion tokens
 
 Section 27 defines the motion language.
 
-Durations and easing values used repeatedly should be materialized as shared tokens rather than duplicated across partials.
+Durations and easing values used repeatedly should be materialized as
+shared tokens rather than duplicated across partials.
 
-Component styles may choose among the approved motion tokens, but should not invent independent timing systems.
+Component styles may choose among the approved motion tokens, but should
+not invent independent timing systems.
 
 ### 28.9 Z-index strategy
 
@@ -5892,13 +6085,16 @@ z-index: 9999;
 z-index: 99999;
 ```
 
-A component should use the lowest layer that satisfies its actual stacking responsibility.
+A component should use the lowest layer that satisfies its actual
+stacking responsibility.
 
 ### 28.10 Responsive architecture
 
 The centralized V1 responsive abstraction should be preserved.
 
-V2 should continue aligning its breakpoint foundation with Bootstrap and use shared responsive mixins rather than scattering raw media-query values throughout the codebase.
+V2 should continue aligning its breakpoint foundation with Bootstrap and
+use shared responsive mixins rather than scattering raw media-query
+values throughout the codebase.
 
 Prefer:
 
@@ -5910,17 +6106,22 @@ Prefer:
 
 over repeatedly writing equivalent breakpoints in individual files.
 
-A custom media query is acceptable when the component has a demonstrated content-driven breakpoint that does not map cleanly to the shared system.
+A custom media query is acceptable when the component has a demonstrated
+content-driven breakpoint that does not map cleanly to the shared
+system.
 
 Such exceptions should remain rare and intentional.
 
 ### 28.11 Mobile-first behavior
 
-Where practical, base component styles should describe the compact/mobile layout and progressively enhance at larger breakpoints.
+Where practical, base component styles should describe the
+compact/mobile layout and progressively enhance at larger breakpoints.
 
 This is consistent with Bootstrap and Section 24.
 
-Do not mechanically rewrite stable V1 patterns solely to claim mobile-first compliance; apply the principle where it improves clarity and maintainability.
+Do not mechanically rewrite stable V1 patterns solely to claim
+mobile-first compliance; apply the principle where it improves clarity
+and maintainability.
 
 ### 28.12 `base`
 
@@ -5937,15 +6138,18 @@ Appropriate responsibilities include:
 
 Global selectors must be treated carefully.
 
-V2 should avoid broad rules that unintentionally alter semantics or accessibility across unrelated elements.
+V2 should avoid broad rules that unintentionally alter semantics or
+accessibility across unrelated elements.
 
-In particular, global focus outlines must not be removed, and text selection should not be disabled across broad content categories.
+In particular, global focus outlines must not be removed, and text
+selection should not be disabled across broad content categories.
 
 Section 25 remains authoritative for accessibility.
 
 ### 28.13 `components`
 
-The SCSS `components` layer contains styles for reusable visual/interface components.
+The SCSS `components` layer contains styles for reusable
+visual/interface components.
 
 Examples expected in V2 may include:
 
@@ -5962,11 +6166,14 @@ section-heading
 icon treatments
 ```
 
-A component partial should describe the component rather than a particular page location whenever the component is intended to be reusable.
+A component partial should describe the component rather than a
+particular page location whenever the component is intended to be
+reusable.
 
 ### 28.14 `sections`
 
-The `sections` layer contains composition-specific styling for complete homepage or page sections.
+The `sections` layer contains composition-specific styling for complete
+homepage or page sections.
 
 Examples may include:
 
@@ -5979,7 +6186,8 @@ trusted-entities
 contact
 ```
 
-Section styles may coordinate layout between reusable components, but should not duplicate the internal implementation of those components.
+Section styles may coordinate layout between reusable components, but
+should not duplicate the internal implementation of those components.
 
 A useful rule is:
 
@@ -5989,7 +6197,8 @@ A useful rule is:
 
 Utilities should remain small, generic, and genuinely reusable.
 
-Before creating a custom utility, check whether Bootstrap already provides the required behavior.
+Before creating a custom utility, check whether Bootstrap already
+provides the required behavior.
 
 Custom utilities are appropriate when:
 
@@ -6003,7 +6212,9 @@ Do not turn `utilities` into a storage location for one-off fixes.
 
 Bootstrap remains the structural UI foundation of V2.
 
-`bootstrap-extensions.scss` is the appropriate place for deliberate reusable additions to Bootstrap's utility vocabulary when the design system requires them.
+`bootstrap-extensions.scss` is the appropriate place for deliberate
+reusable additions to Bootstrap's utility vocabulary when the design
+system requires them.
 
 Use Bootstrap first for:
 
@@ -6047,7 +6258,8 @@ This prevents both Bootstrap overuse in JSX and unnecessary custom CSS.
 
 ### 28.18 Entry point
 
-`index.scss` should remain the explicit SCSS entry point for Ancestral styles.
+`index.scss` should remain the explicit SCSS entry point for Ancestral
+styles.
 
 Its import/use order should remain understandable and intentional:
 
@@ -6061,13 +6273,15 @@ sections
 
 New partials must be registered deliberately.
 
-Avoid hidden style-loading dependencies in arbitrary React components unless the architecture is intentionally changed in the future.
+Avoid hidden style-loading dependencies in arbitrary React components
+unless the architecture is intentionally changed in the future.
 
 ### 28.19 Selector scope
 
 Selectors should be as local as practical.
 
-Prefer component/section classes over styling generic descendants globally.
+Prefer component/section classes over styling generic descendants
+globally.
 
 Avoid deep nesting such as:
 
@@ -6102,7 +6316,9 @@ Avoid:
 - `!important` in component styles.
 - Specificity escalation to override previous mistakes.
 
-`!important` may remain appropriate in deliberate utility classes or when interoperating with framework behavior that genuinely requires it, but it should not become the normal conflict-resolution mechanism.
+`!important` may remain appropriate in deliberate utility classes or
+when interoperating with framework behavior that genuinely requires it,
+but it should not become the normal conflict-resolution mechanism.
 
 ### 28.21 Hardcoded values
 
@@ -6118,11 +6334,13 @@ A value should generally become shared when it:
 - Is likely to change globally.
 - Expresses a documented rule.
 
-Local implementation values may remain local when abstraction would add no value.
+Local implementation values may remain local when abstraction would add
+no value.
 
 ### 28.22 Asset references
 
-SCSS may reference decorative/background assets when the asset is inherently presentational.
+SCSS may reference decorative/background assets when the asset is
+inherently presentational.
 
 Content-bearing images should normally remain in React/HTML so that:
 
@@ -6139,7 +6357,8 @@ V1 already demonstrates generated color and typography utility classes.
 
 V2 may preserve this technique where the generated API remains useful.
 
-However, do not generate large families of classes simply because SCSS makes generation easy.
+However, do not generate large families of classes simply because SCSS
+makes generation easy.
 
 Every generated family increases the CSS surface.
 
@@ -6147,7 +6366,8 @@ Prefer a smaller useful API over unused theoretical flexibility.
 
 ### 28.24 Naming
 
-Class names should communicate responsibility and remain understandable without inspecting the full DOM.
+Class names should communicate responsibility and remain understandable
+without inspecting the full DOM.
 
 Existing conventions may evolve, but naming should remain:
 
@@ -6156,20 +6376,23 @@ Existing conventions may evolve, but naming should remain:
 - Purpose-driven.
 - Independent from temporary content where possible.
 
-Do not encode implementation accidents such as exact positions or arbitrary visual values into reusable component names.
+Do not encode implementation accidents such as exact positions or
+arbitrary visual values into reusable component names.
 
 ### 28.25 Duplication
 
-Before adding a new rule, determine whether the same design decision already exists.
+Before adding a new rule, determine whether the same design decision
+already exists.
 
 Prefer:
 
-1. Existing Bootstrap utility.
-2. Existing design token.
-3. Existing reusable component style.
-4. Existing custom utility.
-5. New local rule.
-6. New shared abstraction only when repetition or design-system meaning justifies it.
+1.  Existing Bootstrap utility.
+2.  Existing design token.
+3.  Existing reusable component style.
+4.  Existing custom utility.
+5.  New local rule.
+6.  New shared abstraction only when repetition or design-system meaning
+    justifies it.
 
 This order helps avoid both duplication and premature abstraction.
 
@@ -6203,17 +6426,24 @@ Do not:
 - Tokenize every one-off number.
 - Create utilities for single-use exceptions.
 
-The V2 SCSS architecture should feel like a disciplined evolution of V1: familiar in structure, stronger in consistency, and capable of supporting the complete design system without accumulating visual debt.
+The V2 SCSS architecture should feel like a disciplined evolution of V1:
+familiar in structure, stronger in consistency, and capable of
+supporting the complete design system without accumulating visual debt.
 
 ---
 
 ## 29. Component architecture and reuse rules
 
-Ancestral Landing V2 should evolve the React architecture already established in V1.
+Ancestral Landing V2 should evolve the React architecture already
+established in V1.
 
-V1 already distinguishes pages, sections, reusable components, configuration, shared types, and tests. It also demonstrates useful composition and data-driven patterns through shared configuration such as menu and service data.
+V1 already distinguishes pages, sections, reusable components,
+configuration, shared types, and tests. It also demonstrates useful
+composition and data-driven patterns through shared configuration such
+as menu and service data.
 
-V2 should preserve these strengths while applying stricter engineering principles as the application grows.
+V2 should preserve these strengths while applying stricter engineering
+principles as the application grows.
 
 The architectural priorities are:
 
@@ -6230,15 +6460,18 @@ The architectural priorities are:
 
 ### 29.1 Core principle
 
-Every module should have a clear reason to exist and a clear responsibility.
+Every module should have a clear reason to exist and a clear
+responsibility.
 
 A component should be easy to answer in one sentence:
 
 > What does this component own?
 
-If the answer requires several unrelated responsibilities, the component may need to be decomposed.
+If the answer requires several unrelated responsibilities, the component
+may need to be decomposed.
 
-If the answer is trivial and the component adds no meaningful abstraction, it may not need to exist.
+If the answer is trivial and the component adds no meaningful
+abstraction, it may not need to exist.
 
 ### 29.2 Preserve the architectural layers
 
@@ -6254,9 +6487,12 @@ src/
 └── tests/
 ```
 
-V2 may introduce additional focused folders when real responsibilities emerge, for example hooks or services, but should not create architectural layers speculatively.
+V2 may introduce additional focused folders when real responsibilities
+emerge, for example hooks or services, but should not create
+architectural layers speculatively.
 
-Folder structure should follow the application, not an abstract enterprise template.
+Folder structure should follow the application, not an abstract
+enterprise template.
 
 ### 29.3 Pages
 
@@ -6269,7 +6505,8 @@ Its responsibilities may include:
 - Coordinating page-specific data when necessary.
 - Defining page-level semantic structure.
 
-Pages should not contain the detailed implementation of every child component.
+Pages should not contain the detailed implementation of every child
+component.
 
 ### 29.4 Sections
 
@@ -6293,7 +6530,8 @@ Sections may:
 - Define section-level layout.
 - Connect related presentation pieces.
 
-Sections should not become generic dumping grounds for business logic, unrelated utilities, or duplicated component internals.
+Sections should not become generic dumping grounds for business logic,
+unrelated utilities, or duplicated component internals.
 
 ### 29.5 Components
 
@@ -6324,7 +6562,8 @@ Reuse should be driven by responsibility, not by line count.
 
 ### 29.6 Do not microcomponentize
 
-Not every wrapper, heading, icon, or three-line JSX fragment needs its own component.
+Not every wrapper, heading, icon, or three-line JSX fragment needs its
+own component.
 
 Avoid abstractions such as:
 
@@ -6335,15 +6574,18 @@ TwentyPixelGap
 HeroParagraphContainer
 ```
 
-when they merely rename styling or markup without creating a stable reusable concept.
+when they merely rename styling or markup without creating a stable
+reusable concept.
 
-A component should reduce cognitive load, not increase navigation through the codebase.
+A component should reduce cognitive load, not increase navigation
+through the codebase.
 
 ### 29.7 High cohesion
 
 Code that changes for the same reason should generally live together.
 
-A `ServiceCard` should own the presentation and interaction contract of a service card.
+A `ServiceCard` should own the presentation and interaction contract of
+a service card.
 
 It should not own:
 
@@ -6352,7 +6594,8 @@ It should not own:
 - Route configuration unrelated to the card.
 - Gallery state belonging to a detail page.
 
-Keeping related responsibilities together makes components easier to understand and test.
+Keeping related responsibilities together makes components easier to
+understand and test.
 
 ### 29.8 Low coupling
 
@@ -6370,7 +6613,8 @@ Prefer explicit props and composition over hidden dependencies.
 
 ### 29.9 Composition over duplication
 
-When two interfaces share a meaningful visual/behavioral primitive, compose that primitive rather than copy its implementation.
+When two interfaces share a meaningful visual/behavioral primitive,
+compose that primitive rather than copy its implementation.
 
 For example:
 
@@ -6378,13 +6622,15 @@ For example:
 <ServiceCard service={service} />
 ```
 
-is preferable to reproducing the complete service-card markup in several sections.
+is preferable to reproducing the complete service-card markup in several
+sections.
 
-However, two blocks that merely look somewhat similar should not automatically be forced into one highly configurable component.
+However, two blocks that merely look somewhat similar should not
+automatically be forced into one highly configurable component.
 
 ### 29.10 Composition over excessive configuration
 
-Avoid “universal” components with large collections of flags such as:
+Avoid "universal" components with large collections of flags such as:
 
 ```tsx
 <Card
@@ -6402,7 +6648,8 @@ Avoid “universal” components with large collections of flags such as:
 
 when those flags represent fundamentally different responsibilities.
 
-Prefer smaller coherent components or explicit variants when the visual concepts are genuinely related.
+Prefer smaller coherent components or explicit variants when the visual
+concepts are genuinely related.
 
 ### 29.11 Data-driven content
 
@@ -6410,7 +6657,8 @@ V1 already uses shared configuration for menu and service data.
 
 V2 should strengthen this approach for repeated structured content.
 
-Service definitions should have a single authoritative data model that may contain approved fields such as:
+Service definitions should have a single authoritative data model that
+may contain approved fields such as:
 
 ```text
 id / slug
@@ -6424,13 +6672,16 @@ detail content
 CTA/context data
 ```
 
-The exact model should follow the approved content architecture rather than this illustrative list.
+The exact model should follow the approved content architecture rather
+than this illustrative list.
 
-Repeated service UI should render from this shared data instead of duplicating service content in multiple components.
+Repeated service UI should render from this shared data instead of
+duplicating service content in multiple components.
 
 ### 29.12 Single source of truth
 
-A content fact that appears in multiple interfaces should preferably have one authoritative source.
+A content fact that appears in multiple interfaces should preferably
+have one authoritative source.
 
 Examples:
 
@@ -6445,7 +6696,8 @@ Do not maintain parallel arrays that must be manually synchronized.
 
 ### 29.13 Separate content from presentation
 
-Large content datasets should not be embedded throughout presentational JSX.
+Large content datasets should not be embedded throughout presentational
+JSX.
 
 Prefer:
 
@@ -6457,13 +6709,16 @@ section/page composition
 reusable presentation component
 ```
 
-This makes copy changes safer and reduces coupling between content and markup.
+This makes copy changes safer and reduces coupling between content and
+markup.
 
-Small local labels that belong uniquely to one component do not need external configuration merely for architectural purity.
+Small local labels that belong uniquely to one component do not need
+external configuration merely for architectural purity.
 
 ### 29.14 Separate behavior from presentation when justified
 
-Behavior should be extracted when doing so creates a clear reusable or testable responsibility.
+Behavior should be extracted when doing so creates a clear reusable or
+testable responsibility.
 
 Potential examples:
 
@@ -6472,9 +6727,11 @@ Potential examples:
 - Header scroll-state behavior.
 - Reusable responsive/intersection behavior if introduced.
 
-A custom hook is appropriate when it encapsulates meaningful React behavior.
+A custom hook is appropriate when it encapsulates meaningful React
+behavior.
 
-Do not create hooks that simply wrap one `useState` or rename trivial component logic.
+Do not create hooks that simply wrap one `useState` or rename trivial
+component logic.
 
 ### 29.15 Props
 
@@ -6493,17 +6750,21 @@ Prefer domain-oriented contracts:
 
 when the component genuinely operates on a service concept.
 
-Prefer focused primitive props when passing the entire object would unnecessarily couple the component to a large domain model.
+Prefer focused primitive props when passing the entire object would
+unnecessarily couple the component to a large domain model.
 
 Choose the smallest stable contract appropriate to the responsibility.
 
 ### 29.16 Prop drilling
 
-Passing props through one or two composition levels is not inherently a problem.
+Passing props through one or two composition levels is not inherently a
+problem.
 
-Do not introduce global state or Context merely to avoid ordinary explicit data flow.
+Do not introduce global state or Context merely to avoid ordinary
+explicit data flow.
 
-Context should be introduced only when data is genuinely shared across a broad subtree and prop passing has become structurally inappropriate.
+Context should be introduced only when data is genuinely shared across a
+broad subtree and prop passing has become structurally inappropriate.
 
 V2 does not require a state-management library by default.
 
@@ -6513,33 +6774,41 @@ State should live at the lowest level that needs to coordinate it.
 
 Examples:
 
-- A gallery owns its active slide when no external coordination is required.
+- A gallery owns its active slide when no external coordination is
+  required.
 - A mobile-navigation component may own its open/closed state.
-- A form owns field/submission state unless a higher layer has a real reason to control it.
+- A form owns field/submission state unless a higher layer has a real
+  reason to control it.
 
 Avoid lifting state globally without necessity.
 
 ### 29.18 Side effects
 
-`useEffect` should represent synchronization with an external system or lifecycle concern, not become a default mechanism for deriving state.
+`useEffect` should represent synchronization with an external system or
+lifecycle concern, not become a default mechanism for deriving state.
 
 Prefer computed values during render when possible.
 
-Event listeners, timers, observers, and similar effects must be cleaned up correctly.
+Event listeners, timers, observers, and similar effects must be cleaned
+up correctly.
 
 ### 29.19 Routing and navigation
 
-Route definitions and navigation configuration should remain centralized enough to avoid duplicated route strings and section identifiers.
+Route definitions and navigation configuration should remain centralized
+enough to avoid duplicated route strings and section identifiers.
 
-Service-detail navigation should derive from stable service identifiers/slugs rather than visible labels.
+Service-detail navigation should derive from stable service
+identifiers/slugs rather than visible labels.
 
-Components should navigate through routing contracts rather than constructing unrelated route knowledge internally.
+Components should navigate through routing contracts rather than
+constructing unrelated route knowledge internally.
 
 ### 29.20 Service-detail architecture
 
 The service-detail experience defined in Section 22 should be reusable.
 
-Do not create a completely separate page implementation for each service when the structure is shared.
+Do not create a completely separate page implementation for each service
+when the structure is shared.
 
 Prefer a common route/page template driven by the selected service data.
 
@@ -6555,11 +6824,13 @@ ServiceDetailPage
 shared detail sections + service-specific content
 ```
 
-This preserves consistency while allowing each service to contain its own approved content and gallery.
+This preserves consistency while allowing each service to contain its
+own approved content and gallery.
 
 ### 29.21 Forms
 
-The contact form should be a coherent component/feature rather than submission logic distributed through the Contact section.
+The contact form should be a coherent component/feature rather than
+submission logic distributed through the Contact section.
 
 Separate where appropriate:
 
@@ -6571,29 +6842,37 @@ Contact section
             └── submission integration
 ```
 
-Infrastructure/API details should not leak into unrelated presentation components.
+Infrastructure/API details should not leak into unrelated presentation
+components.
 
 ### 29.22 External integrations
 
-Google Maps, WhatsApp, CAPTCHA, and future external services should be integrated behind focused responsibilities.
+Google Maps, WhatsApp, CAPTCHA, and future external services should be
+integrated behind focused responsibilities.
 
 Do not scatter provider-specific details across multiple sections.
 
-When an integration becomes nontrivial, isolate its configuration/adapter behavior so that changing the provider does not require rewriting unrelated UI.
+When an integration becomes nontrivial, isolate its
+configuration/adapter behavior so that changing the provider does not
+require rewriting unrelated UI.
 
 ### 29.23 Icons
 
 Icon selection should follow Section 14.
 
-Where repeated icon styling exists, preserve reusable abstractions similar in spirit to V1's `RoundedIcon` rather than duplicating identical icon containers.
+Where repeated icon styling exists, preserve reusable abstractions
+similar in spirit to V1's `RoundedIcon` rather than duplicating
+identical icon containers.
 
 Do not create a React wrapper merely for every individual Lucide icon.
 
 ### 29.24 Bootstrap and React markup
 
-Bootstrap classes may be used directly for generic layout and responsive behavior.
+Bootstrap classes may be used directly for generic layout and responsive
+behavior.
 
-Avoid extremely long class strings that encode the entire visual identity of a component in JSX.
+Avoid extremely long class strings that encode the entire visual
+identity of a component in JSX.
 
 A practical division is:
 
@@ -6609,15 +6888,20 @@ This keeps JSX readable while preserving the value of Bootstrap.
 
 ### 29.25 SCSS ownership
 
-React components should not depend on the internal selectors of unrelated components.
+React components should not depend on the internal selectors of
+unrelated components.
 
-A section may position a component as part of composition, but should avoid reaching deeply inside it to restyle its descendants.
+A section may position a component as part of composition, but should
+avoid reaching deeply inside it to restyle its descendants.
 
-If a reusable component needs a legitimate visual variant, expose a deliberate variant contract rather than overriding internal implementation from multiple parent sections.
+If a reusable component needs a legitimate visual variant, expose a
+deliberate variant contract rather than overriding internal
+implementation from multiple parent sections.
 
 ### 29.26 Variants
 
-Variants are appropriate when multiple presentations remain the same conceptual component.
+Variants are appropriate when multiple presentations remain the same
+conceptual component.
 
 Examples might include:
 
@@ -6628,29 +6912,37 @@ SectionHeading: light / dark
 
 Variants should be finite and intentional.
 
-If variants require many conditional branches or fundamentally different markup, they may represent separate components.
+If variants require many conditional branches or fundamentally different
+markup, they may represent separate components.
 
 ### 29.27 Constants and configuration
 
 Stable configuration should not be recreated during every render.
 
-Keep reusable constants, content models, menu definitions, and service definitions outside component bodies when they do not depend on runtime state.
+Keep reusable constants, content models, menu definitions, and service
+definitions outside component bodies when they do not depend on runtime
+state.
 
-Naming should communicate domain meaning rather than implementation convenience.
+Naming should communicate domain meaning rather than implementation
+convenience.
 
 ### 29.28 Types
 
-Shared domain contracts belong in focused TypeScript types/interfaces when they are used across modules.
+Shared domain contracts belong in focused TypeScript types/interfaces
+when they are used across modules.
 
-Local prop types may remain near their component when they are truly local.
+Local prop types may remain near their component when they are truly
+local.
 
 Avoid a single global types file containing unrelated interfaces.
 
-Types should clarify boundaries rather than mirror every implementation detail.
+Types should clarify boundaries rather than mirror every implementation
+detail.
 
 ### 29.29 Dependency direction
 
-Prefer dependency flow from higher-level composition toward reusable lower-level primitives:
+Prefer dependency flow from higher-level composition toward reusable
+lower-level primitives:
 
 ```text
 pages
@@ -6664,7 +6956,8 @@ shared primitives/types/config as appropriate
 
 This is a guideline rather than an artificial restriction.
 
-The important rule is to avoid circular dependencies and lower-level reusable components importing higher-level page/section implementations.
+The important rule is to avoid circular dependencies and lower-level
+reusable components importing higher-level page/section implementations.
 
 ### 29.30 Clean code
 
@@ -6702,11 +6995,13 @@ over:
 setScrolled(true);
 ```
 
-Architecture decisions that matter beyond one implementation detail belong in documentation rather than large comments inside components.
+Architecture decisions that matter beyond one implementation detail
+belong in documentation rather than large comments inside components.
 
 ### 29.32 Functions
 
-Functions should perform one coherent task at an appropriate abstraction level.
+Functions should perform one coherent task at an appropriate abstraction
+level.
 
 Avoid large event handlers that combine:
 
@@ -6717,17 +7012,20 @@ Avoid large event handlers that combine:
 - UI state.
 - Error formatting.
 
-Extract responsibilities when separation makes the behavior easier to understand, reuse, or test.
+Extract responsibilities when separation makes the behavior easier to
+understand, reuse, or test.
 
 ### 29.33 Error boundaries and failure states
 
 External or asynchronous behavior should fail predictably.
 
-V2 should provide intentional user-facing failure states for operations such as contact submission.
+V2 should provide intentional user-facing failure states for operations
+such as contact submission.
 
 Technical errors should not leak directly into UI copy.
 
-Introduce React error boundaries only where they provide meaningful resilience; do not add them mechanically around every component.
+Introduce React error boundaries only where they provide meaningful
+resilience; do not add them mechanically around every component.
 
 ### 29.34 Accessibility as component responsibility
 
@@ -6741,7 +7039,8 @@ A reusable component should own its appropriate:
 - Focus behavior.
 - ARIA where genuinely required.
 
-Parents should not need to repair accessibility every time the component is used.
+Parents should not need to repair accessibility every time the component
+is used.
 
 Section 25 remains authoritative.
 
@@ -6755,11 +7054,13 @@ This mirrors the SCSS principle:
 
 > Components own themselves; sections own composition.
 
-A parent should not need to know every internal breakpoint of a child component.
+A parent should not need to know every internal breakpoint of a child
+component.
 
 ### 29.36 Testing strategy
 
-The V1 practice of colocating tests with components and sections should be preserved.
+The V1 practice of colocating tests with components and sections should
+be preserved.
 
 Tests should prioritize observable behavior.
 
@@ -6774,7 +7075,8 @@ Test:
 - Gallery behavior.
 - Important configuration contracts.
 
-Avoid tests that are tightly coupled to internal implementation details or private state.
+Avoid tests that are tightly coupled to internal implementation details
+or private state.
 
 ### 29.37 Reuse and tests
 
@@ -6782,27 +7084,32 @@ A reusable component should have its own focused tests.
 
 Parent sections should not retest every internal detail of that child.
 
-Instead, parent tests should verify that the component is integrated correctly in the section.
+Instead, parent tests should verify that the component is integrated
+correctly in the section.
 
 This keeps tests layered and reduces duplication.
 
 ### 29.38 Refactoring rule
 
-Do not abstract solely because two pieces of code currently look similar.
+Do not abstract solely because two pieces of code currently look
+similar.
 
 Before extracting a shared abstraction, ask:
 
-1. Do they represent the same concept?
-2. Do they change for the same reasons?
-3. Is the shared contract stable?
-4. Does extraction reduce complexity?
-5. Will callers become clearer?
+1.  Do they represent the same concept?
+2.  Do they change for the same reasons?
+3.  Is the shared contract stable?
+4.  Does extraction reduce complexity?
+5.  Will callers become clearer?
 
-If the answer is mostly no, duplication may temporarily be safer than the wrong abstraction.
+If the answer is mostly no, duplication may temporarily be safer than
+the wrong abstraction.
 
 ### 29.39 Dependency additions
 
-Do not add a new npm dependency when React, Bootstrap, Lucide, the browser platform, or a small local implementation already solves the problem cleanly.
+Do not add a new npm dependency when React, Bootstrap, Lucide, the
+browser platform, or a small local implementation already solves the
+problem cleanly.
 
 A dependency should provide enough value to justify:
 
@@ -6812,11 +7119,13 @@ A dependency should provide enough value to justify:
 - API coupling.
 - Upgrade work.
 
-This is especially important for animation, carousel, form, and utility libraries.
+This is especially important for animation, carousel, form, and utility
+libraries.
 
 ### 29.40 V1 evolution rules
 
-V2 is not required to preserve every V1 component API or implementation detail.
+V2 is not required to preserve every V1 component API or implementation
+detail.
 
 Preserve:
 
@@ -6833,13 +7142,17 @@ Improve or replace:
 - Hardcoded visual decisions.
 - Accessibility problems.
 - Components whose V1 responsibility no longer matches V2.
-- Popup-specific service architecture superseded by the V2 service-detail experience.
+- Popup-specific service architecture superseded by the V2
+  service-detail experience.
 
-Backward compatibility inside the frontend source is not more important than a clean V2 architecture unless an explicit requirement says otherwise.
+Backward compatibility inside the frontend source is not more important
+than a clean V2 architecture unless an explicit requirement says
+otherwise.
 
 ### 29.41 Definition of a reusable component
 
-Before calling a V2 abstraction reusable, it should satisfy most of the following:
+Before calling a V2 abstraction reusable, it should satisfy most of the
+following:
 
 - Represents a stable concept.
 - Has a clear responsibility.
@@ -6850,7 +7163,8 @@ Before calling a V2 abstraction reusable, it should satisfy most of the followin
 - Can be tested independently.
 - Reduces meaningful duplication or centralizes important behavior.
 
-Reuse is a consequence of good boundaries, not a target measured by the number of components.
+Reuse is a consequence of good boundaries, not a target measured by the
+number of components.
 
 ### 29.42 Architecture consistency rules
 
@@ -6868,7 +7182,8 @@ Do:
 - Keep dependencies flowing toward reusable abstractions.
 - Test observable behavior.
 - Refactor when an abstraction is justified.
-- Keep accessibility and responsive behavior inside component contracts.
+- Keep accessibility and responsive behavior inside component
+  contracts.
 
 Do not:
 
@@ -6882,23 +7197,33 @@ Do not:
 - Create circular dependencies.
 - Add dependencies for trivial problems.
 - Abstract merely because two code blocks happen to look similar.
-- Preserve V1 implementation details that conflict with the approved V2 architecture.
+- Preserve V1 implementation details that conflict with the approved
+  V2 architecture.
 
-The V2 component architecture should remain easy for a developer—or Codex—to navigate without needing hidden knowledge of the codebase. Clear boundaries, predictable responsibilities, and restrained abstraction should make future changes local, testable, and safe.
+The V2 component architecture should remain easy for a developer---or
+Codex---to navigate without needing hidden knowledge of the codebase.
+Clear boundaries, predictable responsibilities, and restrained
+abstraction should make future changes local, testable, and safe.
 
 ---
 
 ## 30. Design system governance and Definition of Done
 
-This Design System is the implementation contract for the visual, interaction, responsive, accessibility, media, SCSS, and component architecture of Ancestral Landing V2.
+This Design System is the implementation contract for the visual,
+interaction, responsive, accessibility, media, SCSS, and component
+architecture of Ancestral Landing V2.
 
-Its purpose is not only to describe the approved design. It must also prevent V2 from gradually diverging from that design as implementation progresses.
+Its purpose is not only to describe the approved design. It must also
+prevent V2 from gradually diverging from that design as implementation
+progresses.
 
-Every implementation decision should therefore be evaluated against the approved V2 documentation before introducing a new local solution.
+Every implementation decision should therefore be evaluated against the
+approved V2 documentation before introducing a new local solution.
 
 ### 30.1 Sources of truth
 
-V2 has several complementary sources of truth, each with a different responsibility.
+V2 has several complementary sources of truth, each with a different
+responsibility.
 
 ```text
 docs/v2/content-architecture.md
@@ -6914,11 +7239,13 @@ Existing V1 implementation
 → Technical baseline and reusable implementation reference where compatible with V2.
 ```
 
-These sources should be used together rather than treated as interchangeable.
+These sources should be used together rather than treated as
+interchangeable.
 
 ### 30.2 Decision hierarchy
 
-When implementation reveals an apparent conflict, use the following general priority:
+When implementation reveals an apparent conflict, use the following
+general priority:
 
 ```text
 1. Explicit approved V2 decisions documented in the Design System
@@ -6927,9 +7254,12 @@ When implementation reveals an apparent conflict, use the following general prio
 4. Existing V1 implementation
 ```
 
-The preliminary design remains essential visual evidence, but the Design System may intentionally refine details that were not fully specified in the mockup.
+The preliminary design remains essential visual evidence, but the Design
+System may intentionally refine details that were not fully specified in
+the mockup.
 
-V1 is a technical starting point, not the authority for V2 behavior or appearance.
+V1 is a technical starting point, not the authority for V2 behavior or
+appearance.
 
 ### 30.3 Content authority
 
@@ -6942,9 +7272,11 @@ V1 is a technical starting point, not the authority for V2 behavior or appearanc
 - CTA intent.
 - Information that must be preserved from approved source material.
 
-The Design System should determine presentation without silently rewriting the approved content architecture.
+The Design System should determine presentation without silently
+rewriting the approved content architecture.
 
-If implementation requires a content change rather than a presentation adjustment, that decision should be resolved at the content level.
+If implementation requires a content change rather than a presentation
+adjustment, that decision should be resolved at the content level.
 
 ### 30.4 Visual authority
 
@@ -6965,7 +7297,8 @@ If implementation requires a content change rather than a presentation adjustmen
 - SCSS architecture.
 - Component/reuse principles.
 
-Do not introduce a new visual convention simply because it is easier to implement.
+Do not introduce a new visual convention simply because it is easier to
+implement.
 
 ### 30.5 Role of the preliminary design
 
@@ -6981,9 +7314,11 @@ The approved preliminary design should continue to guide:
 - Color relationships.
 - Visual hierarchy.
 
-It should not be interpreted as a pixel-perfect specification for every viewport.
+It should not be interpreted as a pixel-perfect specification for every
+viewport.
 
-Where the mockup does not define responsive or interaction behavior, the rules in this Design System apply.
+Where the mockup does not define responsive or interaction behavior, the
+rules in this Design System apply.
 
 ### 30.6 Role of V1
 
@@ -7013,7 +7348,8 @@ Replace or refactor V1 behavior when it conflicts with:
 
 ### 30.7 No automatic inheritance
 
-A V1 component, style, selector, breakpoint, interaction, or content structure must not automatically become part of V2.
+A V1 component, style, selector, breakpoint, interaction, or content
+structure must not automatically become part of V2.
 
 Before reuse, verify:
 
@@ -7029,21 +7365,27 @@ If not, V2 should implement the approved behavior cleanly.
 
 ### 30.8 New design decisions
 
-Implementation will occasionally expose cases not explicitly covered by this document.
+Implementation will occasionally expose cases not explicitly covered by
+this document.
 
 When that happens:
 
-1. Check whether an existing token, component, pattern, or rule already solves the problem.
-2. Check Bootstrap capabilities where the need is generic layout behavior.
-3. Prefer the closest established V2 pattern.
-4. Avoid introducing a new convention for a single isolated case.
-5. If the decision affects the system beyond one implementation detail, document it.
+1.  Check whether an existing token, component, pattern, or rule already
+    solves the problem.
+2.  Check Bootstrap capabilities where the need is generic layout
+    behavior.
+3.  Prefer the closest established V2 pattern.
+4.  Avoid introducing a new convention for a single isolated case.
+5.  If the decision affects the system beyond one implementation detail,
+    document it.
 
-Codex or a developer should not silently create a parallel design language.
+Codex or a developer should not silently create a parallel design
+language.
 
 ### 30.9 Exceptions
 
-A deviation from the Design System is acceptable only when there is a clear reason, such as:
+A deviation from the Design System is acceptable only when there is a
+clear reason, such as:
 
 - Accessibility.
 - Responsive usability.
@@ -7053,13 +7395,15 @@ A deviation from the Design System is acceptable only when there is a clear reas
 - Approved business requirement.
 - New client-approved design decision.
 
-The exception should solve the constraint with the smallest possible deviation.
+The exception should solve the constraint with the smallest possible
+deviation.
 
 Convenience alone is not sufficient justification.
 
 ### 30.10 Updating the Design System
 
-When implementation establishes a new reusable rule, the Design System should be updated.
+When implementation establishes a new reusable rule, the Design System
+should be updated.
 
 Examples include:
 
@@ -7070,21 +7414,26 @@ Examples include:
 - A deliberate accessibility behavior.
 - A change to an approved visual convention.
 
-The codebase and Design System should not knowingly describe different systems.
+The codebase and Design System should not knowingly describe different
+systems.
 
 ### 30.11 Avoid documentation drift
 
-Documentation should be reviewed whenever a change modifies an established V2 contract.
+Documentation should be reviewed whenever a change modifies an
+established V2 contract.
 
-Do not leave obsolete guidance in the document after the implementation direction has been intentionally changed and approved.
+Do not leave obsolete guidance in the document after the implementation
+direction has been intentionally changed and approved.
 
-Likewise, do not update documentation merely to justify an accidental implementation inconsistency.
+Likewise, do not update documentation merely to justify an accidental
+implementation inconsistency.
 
 The intended design decision should be resolved first.
 
 ### 30.12 Implementation sequence
 
-For each major V2 section or component, implementation should generally follow this sequence:
+For each major V2 section or component, implementation should generally
+follow this sequence:
 
 ```text
 1. Review content architecture
@@ -7100,13 +7449,16 @@ For each major V2 section or component, implementation should generally follow t
 11. Perform visual/responsive review
 ```
 
-This reduces the likelihood of styling a component before its responsibility and content are understood.
+This reduces the likelihood of styling a component before its
+responsibility and content are understood.
 
 ### 30.13 Component Definition of Done
 
-A V2 component is not complete merely because it visually resembles the mockup on one desktop viewport.
+A V2 component is not complete merely because it visually resembles the
+mockup on one desktop viewport.
 
-Before considering a component complete, verify the applicable criteria below.
+Before considering a component complete, verify the applicable criteria
+below.
 
 #### Structure
 
@@ -7149,7 +7501,8 @@ Before considering a component complete, verify the applicable criteria below.
 
 #### Interaction
 
-- Hover, focus, active, loading, success, and error states are implemented where applicable.
+- Hover, focus, active, loading, success, and error states are
+  implemented where applicable.
 - Motion follows Section 27.
 - Browser/navigation expectations are preserved.
 - No unnecessary automatic movement exists.
@@ -7171,7 +7524,9 @@ Before considering a component complete, verify the applicable criteria below.
 - Parent tests do not duplicate all child implementation tests.
 - Existing tests remain valid or are intentionally updated.
 
-A criterion that does not apply to a particular component may be omitted; the checklist is not intended to force irrelevant implementation.
+A criterion that does not apply to a particular component may be
+omitted; the checklist is not intended to force irrelevant
+implementation.
 
 ### 30.14 Section Definition of Done
 
@@ -7180,7 +7535,8 @@ A complete page section should additionally verify:
 - Approved content is present.
 - Content hierarchy matches `content-architecture.md`.
 - Section composition matches the V2 design direction.
-- Child components are integrated without overriding their internals unnecessarily.
+- Child components are integrated without overriding their internals
+  unnecessarily.
 - Images are relevant and optimized.
 - Section spacing works in relation to adjacent sections.
 - Anchor/sticky-header behavior works where relevant.
@@ -7198,7 +7554,8 @@ Each service-detail experience must additionally verify:
 - Gallery imagery is relevant to that service.
 - Gallery does not autoplay.
 - Gallery is keyboard/touch usable.
-- Environmental-compensation content is contextual rather than generic.
+- Environmental-compensation content is contextual rather than
+  generic.
 - Contact form receives the selected service context automatically.
 - Browser back/navigation behavior remains normal.
 
@@ -7230,7 +7587,8 @@ Before a production image is accepted:
 - Loading priority is appropriate.
 - Alternative-text treatment is correct.
 
-Original oversized client assets should not be considered production-ready merely because they render successfully.
+Original oversized client assets should not be considered
+production-ready merely because they render successfully.
 
 ### 30.18 SCSS Definition of Done
 
@@ -7249,9 +7607,11 @@ Before styling is considered complete:
 
 ### 30.19 Quality gates
 
-A V2 implementation should not be considered ready for merge while required project quality checks are failing.
+A V2 implementation should not be considered ready for merge while
+required project quality checks are failing.
 
-At minimum, the repository's established quality pipeline should remain green for applicable changes, including:
+At minimum, the repository's established quality pipeline should remain
+green for applicable changes, including:
 
 ```text
 lint
@@ -7261,15 +7621,18 @@ build
 SonarCloud analysis
 ```
 
-The exact thresholds and branch-protection requirements remain controlled by repository configuration.
+The exact thresholds and branch-protection requirements remain
+controlled by repository configuration.
 
-The Design System should not duplicate those configuration values because they may evolve independently.
+The Design System should not duplicate those configuration values
+because they may evolve independently.
 
 ### 30.20 Manual review remains required
 
 Automated checks cannot validate the complete design.
 
-Every significant V2 implementation should also receive manual review for:
+Every significant V2 implementation should also receive manual review
+for:
 
 - Visual hierarchy.
 - Responsive composition.
@@ -7286,7 +7649,8 @@ A green CI pipeline does not by itself constitute design approval.
 
 ### 30.21 Responsive review matrix
 
-Major sections should be reviewed across representative ranges rather than one fixed device.
+Major sections should be reviewed across representative ranges rather
+than one fixed device.
 
 At minimum:
 
@@ -7299,15 +7663,20 @@ desktop
 wide desktop
 ```
 
-Free resizing should also be used to expose intermediate breakpoint problems.
+Free resizing should also be used to expose intermediate breakpoint
+problems.
 
 ### 30.22 Browser expectations
 
-V2 should rely on modern browser standards supported by the project's actual deployment target.
+V2 should rely on modern browser standards supported by the project's
+actual deployment target.
 
-At minimum, manual validation should include the primary browser used during development plus representative Chromium-based and other supported modern browser behavior when relevant.
+At minimum, manual validation should include the primary browser used
+during development plus representative Chromium-based and other
+supported modern browser behavior when relevant.
 
-Do not introduce browser-specific fixes without confirming that a real compatibility problem exists.
+Do not introduce browser-specific fixes without confirming that a real
+compatibility problem exists.
 
 ### 30.23 Performance review
 
@@ -7325,35 +7694,47 @@ Review especially:
 - Animation.
 - Layout shift.
 
-Do not trade accessibility or maintainability for negligible micro-optimizations.
+Do not trade accessibility or maintainability for negligible
+micro-optimizations.
 
 ### 30.24 Codex implementation guidance
 
-When Codex is used to implement V2, it should receive the relevant documentation as part of the task context.
+When Codex is used to implement V2, it should receive the relevant
+documentation as part of the task context.
 
 For each issue, Codex should be instructed to:
 
-1. Read the relevant V2 content and Design System sections before modifying code.
-2. Inspect the existing implementation before creating new abstractions.
-3. Preserve repository conventions where compatible with V2.
-4. Avoid unrelated refactors.
-5. Reuse existing foundations when appropriate.
-6. Keep changes scoped to the issue.
-7. Add/update tests for changed behavior.
-8. Run the applicable quality checks.
-9. Report intentional deviations or unresolved assumptions.
-10. Reuse the approved V2 brand assets before creating, replacing, or approximating visual assets:
+1.  Read the relevant V2 content and Design System sections before
+    modifying code.
+2.  Inspect the existing implementation before creating new
+    abstractions.
+3.  Preserve repository conventions where compatible with V2.
+4.  Avoid unrelated refactors.
+5.  Reuse existing foundations when appropriate.
+6.  Keep changes scoped to the issue.
+7.  Add/update tests for changed behavior.
+8.  Run the applicable quality checks.
+9.  Report intentional deviations or unresolved assumptions.
+10. Reuse the approved V2 brand assets before creating, replacing, or
+    approximating visual assets:
     - Logos and symbols: `src/assets/images/logo/`
     - Service-category iconography: `src/assets/icons/services/`
-    - Browser/public identity assets: `public/favicon.svg`, `public/favicon.ico`, and `public/apple-touch-icon.png`
+    - Browser/public identity assets: `public/favicon.svg`,
+      `public/favicon.ico`, and `public/apple-touch-icon.png`
 
-Approved production assets are part of the V2 implementation contract. Codex should not replace them with approximate Lucide icons, generated artwork, reconstructed logos, or alternative visual assets unless the Design System is intentionally updated first.
+Approved production assets are part of the V2 implementation contract.
+Codex should not replace them with approximate Lucide icons, generated
+artwork, reconstructed logos, or alternative visual assets unless the
+Design System is intentionally updated first.
 
-Codex should implement documented decisions, not independently redesign the experience.
+Codex should implement documented decisions, not independently redesign
+the experience.
 
 ### 30.25 Unresolved decisions
 
-If Codex encounters a meaningful design/product decision that is not covered by the approved documentation, it should not silently choose a new direction when that choice could materially affect:
+If Codex encounters a meaningful design/product decision that is not
+covered by the approved documentation, it should not silently choose a
+new direction when that choice could materially affect:
 
 - Visual identity.
 - Content.
@@ -7365,19 +7746,22 @@ If Codex encounters a meaningful design/product decision that is not covered by 
 
 The appropriate action is to surface the decision for review.
 
-Minor implementation details that do not alter the approved contract may be resolved using established project conventions.
+Minor implementation details that do not alter the approved contract may
+be resolved using established project conventions.
 
 ### 30.26 Issue scope
 
 Each implementation issue should remain focused.
 
-Avoid combining unrelated improvements simply because the same files are open.
+Avoid combining unrelated improvements simply because the same files are
+open.
 
 If implementation reveals separate technical debt or a new requirement:
 
 - Document it.
 - Create/follow the appropriate issue workflow.
-- Keep the current change focused unless the additional work is necessary to complete it safely.
+- Keep the current change focused unless the additional work is
+  necessary to complete it safely.
 
 This improves reviewability and release traceability.
 
@@ -7398,9 +7782,11 @@ Review should evaluate architecture and behavior, not only screenshots.
 
 ### 30.28 Completion of V2
 
-V2 should be considered complete only when the experience works as one coherent product.
+V2 should be considered complete only when the experience works as one
+coherent product.
 
-Completion therefore requires more than finishing every isolated component.
+Completion therefore requires more than finishing every isolated
+component.
 
 Final review should verify:
 
@@ -7433,10 +7819,12 @@ Do:
 
 Do not:
 
-- Treat the preliminary mockup as a rigid desktop screenshot specification.
+- Treat the preliminary mockup as a rigid desktop screenshot
+  specification.
 - Treat V1 as automatically authoritative.
 - Let Codex invent product/design decisions silently.
-- Add new tokens or variants for convenience without checking existing patterns.
+- Add new tokens or variants for convenience without checking existing
+  patterns.
 - Change documented behavior only to match accidental implementation.
 - Consider a component finished because it works at one viewport.
 - Consider CI success equivalent to design approval.
@@ -7462,4 +7850,7 @@ and how to know when it is finished.
 
 When those answers remain clear, the Design System is doing its job.
 
-Ancestral Landing V2 should therefore evolve through deliberate, documented decisions rather than accumulated exceptions, preserving the visual quality of the approved design and the engineering quality expected from the project.
+Ancestral Landing V2 should therefore evolve through deliberate,
+documented decisions rather than accumulated exceptions, preserving the
+visual quality of the approved design and the engineering quality
+expected from the project.

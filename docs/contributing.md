@@ -4,7 +4,8 @@
 
 The project follows an issue-driven development workflow.
 
-Each change starts with a GitHub Issue and is implemented in an isolated branch.
+Each change starts with a GitHub Issue and is implemented in an isolated
+branch.
 
 Branch naming conventions:
 
@@ -62,13 +63,15 @@ docs: add frontend architecture documentation
 ci: configure GitHub Actions workflow
 ```
 
-Commit messages are used by the automated release process to determine semantic version changes.
+Commit messages are used by the automated release process to determine
+semantic version changes.
 
 ---
 
 ## Pull Request Workflow
 
-All changes must be integrated into the `main` branch through Pull Requests.
+All changes must be integrated into the `main` branch through Pull
+Requests.
 
 The workflow is:
 
@@ -95,10 +98,11 @@ Squash and Merge
        ↓
 Semantic Release
        ↓
-GitHub Pages Deployment
+Production Deployment
 ```
 
-Direct commits to the `main` branch are restricted by repository protection rules.
+Direct commits to the `main` branch are restricted by repository
+protection rules.
 
 ---
 
@@ -111,4 +115,16 @@ The repository enforces the following standards:
 - Force pushes to `main` are blocked.
 - A linear Git history is maintained using Squash and Merge.
 
-These rules ensure a reliable and professional software delivery workflow.
+These rules ensure a reliable and professional software delivery
+workflow.
+
+## Documentation synchronization
+
+Changes that alter public routes, contact behavior, environment
+variables, SEO output, responsive contracts, deployment behavior, or
+production architecture must update the corresponding documentation in
+the same pull request.
+
+The canonical V2 product specifications remain under `docs/v2/`;
+implementation and operational documents must describe the behavior that
+is actually deployed rather than a superseded issue stage.

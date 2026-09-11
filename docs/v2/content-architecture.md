@@ -1,19 +1,26 @@
-# Ancestral Landing V2 — Content Architecture
+# Ancestral Landing V2 --- Content Architecture
 
 ## 1. Purpose and scope
 
-This document defines the approved information architecture, content hierarchy, navigation model, editorial direction, and Spanish website copy for **Ancestral Landing V2**.
+This document defines the approved information architecture, content
+hierarchy, navigation model, editorial direction, and Spanish website
+copy for **Ancestral Landing V2**.
 
-It acts as the content source of truth for the V2 implementation and should be used together with the visual design system and technical architecture documentation.
+It remains the content source of truth for the implemented V2 experience
+and should be used together with the visual design system and technical
+architecture documentation.
 
-The website must communicate Ancestral Servicios Ambientales as an experienced environmental services company capable of formulating, advising, and executing projects for public and private organizations.
+The website must communicate Ancestral Servicios Ambientales as an
+experienced environmental services company capable of formulating,
+advising, and executing projects for public and private organizations.
 
 The content architecture is based primarily on:
 
 - The Ancestral Servicios Ambientales 2026 corporate brochure.
 - The approved V2 visual concept.
 - The existing Ancestral Landing implementation.
-- The content and UX decisions approved during the V2 planning process.
+- The content and UX decisions approved during the V2 planning
+  process.
 
 The website must prioritize:
 
@@ -24,7 +31,8 @@ The website must prioritize:
 - Easy access to detailed service information.
 - Clear conversion paths toward contact.
 - A professional but approachable communication style.
-- A structure capable of evolving as new projects, services, and institutional content become available.
+- A structure capable of evolving as new projects, services, and
+  institutional content become available.
 
 ---
 
@@ -42,36 +50,45 @@ Website copy must be:
 - Commercial without becoming overly promotional.
 - Technically credible without unnecessarily complex language.
 
-The website should speak primarily from the perspective of what Ancestral can help clients accomplish.
+The website should speak primarily from the perspective of what
+Ancestral can help clients accomplish.
 
 Avoid simply reproducing brochure text verbatim.
 
-Brochure information should instead be transformed into web-oriented content that is easier to scan, understand, and act upon.
+Brochure information should instead be transformed into web-oriented
+content that is easier to scan, understand, and act upon.
 
 ### 2.2 Content hierarchy
 
 Every major section should answer one of the following questions:
 
-1. Who is Ancestral?
-2. What does Ancestral do?
-3. Why should a potential client trust Ancestral?
-4. What experience does Ancestral have?
-5. How can Ancestral help with a specific need?
-6. How can the visitor start a conversation with Ancestral?
+1.  Who is Ancestral?
+2.  What does Ancestral do?
+3.  Why should a potential client trust Ancestral?
+4.  What experience does Ancestral have?
+5.  How can Ancestral help with a specific need?
+6.  How can the visitor start a conversation with Ancestral?
 
 ### 2.3 Content density
 
-The home page should provide enough information to establish credibility and explain the company's capabilities without becoming an exhaustive corporate brochure.
+The home page should provide enough information to establish credibility
+and explain the company's capabilities without becoming an exhaustive
+corporate brochure.
 
-Detailed technical service information belongs primarily in the service detail experience.
+Detailed technical service information belongs primarily in the service
+detail experience.
 
 ### 2.4 Environmental compensation
 
-Environmental compensation must not be presented as a sixth service category.
+Environmental compensation must not be presented as a sixth service
+category.
 
-Instead, it should work as a transversal proof point demonstrating Ancestral's environmental experience, execution capability, territorial presence, and measurable impact.
+Instead, it should work as a transversal proof point demonstrating
+Ancestral's environmental experience, execution capability, territorial
+presence, and measurable impact.
 
-Its narrative should appear naturally throughout the website where relevant.
+Its narrative should appear naturally throughout the website where
+relevant.
 
 ---
 
@@ -79,14 +96,17 @@ Its narrative should appear naturally throughout the website where relevant.
 
 Ancestral Landing V2 consists of two primary content experiences:
 
-1. **Home page**
-2. **Service detail pages**
+1.  **Home page**
+2.  **Service detail pages**
 
 The initial V2 does not include a dedicated Projects section.
 
-A Projects module may be incorporated in a future iteration once the client provides sufficient structured information about representative projects.
+A Projects module may be incorporated in a future iteration once the
+client provides sufficient structured information about representative
+projects.
 
-Environmental Compensation does not have its own primary navigation section in the initial V2.
+Environmental Compensation does not have its own primary navigation
+section in the initial V2.
 
 ---
 
@@ -101,7 +121,8 @@ The primary navigation should contain:
 - Servicios
 - Contacto
 
-The navigation must remain simple and focused on the primary user journey.
+The navigation must remain simple and focused on the primary user
+journey.
 
 ### Inicio
 
@@ -115,7 +136,8 @@ Navigates to the institutional section of the home page.
 
 Navigates to the service overview section.
 
-From there, each service card provides access to its corresponding detail page.
+From there, each service card provides access to its corresponding
+detail page.
 
 ### Contacto
 
@@ -123,21 +145,27 @@ Navigates directly to the main contact section.
 
 ## 4.2 WhatsApp access
 
-WhatsApp must remain visually differentiated from the standard navigation.
+WhatsApp must remain visually differentiated from the standard
+navigation.
 
-It should not be labeled simply as **Contacto** or **Contáctanos**, because this could be confused with the website's Contacto navigation item.
+It should not be labeled simply as **Contacto** or **Contáctanos**,
+because this could be confused with the website's Contacto navigation
+item.
 
-The WhatsApp interaction should make the communication channel explicit through its icon and supporting copy.
+The WhatsApp interaction should make the communication channel explicit
+through its icon and supporting copy.
 
 Possible presentation:
 
 > **Hablemos por WhatsApp**
 
-The final UI treatment may use the WhatsApp icon as the dominant visual element while maintaining an accessible text label.
+The final UI treatment may use the WhatsApp icon as the dominant visual
+element while maintaining an accessible text label.
 
 ## 4.3 Service navigation
 
-Each service card on the home page links to a dedicated service detail route.
+Each service card on the home page links to a dedicated service detail
+route.
 
 Recommended route model:
 
@@ -168,7 +196,8 @@ It contains:
 
 The desktop version should remain visually lightweight.
 
-The mobile version should prioritize usability and clear touch targets without changing the information hierarchy.
+The mobile version should prioritize usability and clear touch targets
+without changing the information hierarchy.
 
 ---
 
@@ -178,11 +207,14 @@ The mobile version should prioritize usability and clear touch targets without c
 
 > **Transformamos entornos, generamos vida.**
 
-The words or phrase emphasized in green should follow the approved V2 visual design.
+The words or phrase emphasized in green should follow the approved V2
+visual design.
 
 ### Supporting copy
 
-> Formulamos, asesoramos y ejecutamos proyectos ambientales en el sector privado y público, con acciones que protegen los recursos naturales y contribuyen a un futuro sostenible.
+> Formulamos, asesoramos y ejecutamos proyectos ambientales en el sector
+> privado y público, con acciones que protegen los recursos naturales y
+> contribuyen a un futuro sostenible.
 
 ### Primary CTA
 
@@ -198,17 +230,22 @@ Navigates to the institutional section.
 
 ### Visual direction
 
-The hero should use strong environmental photography representing the territory where Ancestral operates.
+The hero should use strong environmental photography representing the
+territory where Ancestral operates.
 
-The approved V2 concept uses natural landscapes as the primary visual language.
+The approved V2 concept uses natural landscapes as the primary visual
+language.
 
-Environmental compensation and territorial impact can begin to be communicated from this first section without creating a separate compensation module.
+Environmental compensation and territorial impact can begin to be
+communicated from this first section without creating a separate
+compensation module.
 
 ---
 
 ## 5.3 Trust and experience indicators
 
-Immediately after the hero, the website presents a compact set of institutional proof points.
+Immediately after the hero, the website presents a compact set of
+institutional proof points.
 
 ### Indicator 1
 
@@ -234,7 +271,8 @@ Immediately after the hero, the website presents a compact set of institutional 
 
 > Colombiano
 
-These indicators should be easy to scan and act as an immediate credibility layer before introducing the company in greater detail.
+These indicators should be easy to scan and act as an immediate
+credibility layer before introducing the company in greater detail.
 
 ---
 
@@ -246,19 +284,26 @@ These indicators should be easy to scan and act as an immediate credibility laye
 
 ### Body copy
 
-> Somos una empresa con más de 10 años de experiencia en servicios ambientales, con amplia presencia y ejecución en el oriente colombiano.
+> Somos una empresa con más de 10 años de experiencia en servicios
+> ambientales, con amplia presencia y ejecución en el oriente
+> colombiano.
 >
-> Contamos con viveros propios para la producción de material vegetal en diferentes zonas del departamento de Santander.
+> Contamos con viveros propios para la producción de material vegetal en
+> diferentes zonas del departamento de Santander.
 >
-> Desde nuestra sede administrativa en Bucaramanga formulamos, asesoramos y ejecutamos proyectos para organizaciones del sector público y privado.
+> Desde nuestra sede administrativa en Bucaramanga formulamos,
+> asesoramos y ejecutamos proyectos para organizaciones del sector
+> público y privado.
 
 ### Supporting statement
 
 > **Comprometidos con el territorio y con el futuro.**
 
-The section should communicate experience and operational capability while remaining concise.
+The section should communicate experience and operational capability
+while remaining concise.
 
-The visual treatment follows the approved preliminary design, combining environmental imagery with the dark blue institutional background.
+The visual treatment follows the approved preliminary design, combining
+environmental imagery with the dark blue institutional background.
 
 ---
 
@@ -278,33 +323,38 @@ Each card should prioritize:
 - Service title.
 - Clear interactive state.
 
-Detailed service descriptions do not need to be displayed directly on the home page.
+Detailed service descriptions do not need to be displayed directly on
+the home page.
 
-The visitor can select a card to access the complete service detail experience.
+The visitor can select a card to access the complete service detail
+experience.
 
 ## 6.2 Official service categories
 
 The five approved service categories are:
 
-1. **Servicios Ambientales**
-2. **Servicios Forestales**
-3. **Servicios Agrícolas**
-4. **Manejo del Recurso Hídrico**
-5. **Seguridad y Salud en el Trabajo**
+1.  **Servicios Ambientales**
+2.  **Servicios Forestales**
+3.  **Servicios Agrícolas**
+4.  **Manejo del Recurso Hídrico**
+5.  **Seguridad y Salud en el Trabajo**
 
-These categories replace the previous service taxonomy where necessary and should be used consistently throughout the application.
+These categories replace the previous service taxonomy where necessary
+and should be used consistently throughout the application.
 
 ## 6.3 Section CTA
 
 > **Conoce todos nuestros servicios**
 
-The service cards themselves remain the primary entry points to individual service details.
+The service cards themselves remain the primary entry points to
+individual service details.
 
 ---
 
 # 7. Service detail architecture
 
-Every service detail page should use the same reusable information architecture.
+Every service detail page should use the same reusable information
+architecture.
 
 The page is a dedicated module rather than a modal or popup.
 
@@ -321,16 +371,17 @@ This decision allows each service experience to:
 
 Each service page contains:
 
-1. Service hero.
-2. Introductory value proposition.
-3. Main service capabilities.
-4. Relevant environmental or territorial context.
-5. Image gallery/carousel.
-6. Contact form.
-7. WhatsApp alternative.
-8. Navigation back to Services/Home.
+1.  Service hero.
+2.  Introductory value proposition.
+3.  Main service capabilities.
+4.  Relevant environmental or territorial context.
+5.  Image gallery/carousel.
+6.  Contact form.
+7.  WhatsApp alternative.
+8.  Navigation back to Services/Home.
 
-The gallery should use real photographs supplied by the client whenever possible.
+The gallery should use real photographs supplied by the client whenever
+possible.
 
 ---
 
@@ -342,45 +393,64 @@ The gallery should use real photographs supplied by the client whenever possible
 
 ## 8.2 Introductory copy
 
-> Convertimos las necesidades ambientales de cada proyecto en soluciones técnicas, viables y responsables.
+> Convertimos las necesidades ambientales de cada proyecto en soluciones
+> técnicas, viables y responsables.
 >
-> Acompañamos a organizaciones públicas y privadas desde la formulación y planificación hasta la ejecución y seguimiento de sus proyectos ambientales, integrando conocimiento técnico, experiencia en campo y comprensión del territorio.
+> Acompañamos a organizaciones públicas y privadas desde la formulación
+> y planificación hasta la ejecución y seguimiento de sus proyectos
+> ambientales, integrando conocimiento técnico, experiencia en campo y
+> comprensión del territorio.
 
 ## 8.3 Service capabilities
 
 ### Planeación y gestión ambiental
 
-Formulamos proyectos y planes de manejo ambiental orientados al cumplimiento de los requerimientos técnicos y normativos de cada iniciativa.
+Formulamos proyectos y planes de manejo ambiental orientados al
+cumplimiento de los requerimientos técnicos y normativos de cada
+iniciativa.
 
 ### Restauración y conservación
 
-Desarrollamos acciones de restauración, limpieza, mantenimiento y conservación de fuentes hídricas y ecosistemas, buscando recuperar y proteger áreas de importancia ambiental.
+Desarrollamos acciones de restauración, limpieza, mantenimiento y
+conservación de fuentes hídricas y ecosistemas, buscando recuperar y
+proteger áreas de importancia ambiental.
 
 ### Gestión de permisos y licencias
 
-Acompañamos procesos relacionados con licencias ambientales y permisos ante las autoridades competentes, incluyendo concesiones de aguas, permisos de vertimientos, ocupación de cauce y otros trámites contemplados por la normativa ambiental aplicable.
+Acompañamos procesos relacionados con licencias ambientales y permisos
+ante las autoridades competentes, incluyendo concesiones de aguas,
+permisos de vertimientos, ocupación de cauce y otros trámites
+contemplados por la normativa ambiental aplicable.
 
 ### Material vegetal y proyectos sostenibles
 
-Contamos con capacidad para el suministro de material vegetal y acompañamos iniciativas de establecimiento vegetal y proyectos silvopastoriles adaptados a las necesidades del territorio.
+Contamos con capacidad para el suministro de material vegetal y
+acompañamos iniciativas de establecimiento vegetal y proyectos
+silvopastoriles adaptados a las necesidades del territorio.
 
 ### Asesoría técnica y jurídica
 
-Brindamos acompañamiento técnico y representación jurídica en procesos sancionatorios ambientales, integrando el componente normativo con el conocimiento técnico del proyecto.
+Brindamos acompañamiento técnico y representación jurídica en procesos
+sancionatorios ambientales, integrando el componente normativo con el
+conocimiento técnico del proyecto.
 
 ### Estudios y actividades ambientales
 
-Realizamos toma de muestras de suelos y apoyamos la organización de actividades y eventos relacionados con gestión y educación ambiental.
+Realizamos toma de muestras de suelos y apoyamos la organización de
+actividades y eventos relacionados con gestión y educación ambiental.
 
 ### Compensaciones ambientales
 
-Nuestra experiencia en campo nos permite participar en procesos de compensación ambiental orientados a generar resultados medibles y sostenibles en el territorio.
+Nuestra experiencia en campo nos permite participar en procesos de
+compensación ambiental orientados a generar resultados medibles y
+sostenibles en el territorio.
 
 ## 8.4 Contact transition
 
 > **¿Tienes un proyecto ambiental en marcha o estás por comenzar uno?**
 >
-> Cuéntanos qué necesitas. Nuestro equipo puede ayudarte a identificar el acompañamiento adecuado para tu proyecto.
+> Cuéntanos qué necesitas. Nuestro equipo puede ayudarte a identificar
+> el acompañamiento adecuado para tu proyecto.
 
 The contact form on this page must automatically preselect:
 
@@ -396,49 +466,67 @@ The contact form on this page must automatically preselect:
 
 ## 9.2 Introductory copy
 
-> Protegemos y gestionamos los recursos forestales combinando conocimiento técnico, experiencia en campo y acciones orientadas a la conservación.
+> Protegemos y gestionamos los recursos forestales combinando
+> conocimiento técnico, experiencia en campo y acciones orientadas a la
+> conservación.
 >
-> Acompañamos proyectos que requieren conocer, intervenir, recuperar o manejar coberturas vegetales y ecosistemas forestales de manera responsable.
+> Acompañamos proyectos que requieren conocer, intervenir, recuperar o
+> manejar coberturas vegetales y ecosistemas forestales de manera
+> responsable.
 
 ## 9.3 Service capabilities
 
 ### Inventarios forestales
 
-Realizamos inventarios que permiten identificar y caracterizar los recursos forestales presentes en las áreas de intervención de cada proyecto.
+Realizamos inventarios que permiten identificar y caracterizar los
+recursos forestales presentes en las áreas de intervención de cada
+proyecto.
 
 ### Manejo de fauna y regeneración vegetal
 
-Desarrollamos actividades de ahuyentamiento de fauna y traslado de brinzales como parte de los procesos de manejo y protección asociados a las intervenciones ambientales.
+Desarrollamos actividades de ahuyentamiento de fauna y traslado de
+brinzales como parte de los procesos de manejo y protección asociados a
+las intervenciones ambientales.
 
 ### Reforestación
 
-Ejecutamos procesos de reforestación orientados a recuperar coberturas vegetales y fortalecer la conservación y restauración de ecosistemas.
+Ejecutamos procesos de reforestación orientados a recuperar coberturas
+vegetales y fortalecer la conservación y restauración de ecosistemas.
 
 ### Manejo de epífitas
 
-Realizamos actividades de traslado de epífitas cuando las condiciones ambientales y los requerimientos del proyecto así lo requieren.
+Realizamos actividades de traslado de epífitas cuando las condiciones
+ambientales y los requerimientos del proyecto así lo requieren.
 
 ### Mantenimiento de plantaciones
 
-Acompañamos las etapas posteriores al establecimiento mediante labores de mantenimiento que favorecen el desarrollo y permanencia de las plantaciones.
+Acompañamos las etapas posteriores al establecimiento mediante labores
+de mantenimiento que favorecen el desarrollo y permanencia de las
+plantaciones.
 
 ### Levantamiento de veda
 
-Apoyamos técnicamente los procesos asociados al levantamiento de veda de especies cuando resultan aplicables dentro del proyecto.
+Apoyamos técnicamente los procesos asociados al levantamiento de veda de
+especies cuando resultan aplicables dentro del proyecto.
 
 ### Aprovechamientos forestales
 
-Desarrollamos actividades relacionadas con aprovechamientos forestales bajo criterios técnicos y de cumplimiento ambiental.
+Desarrollamos actividades relacionadas con aprovechamientos forestales
+bajo criterios técnicos y de cumplimiento ambiental.
 
 ## 9.4 Environmental compensation connection
 
-La experiencia forestal de Ancestral es una parte fundamental de nuestra capacidad para ejecutar procesos de restauración y compensación ambiental con impacto real en el territorio.
+La experiencia forestal de Ancestral es una parte fundamental de nuestra
+capacidad para ejecutar procesos de restauración y compensación
+ambiental con impacto real en el territorio.
 
 ## 9.5 Contact transition
 
-> **¿Tu proyecto requiere manejo, intervención o recuperación de recursos forestales?**
+> **¿Tu proyecto requiere manejo, intervención o recuperación de
+> recursos forestales?**
 >
-> Cuéntanos sus características y conversemos sobre la mejor forma de acompañarlo.
+> Cuéntanos sus características y conversemos sobre la mejor forma de
+> acompañarlo.
 
 The contact form must automatically preselect:
 
@@ -454,45 +542,60 @@ The contact form must automatically preselect:
 
 ## 10.2 Introductory copy
 
-> Acompañamos el desarrollo de proyectos agrícolas con soluciones orientadas al uso eficiente del suelo, el agua y la infraestructura productiva.
+> Acompañamos el desarrollo de proyectos agrícolas con soluciones
+> orientadas al uso eficiente del suelo, el agua y la infraestructura
+> productiva.
 >
-> Integramos asesoría técnica, conocimiento del territorio y apoyo operativo para fortalecer proyectos agrícolas desde su planificación hasta su ejecución.
+> Integramos asesoría técnica, conocimiento del territorio y apoyo
+> operativo para fortalecer proyectos agrícolas desde su planificación
+> hasta su ejecución.
 
 ## 10.3 Service capabilities
 
 ### Obras agrícolas y preparación de tierras
 
-Brindamos asesoría para obras agrícolas, manejo de aguas y preparación de terrenos de acuerdo con las condiciones y necesidades de cada proyecto.
+Brindamos asesoría para obras agrícolas, manejo de aguas y preparación
+de terrenos de acuerdo con las condiciones y necesidades de cada
+proyecto.
 
 ### Infraestructura agrícola
 
-Apoyamos el diseño y construcción de infraestructura necesaria para mejorar la operación y productividad de proyectos agrícolas.
+Apoyamos el diseño y construcción de infraestructura necesaria para
+mejorar la operación y productividad de proyectos agrícolas.
 
 ### Caracterización de suelos
 
-Realizamos procesos de caracterización que permiten comprender las condiciones del suelo y tomar decisiones técnicas mejor fundamentadas.
+Realizamos procesos de caracterización que permiten comprender las
+condiciones del suelo y tomar decisiones técnicas mejor fundamentadas.
 
 ### Información y fotografía aérea
 
-Apoyamos procesos de caracterización territorial mediante herramientas de información y fotografía aérea aplicadas a las necesidades del proyecto.
+Apoyamos procesos de caracterización territorial mediante herramientas
+de información y fotografía aérea aplicadas a las necesidades del
+proyecto.
 
 ### Suministro de insumos
 
-Facilitamos el suministro de insumos agrícolas requeridos para la ejecución y mantenimiento de las actividades productivas.
+Facilitamos el suministro de insumos agrícolas requeridos para la
+ejecución y mantenimiento de las actividades productivas.
 
 ### Encerramientos perimetrales
 
-Desarrollamos soluciones de cerramiento adaptadas a las características y necesidades de las áreas de intervención.
+Desarrollamos soluciones de cerramiento adaptadas a las características
+y necesidades de las áreas de intervención.
 
 ## 10.4 Sustainability connection
 
-El desarrollo productivo puede avanzar de la mano de una gestión responsable del territorio. Nuestro enfoque busca aportar soluciones que permitan aprovechar los recursos de manera eficiente y sostenible.
+El desarrollo productivo puede avanzar de la mano de una gestión
+responsable del territorio. Nuestro enfoque busca aportar soluciones que
+permitan aprovechar los recursos de manera eficiente y sostenible.
 
 ## 10.5 Contact transition
 
 > **¿Estás desarrollando o fortaleciendo un proyecto agrícola?**
 >
-> Cuéntanos qué necesitas y evaluemos juntos las soluciones más adecuadas para tu proyecto.
+> Cuéntanos qué necesitas y evaluemos juntos las soluciones más
+> adecuadas para tu proyecto.
 
 The contact form must automatically preselect:
 
@@ -508,39 +611,53 @@ The contact form must automatically preselect:
 
 ## 11.2 Introductory copy
 
-> El agua es uno de los recursos esenciales de cualquier territorio y su gestión requiere conocimiento técnico, planificación y seguimiento.
+> El agua es uno de los recursos esenciales de cualquier territorio y su
+> gestión requiere conocimiento técnico, planificación y seguimiento.
 >
-> Acompañamos proyectos relacionados con la protección, ordenamiento y manejo sostenible del recurso hídrico, desde la planificación hasta las acciones de intervención y conservación.
+> Acompañamos proyectos relacionados con la protección, ordenamiento y
+> manejo sostenible del recurso hídrico, desde la planificación hasta
+> las acciones de intervención y conservación.
 
 ## 11.3 Service capabilities
 
 ### Planes de manejo ambiental de sistemas acuíferos
 
-Brindamos asesoría técnica y acompañamiento en la elaboración y ejecución de planes orientados a la protección y manejo ambiental de sistemas acuíferos.
+Brindamos asesoría técnica y acompañamiento en la elaboración y
+ejecución de planes orientados a la protección y manejo ambiental de
+sistemas acuíferos.
 
 ### Saneamiento y manejo de vertimientos
 
-Apoyamos la formulación y ejecución de planes de saneamiento y manejo de vertimientos de acuerdo con las necesidades de cada proyecto.
+Apoyamos la formulación y ejecución de planes de saneamiento y manejo de
+vertimientos de acuerdo con las necesidades de cada proyecto.
 
 ### Ordenamiento de cuencas
 
-Participamos en procesos asociados a Planes de Ordenamiento y Manejo de Cuencas Hidrográficas (POMCA) y Planes de Ordenamiento del Recurso Hídrico (PORH).
+Participamos en procesos asociados a Planes de Ordenamiento y Manejo de
+Cuencas Hidrográficas (POMCA) y Planes de Ordenamiento del Recurso
+Hídrico (PORH).
 
 ### Manejo de cauces y vertimientos
 
-Brindamos asesoría y apoyo técnico en actividades relacionadas con aforos de caudales y caracterización de vertimientos.
+Brindamos asesoría y apoyo técnico en actividades relacionadas con
+aforos de caudales y caracterización de vertimientos.
 
 ## 11.4 Environmental connection
 
-La protección del recurso hídrico está directamente relacionada con la conservación de los ecosistemas que lo sostienen.
+La protección del recurso hídrico está directamente relacionada con la
+conservación de los ecosistemas que lo sostienen.
 
-Nuestra experiencia ambiental y territorial permite abordar estos procesos desde una visión integral que conecta agua, suelo, vegetación y comunidades.
+Nuestra experiencia ambiental y territorial permite abordar estos
+procesos desde una visión integral que conecta agua, suelo, vegetación y
+comunidades.
 
 ## 11.5 Contact transition
 
-> **¿Tu proyecto requiere planificación, protección o manejo del recurso hídrico?**
+> **¿Tu proyecto requiere planificación, protección o manejo del recurso
+> hídrico?**
 >
-> Cuéntanos el contexto y nuestro equipo podrá orientarte sobre el acompañamiento que necesitas.
+> Cuéntanos el contexto y nuestro equipo podrá orientarte sobre el
+> acompañamiento que necesitas.
 
 The contact form must automatically preselect:
 
@@ -556,37 +673,50 @@ The contact form must automatically preselect:
 
 ## 12.2 Introductory copy
 
-> Entornos de trabajo seguros requieren prevención, planificación y sistemas de gestión que funcionen en la práctica.
+> Entornos de trabajo seguros requieren prevención, planificación y
+> sistemas de gestión que funcionen en la práctica.
 >
-> Acompañamos a organizaciones públicas y privadas en el diseño, implementación, evaluación y fortalecimiento de sus procesos de Seguridad y Salud en el Trabajo.
+> Acompañamos a organizaciones públicas y privadas en el diseño,
+> implementación, evaluación y fortalecimiento de sus procesos de
+> Seguridad y Salud en el Trabajo.
 
 ## 12.3 Service capabilities
 
 ### Sistemas de Gestión de Seguridad y Salud en el Trabajo
 
-Diseñamos e implementamos Sistemas de Gestión de Seguridad y Salud en el Trabajo (SG-SST) adaptados a las características y necesidades de cada organización.
+Diseñamos e implementamos Sistemas de Gestión de Seguridad y Salud en el
+Trabajo (SG-SST) adaptados a las características y necesidades de cada
+organización.
 
 ### Sistemas de gestión
 
-Apoyamos el diseño e implementación de sistemas de gestión que permitan fortalecer procesos internos y promover mejores prácticas organizacionales.
+Apoyamos el diseño e implementación de sistemas de gestión que permitan
+fortalecer procesos internos y promover mejores prácticas
+organizacionales.
 
 ### Auditorías
 
-Realizamos auditorías a Sistemas de Gestión de Calidad como herramienta para evaluar su funcionamiento e identificar oportunidades de mejora.
+Realizamos auditorías a Sistemas de Gestión de Calidad como herramienta
+para evaluar su funcionamiento e identificar oportunidades de mejora.
 
 ### Gestión del riesgo de desastres
 
-Acompañamos la formulación y desarrollo de Planes de Gestión del Riesgo de Desastres para entidades públicas y privadas (PGRDEPP).
+Acompañamos la formulación y desarrollo de Planes de Gestión del Riesgo
+de Desastres para entidades públicas y privadas (PGRDEPP).
 
 ## 12.4 Value proposition
 
-Nuestro objetivo es ayudar a las organizaciones a convertir los requerimientos de seguridad y gestión en procesos claros, aplicables y sostenibles dentro de su operación.
+Nuestro objetivo es ayudar a las organizaciones a convertir los
+requerimientos de seguridad y gestión en procesos claros, aplicables y
+sostenibles dentro de su operación.
 
 ## 12.5 Contact transition
 
-> **¿Necesitas implementar, revisar o fortalecer tus sistemas de gestión?**
+> **¿Necesitas implementar, revisar o fortalecer tus sistemas de
+> gestión?**
 >
-> Cuéntanos qué necesita tu organización y conversemos sobre cómo podemos acompañarte.
+> Cuéntanos qué necesita tu organización y conversemos sobre cómo
+> podemos acompañarte.
 
 The contact form must automatically preselect:
 
@@ -596,7 +726,8 @@ The contact form must automatically preselect:
 
 # 13. Comprometidos con nuestro territorio
 
-This section connects Ancestral's institutional message with its environmental impact.
+This section connects Ancestral's institutional message with its
+environmental impact.
 
 ### Heading
 
@@ -606,17 +737,26 @@ This section connects Ancestral's institutional message with its environmental i
 
 > Nuestra experiencia se construye en el territorio.
 >
-> Hemos participado en proyectos de gestión, conservación, restauración y compensación ambiental, llevando el conocimiento técnico al campo y convirtiéndolo en acciones que contribuyen a proteger los recursos naturales y generar entornos más sostenibles.
+> Hemos participado en proyectos de gestión, conservación, restauración
+> y compensación ambiental, llevando el conocimiento técnico al campo y
+> convirtiéndolo en acciones que contribuyen a proteger los recursos
+> naturales y generar entornos más sostenibles.
 >
-> Nuestra participación en procesos de siembra en el Páramo de Santurbán refleja ese compromiso con la conservación y protección de ecosistemas estratégicos para Colombia.
+> Nuestra participación en procesos de siembra en el Páramo de Santurbán
+> refleja ese compromiso con la conservación y protección de ecosistemas
+> estratégicos para Colombia.
 
 ### Supporting statement
 
 > **Más que proyectos, acciones que dejan huella.**
 
-The section should use strong territorial photography, preferably associated with the Páramo de Santurbán or representative areas where Ancestral has worked.
+The section should use strong territorial photography, preferably
+associated with the Páramo de Santurbán or representative areas where
+Ancestral has worked.
 
-The **more than one million trees planted** metric can be reinforced visually in this context without unnecessarily repeating the entire trust-indicator block.
+The **more than one million trees planted** metric can be reinforced
+visually in this context without unnecessarily repeating the entire
+trust-indicator block.
 
 ---
 
@@ -628,17 +768,22 @@ The **more than one million trees planted** metric can be reinforced visually in
 
 This section provides institutional social proof.
 
-Organizations displayed in the approved preliminary design and brochure include:
+Organizations displayed in the approved preliminary design and brochure
+include:
 
 - CDMB
 - CAS
 - Ruta del Cacao
-- Institutional/public entity represented in the approved brochure artwork
+- Institutional/public entity represented in the approved brochure
+  artwork
 - Marval
 
-Only organizations explicitly approved by the client may appear publicly on the website.
+Only organizations explicitly approved by the client may appear publicly
+on the website.
 
-Logos must be displayed respectfully and consistently without implying certifications, endorsements, partnerships, or contractual relationships beyond what can be supported.
+Logos must be displayed respectfully and consistently without implying
+certifications, endorsements, partnerships, or contractual relationships
+beyond what can be supported.
 
 ---
 
@@ -646,7 +791,8 @@ Logos must be displayed respectfully and consistently without implying certifica
 
 The contact section is the primary conversion point of the website.
 
-It should remain visually approachable and should not feel like a long administrative form.
+It should remain visually approachable and should not feel like a long
+administrative form.
 
 ## 15.1 Heading
 
@@ -656,7 +802,9 @@ It should remain visually approachable and should not feel like a long administr
 
 > Cada proyecto tiene necesidades diferentes.
 >
-> Cuéntanos brevemente qué necesitas y nuestro equipo podrá ponerse en contacto contigo para conocer mejor tu proyecto y orientarte sobre el servicio más adecuado.
+> Cuéntanos brevemente qué necesitas y nuestro equipo podrá ponerse en
+> contacto contigo para conocer mejor tu proyecto y orientarte sobre el
+> servicio más adecuado.
 
 ## 15.3 Form
 
@@ -668,11 +816,11 @@ Required.
 
 ### Correo electrónico
 
-At least one contact method — email or phone — must be provided.
+At least one contact method --- email or phone --- must be provided.
 
 ### Teléfono
 
-At least one contact method — email or phone — must be provided.
+At least one contact method --- email or phone --- must be provided.
 
 ### Servicio
 
@@ -686,7 +834,8 @@ Options:
 - Manejo del Recurso Hídrico
 - Seguridad y Salud en el Trabajo
 
-When the form is displayed from a service detail page, the corresponding service must be preselected automatically.
+When the form is displayed from a service detail page, the corresponding
+service must be preselected automatically.
 
 ### Mensaje
 
@@ -696,15 +845,18 @@ The visitor should be encouraged to briefly explain their requirement.
 
 ### Date
 
-No date field is required in the V2 contact form unless a future business requirement explicitly reintroduces it.
+No date field is required in the V2 contact form unless a future
+business requirement explicitly reintroduces it.
 
 ## 15.4 Submit CTA
 
 > **Enviar solicitud**
 
-The form will eventually communicate with the Ancestral API to process the contact request and send the corresponding email notifications.
+The form will eventually communicate with the Ancestral API to process
+the contact request and send the corresponding email notifications.
 
-The API integration itself belongs to the dedicated frontend/API integration issue.
+The API integration itself belongs to the dedicated frontend/API
+integration issue.
 
 ---
 
@@ -714,15 +866,21 @@ The public contact form must include CAPTCHA protection.
 
 CAPTCHA validation must not rely exclusively on frontend validation.
 
-The frontend will obtain the CAPTCHA token and send it together with the contact request.
+The frontend will obtain the CAPTCHA token and send it together with the
+contact request.
 
-The Ancestral API must validate the token server-side before processing the request.
+The Ancestral API must validate the token server-side before processing
+the request.
 
-This requirement implies a small follow-up version of the API, currently planned as **Ancestral API v1.0.1**.
+This requirement implies a small follow-up version of the API, currently
+planned as **Ancestral API v1.0.1**.
 
-The API update should also be used to review and finalize the email templates associated with contact requests.
+The API update should also be used to review and finalize the email
+templates associated with contact requests.
 
-Implementation details belong to the corresponding API/frontend integration work and are outside the scope of this content architecture document.
+Implementation details belong to the corresponding API/frontend
+integration work and are outside the scope of this content architecture
+document.
 
 ---
 
@@ -736,15 +894,19 @@ WhatsApp provides an alternative direct communication path.
 
 ### Supporting copy
 
-> También puedes escribirnos por WhatsApp y conversar con nuestro equipo.
+> También puedes escribirnos por WhatsApp y conversar con nuestro
+> equipo.
 
 ### CTA
 
 > **Hablemos por WhatsApp**
 
-The final implementation may emphasize the WhatsApp icon while preserving an accessible textual label.
+The final implementation may emphasize the WhatsApp icon while
+preserving an accessible textual label.
 
-WhatsApp should remain separate from the main contact form so the visitor clearly understands that these are two different communication channels.
+WhatsApp should remain separate from the main contact form so the
+visitor clearly understands that these are two different communication
+channels.
 
 ---
 
@@ -754,14 +916,16 @@ The contact experience should include Ancestral's physical location.
 
 ### Address
 
-> Calle 54 # 22 - 12  
+> Calle 54 \# 22 - 12\
 > Bucaramanga, Santander
 
 A Google Maps integration should visually display the location.
 
-The map complements the contact information and reinforces the company's physical presence in Bucaramanga.
+The map complements the contact information and reinforces the company's
+physical presence in Bucaramanga.
 
-The implementation should consider performance, privacy, responsive behavior, and accessibility when deciding how the map is loaded.
+The implementation should consider performance, privacy, responsive
+behavior, and accessibility when deciding how the map is loaded.
 
 ---
 
@@ -775,7 +939,7 @@ Based on the 2026 brochure:
 
 ### Address
 
-> Calle 54 # 22 - 12  
+> Calle 54 \# 22 - 12\
 > Bucaramanga, Santander
 
 Contact information must remain consistent between:
@@ -791,7 +955,8 @@ Contact information must remain consistent between:
 
 The footer follows the approved V2 preliminary design.
 
-It is organized into compact information groups rather than becoming another large content section.
+It is organized into compact information groups rather than becoming
+another large content section.
 
 ## 20.1 Institutional block
 
@@ -799,7 +964,8 @@ Ancestral logo.
 
 Supporting copy:
 
-> Formulamos, asesoramos y ejecutamos proyectos ambientales para un futuro sostenible.
+> Formulamos, asesoramos y ejecutamos proyectos ambientales para un
+> futuro sostenible.
 
 ## 20.2 Contact block
 
@@ -809,10 +975,11 @@ Supporting copy:
 
 Information:
 
-- Calle 54 # 22 - 12, Bucaramanga, Santander
+- Calle 54 \# 22 - 12, Bucaramanga, Santander
 - +57 316 411 4933
 
-Approved social media channels may also be displayed through their corresponding icons.
+Approved social media channels may also be displayed through their
+corresponding icons.
 
 ## 20.3 Quick links
 
@@ -829,7 +996,8 @@ Links:
 
 The footer must use the same navigation model as the main website.
 
-Do not include Projects or Environmental Compensation as primary links in V2.
+Do not include Projects or Environmental Compensation as primary links
+in V2.
 
 ## 20.4 Business hours
 
@@ -857,13 +1025,16 @@ These hours require client confirmation before final publication.
 
 # 21. Environmental Compensation strategy
 
-Environmental compensation is a strategic narrative rather than an isolated website module.
+Environmental compensation is a strategic narrative rather than an
+isolated website module.
 
 It must communicate three things:
 
 ### Experience
 
-Ancestral has practical experience participating in environmental management, conservation, restoration, planting, and compensation activities.
+Ancestral has practical experience participating in environmental
+management, conservation, restoration, planting, and compensation
+activities.
 
 ### Scale
 
@@ -871,9 +1042,11 @@ The company reports more than one million trees planted.
 
 ### Territory
 
-The company's experience includes work associated with the Páramo de Santurbán and other areas in the Colombian eastern region.
+The company's experience includes work associated with the Páramo de
+Santurbán and other areas in the Colombian eastern region.
 
-These proof points should be distributed naturally throughout the website.
+These proof points should be distributed naturally throughout the
+website.
 
 Recommended placements include:
 
@@ -886,7 +1059,9 @@ Recommended placements include:
 - Comprometidos con nuestro territorio.
 - Relevant service imagery.
 
-Environmental compensation must not be presented as an additional service unless the business explicitly decides to change the service taxonomy in the future.
+Environmental compensation must not be presented as an additional
+service unless the business explicitly decides to change the service
+taxonomy in the future.
 
 ---
 
@@ -926,7 +1101,8 @@ WhatsApp is presented as a separate direct-contact channel:
 
 > **Hablemos por WhatsApp**
 
-The distinction between form submission and WhatsApp communication must remain clear throughout the experience.
+The distinction between form submission and WhatsApp communication must
+remain clear throughout the experience.
 
 ---
 
@@ -934,7 +1110,8 @@ The distinction between form submission and WhatsApp communication must remain c
 
 Photography should reinforce credibility and real-world execution.
 
-Priority should be given to images supplied directly by Ancestral showing:
+Priority should be given to images supplied directly by Ancestral
+showing:
 
 - Environmental work.
 - Forest activities.
@@ -949,15 +1126,18 @@ Priority should be given to images supplied directly by Ancestral showing:
 
 Service detail pages should support an image carousel/gallery.
 
-Images must be selected according to the service being presented rather than used only for decorative purposes.
+Images must be selected according to the service being presented rather
+than used only for decorative purposes.
 
-The architecture must allow galleries to grow over time without requiring structural redesign.
+The architecture must allow galleries to grow over time without
+requiring structural redesign.
 
 ---
 
 # 24. Content requiring client confirmation
 
-Before final production publication, the following information should be explicitly confirmed with the client where necessary:
+Before final production publication, the following information should be
+explicitly confirmed with the client where necessary:
 
 ### Institutional metrics
 
@@ -966,19 +1146,23 @@ Before final production publication, the following information should be explici
 
 ### Organizations and logos
 
-Confirm authorization and appropriate use of every organization logo displayed on the website.
+Confirm authorization and appropriate use of every organization logo
+displayed on the website.
 
-The website must not imply unsupported partnerships, endorsements, certifications, or current contractual relationships.
+The website must not imply unsupported partnerships, endorsements,
+certifications, or current contractual relationships.
 
 ### Páramo de Santurbán
 
-Confirm the preferred wording used to describe Ancestral's participation and experience in planting, restoration, conservation, or environmental compensation processes associated with the Páramo de Santurbán.
+Confirm the preferred wording used to describe Ancestral's participation
+and experience in planting, restoration, conservation, or environmental
+compensation processes associated with the Páramo de Santurbán.
 
 ### Contact information
 
 Confirm:
 
-- Calle 54 # 22 - 12.
+- Calle 54 \# 22 - 12.
 - Bucaramanga, Santander.
 - +57 316 411 4933.
 - WhatsApp number.
@@ -996,19 +1180,23 @@ Confirm which official social media profiles should be publicly linked.
 
 ### Images
 
-Confirm that client-provided photographs may be used publicly on the website.
+Confirm that client-provided photographs may be used publicly on the
+website.
 
 ---
 
 # 25. Content intentionally excluded from V2
 
-The following items are intentionally excluded from the initial V2 architecture.
+The following items are intentionally excluded from the initial V2
+architecture.
 
 ## 25.1 Projects section
 
-A dedicated Projects section is not included because representative project information has not yet been formally collected and approved.
+A dedicated Projects section is not included because representative
+project information has not yet been formally collected and approved.
 
-The architecture should allow this section to be added in a future iteration.
+The architecture should allow this section to be added in a future
+iteration.
 
 Potential future content may include:
 
@@ -1024,7 +1212,8 @@ Potential future content may include:
 
 ## 25.2 Environmental Compensation navigation item
 
-Environmental Compensation must not appear as a standalone main navigation item.
+Environmental Compensation must not appear as a standalone main
+navigation item.
 
 Its importance is communicated throughout the site instead.
 
@@ -1032,9 +1221,11 @@ Its importance is communicated throughout the site instead.
 
 # 26. Responsive content behavior
 
-The information hierarchy must remain consistent across desktop, tablet, and mobile devices.
+The information hierarchy must remain consistent across desktop, tablet,
+and mobile devices.
 
-Responsive layouts may reorganize visual elements, but must not remove essential information.
+Responsive layouts may reorganize visual elements, but must not remove
+essential information.
 
 On smaller screens:
 
@@ -1048,7 +1239,8 @@ On smaller screens:
 - Google Maps adapts to the available viewport.
 - Footer columns stack logically.
 
-The detailed responsive implementation belongs to the dedicated V2 responsive UX issue.
+The detailed responsive implementation belongs to the dedicated V2
+responsive UX issue.
 
 ---
 
@@ -1069,7 +1261,8 @@ Requirements include:
 - Clear focus states.
 - CAPTCHA implementation with an accessible verification path.
 
-Accessibility implementation and validation are addressed in the corresponding frontend quality issue.
+Accessibility implementation and validation are addressed in the
+corresponding frontend quality issue.
 
 ---
 
@@ -1085,7 +1278,8 @@ This enables dedicated metadata and search intent for:
 - Manejo del recurso hídrico.
 - Seguridad y Salud en el Trabajo.
 
-Content should remain natural and useful to visitors rather than repeating keywords artificially.
+Content should remain natural and useful to visitors rather than
+repeating keywords artificially.
 
 The dedicated SEO issue will define:
 
@@ -1109,7 +1303,8 @@ The first objective is organic discoverability.
 
 # 29. Content consistency rules
 
-The following terminology should remain consistent throughout the V2 application.
+The following terminology should remain consistent throughout the V2
+application.
 
 Use:
 
@@ -1117,13 +1312,14 @@ Use:
 
 Official service categories:
 
-> **Servicios Ambientales**  
-> **Servicios Forestales**  
-> **Servicios Agrícolas**  
-> **Manejo del Recurso Hídrico**  
+> **Servicios Ambientales**\
+> **Servicios Forestales**\
+> **Servicios Agrícolas**\
+> **Manejo del Recurso Hídrico**\
 > **Seguridad y Salud en el Trabajo**
 
-Environmental compensation must always be treated as an experience and impact narrative rather than an additional service category.
+Environmental compensation must always be treated as an experience and
+impact narrative rather than an additional service category.
 
 Avoid unnecessary duplication between the home page and service pages.
 
@@ -1152,7 +1348,8 @@ Possible future additions include:
 - News or environmental content.
 - Additional locations or contact channels.
 
-These additions should be implemented as future iterations rather than incorporated into V2 without validated business content.
+These additions should be implemented as future iterations rather than
+incorporated into V2 without validated business content.
 
 ---
 
@@ -1197,9 +1394,13 @@ Ancestral Landing V2
 
 # 32. Final content decision
 
-This document represents the approved content architecture for the initial implementation of **Ancestral Landing V2**.
+This document represents the approved content architecture for the
+initial implementation of **Ancestral Landing V2**.
 
-Implementation issues may define presentation, responsive behavior, components, styling, accessibility, performance, SEO, deployment, and API integration, but they should not independently redefine the content hierarchy established here.
+Implementation issues may define presentation, responsive behavior,
+components, styling, accessibility, performance, SEO, deployment, and
+API integration, but they should not independently redefine the content
+hierarchy established here.
 
 Any substantial change to:
 
@@ -1210,4 +1411,5 @@ Any substantial change to:
 - Contact model.
 - Service-page structure.
 
-should be reflected in this document before being treated as part of the approved V2 architecture.
+should be reflected in this document before being treated as part of the
+approved V2 architecture.
