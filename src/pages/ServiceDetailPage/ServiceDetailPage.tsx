@@ -2,6 +2,7 @@ import { ArrowLeft, Check } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
 
 import { Contact } from "../../components/Contact/Contact";
+import { RelatedServices } from "../../components/RelatedServices/RelatedServices";
 import { ServiceGallery } from "../../components/ServiceGallery/ServiceGallery";
 import { getServiceBySlug } from "../../config/services";
 
@@ -118,6 +119,7 @@ export function ServiceDetailPage() {
 			</section>
 
 			<ServiceGallery images={service.detail.gallery} />
+			<RelatedServices currentServiceId={service.id} />
 			<Contact selectedService={service} />
 		</article>
 	);

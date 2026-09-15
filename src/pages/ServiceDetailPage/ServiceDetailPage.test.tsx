@@ -1,4 +1,5 @@
 import { render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 
@@ -105,5 +106,32 @@ describe("ServiceDetailPage invalid slug", () => {
 
 		expect(await screen.findByTestId("current-location")).toHaveTextContent("/#servicios");
 		expect(screen.getByText("Página de inicio")).toBeVisible();
+	});
+});
+
+describe("ServiceDetailPage related-service navigation", () => {
+	it("updates the detail and related services after navigating directly to another service", async () => {
+		const user = userEvent.setup();
+		const initialService = services[0];
+		const destinationService = services[1];
+		renderServiceDetail(initialService.route);
+
+		const initialRelatedServices = screen.getByRole("region", { name: "Otros servicios" });
+		await user.click(
+			within(initialRelatedServices).getByRole("link", { name: destinationService.name })
+		);
+
+		expect(
+			await screen.findByRole("heading", { level: 1, name: destinationService.name })
+		).toBeVisible();
+		expect(screen.getByTestId("current-location")).toHaveTextContent(destinationService.route);
+
+		const updatedRelatedServices = screen.getByRole("region", { name: "Otros servicios" });
+		expect(
+			within(updatedRelatedServices).queryByRole("link", { name: destinationService.name })
+		).not.toBeInTheDocument();
+		expect(
+			within(updatedRelatedServices).getByRole("link", { name: initialService.name })
+		).toHaveAttribute("href", initialService.route);
 	});
 });
