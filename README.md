@@ -10,6 +10,93 @@ production SEO/prerendering, and the contact workflow integrated with
 the Ancestral API, Cloudflare Turnstile, and transactional email
 notifications.
 
+## Live Production
+
+The current production version is available at:
+
+**https://ancestral-col.com/**
+
+## Application Preview
+
+Ancestral Landing V2 delivers a complete responsive institutional experience for Ancestral Servicios Ambientales, including the Home page, five service-detail experiences, production contact flow, responsive navigation, and SEO-ready prerendered routes.
+
+### Desktop Experience
+
+<p align="center">
+  <img
+    src="./docs/screenshots/application/desktop/Home.jpg"
+    width="900"
+    alt="Ancestral Landing V2 desktop home page"
+  >
+</p>
+
+<p align="center">
+  <img
+    src="./docs/screenshots/application/desktop/Services.jpg"
+    width="600"
+    alt="Ancestral Landing V2 services section"
+  >
+  <img
+    src="./docs/screenshots/application/desktop/Service-detail.jpg"
+    width="600"
+    alt="Ancestral Landing V2 service detail page"
+  >
+</p>
+
+<p align="center">
+  <img
+    src="./docs/screenshots/application/desktop/Contact.jpg"
+    width="900"
+    alt="Ancestral Landing V2 production contact experience"
+  >
+</p>
+
+### Mobile Experience
+
+<p align="center">
+  <img
+    src="./docs/screenshots/application/mobile/Home.jpg"
+    width="280"
+    alt="Ancestral Landing V2 mobile home page"
+  >
+  <img
+    src="./docs/screenshots/application/mobile/Service-detail.jpg"
+    width="280"
+    alt="Ancestral Landing V2 mobile service detail page"
+  >
+  <img
+    src="./docs/screenshots/application/mobile/Contact.jpg"
+    width="280"
+    alt="Ancestral Landing V2 mobile contact experience"
+  >
+</p>
+
+## Architecture
+
+Ancestral Landing V2 follows a component-driven frontend architecture designed around
+clear separation of concerns, typed configuration, reusable UI primitives, responsive
+composition, and independently deployable frontend/backend services.
+
+<p align="center">
+  <img
+    src="./docs/screenshots/architecture/frontend-architecture.jpg"
+    width="1000"
+    alt="Ancestral Landing V2 frontend architecture"
+  >
+</p>
+
+The frontend is built with React and strict TypeScript, uses React Router for the Home
+and five service-detail routes, and generates prerendered production output through Vite.
+Reusable content and service definitions are maintained through typed configuration
+rather than duplicated across pages.
+
+The production contact workflow integrates the frontend with the independently deployed
+Ancestral API. Cloudflare Turnstile protects contact submissions before the API processes
+the request and delivers transactional email notifications.
+
+For the complete architecture and implementation boundaries, see
+[`docs/architecture.md`](./docs/architecture.md).
+
 ## V2 sources of truth
 
 Implementation decisions must follow these canonical specifications:
