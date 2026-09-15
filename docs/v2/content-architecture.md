@@ -179,6 +179,12 @@ Recommended route model:
 
 All service pages should use the same reusable structural template.
 
+Near the end of each service detail page, before the contact transition,
+a reusable **Otros servicios** section provides direct navigation to the
+other four official service routes. The active service is excluded, and
+the navigation remains driven by the same canonical five-service
+configuration used throughout the site.
+
 ---
 
 # 5. Home page
