@@ -27,7 +27,13 @@ import environmentalImage from "../assets/images/services/environmental.webp";
 import forestryImage from "../assets/images/services/forestry.webp";
 import occupationalSafetyImage from "../assets/images/services/occupational-safety.webp";
 import waterResourcesImage from "../assets/images/services/water-resources.webp";
-import type { ServiceDefinition } from "../types/service";
+import type { ServiceCapability, ServiceDefinition } from "../types/service";
+
+type ServiceCapabilityCatalog = Readonly<Record<string, string>>;
+
+function createCapabilities(catalog: ServiceCapabilityCatalog): readonly ServiceCapability[] {
+	return Object.entries(catalog).map(([title, description]) => ({ title, description }));
+}
 
 export const services = [
 	{
@@ -53,38 +59,20 @@ export const services = [
 				"Convertimos las necesidades ambientales de cada proyecto en soluciones técnicas, viables y responsables.",
 			valueProposition:
 				"Acompañamos a organizaciones públicas y privadas desde la formulación y planificación hasta la ejecución y seguimiento de sus proyectos ambientales, integrando conocimiento técnico, experiencia en campo y comprensión del territorio.",
-			capabilities: [
-				{
-					title: "Planeación y gestión ambiental",
-					description:
-						"Formulamos proyectos y planes de manejo ambiental orientados al cumplimiento de los requerimientos técnicos y normativos de cada iniciativa.",
-				},
-				{
-					title: "Restauración y conservación",
-					description:
-						"Desarrollamos acciones de restauración, limpieza, mantenimiento y conservación de fuentes hídricas y ecosistemas, buscando recuperar y proteger áreas de importancia ambiental.",
-				},
-				{
-					title: "Gestión de permisos y licencias",
-					description:
-						"Acompañamos procesos relacionados con licencias ambientales y permisos ante las autoridades competentes, incluyendo concesiones de aguas, permisos de vertimientos, ocupación de cauce y otros trámites contemplados por la normativa ambiental aplicable.",
-				},
-				{
-					title: "Material vegetal y proyectos sostenibles",
-					description:
-						"Contamos con capacidad para el suministro de material vegetal y acompañamos iniciativas de establecimiento vegetal y proyectos silvopastoriles adaptados a las necesidades del territorio.",
-				},
-				{
-					title: "Asesoría técnica y jurídica",
-					description:
-						"Brindamos acompañamiento técnico y representación jurídica en procesos sancionatorios ambientales, integrando el componente normativo con el conocimiento técnico del proyecto.",
-				},
-				{
-					title: "Estudios y actividades ambientales",
-					description:
-						"Realizamos toma de muestras de suelos y apoyamos la organización de actividades y eventos relacionados con gestión y educación ambiental.",
-				},
-			],
+			capabilities: createCapabilities({
+				"Planeación y gestión ambiental":
+					"Formulamos proyectos y planes de manejo ambiental orientados al cumplimiento de los requerimientos técnicos y normativos de cada iniciativa.",
+				"Restauración y conservación":
+					"Desarrollamos acciones de restauración, limpieza, mantenimiento y conservación de fuentes hídricas y ecosistemas, buscando recuperar y proteger áreas de importancia ambiental.",
+				"Gestión de permisos y licencias":
+					"Acompañamos procesos relacionados con licencias ambientales y permisos ante las autoridades competentes, incluyendo concesiones de aguas, permisos de vertimientos, ocupación de cauce y otros trámites contemplados por la normativa ambiental aplicable.",
+				"Material vegetal y proyectos sostenibles":
+					"Contamos con capacidad para el suministro de material vegetal y acompañamos iniciativas de establecimiento vegetal y proyectos silvopastoriles adaptados a las necesidades del territorio.",
+				"Asesoría técnica y jurídica":
+					"Brindamos acompañamiento técnico y representación jurídica en procesos sancionatorios ambientales, integrando el componente normativo con el conocimiento técnico del proyecto.",
+				"Estudios y actividades ambientales":
+					"Realizamos toma de muestras de suelos y apoyamos la organización de actividades y eventos relacionados con gestión y educación ambiental.",
+			}),
 			context: {
 				title: "Compensaciones ambientales",
 				paragraphs: [
@@ -137,43 +125,22 @@ export const services = [
 				"Protegemos y gestionamos los recursos forestales combinando conocimiento técnico, experiencia en campo y acciones orientadas a la conservación.",
 			valueProposition:
 				"Acompañamos proyectos que requieren conocer, intervenir, recuperar o manejar coberturas vegetales y ecosistemas forestales de manera responsable.",
-			capabilities: [
-				{
-					title: "Inventarios forestales",
-					description:
-						"Realizamos inventarios que permiten identificar y caracterizar los recursos forestales presentes en las áreas de intervención de cada proyecto.",
-				},
-				{
-					title: "Manejo de fauna y regeneración vegetal",
-					description:
-						"Desarrollamos actividades de ahuyentamiento de fauna y traslado de brinzales como parte de los procesos de manejo y protección asociados a las intervenciones ambientales.",
-				},
-				{
-					title: "Reforestación",
-					description:
-						"Ejecutamos procesos de reforestación orientados a recuperar coberturas vegetales y fortalecer la conservación y restauración de ecosistemas.",
-				},
-				{
-					title: "Manejo de epífitas",
-					description:
-						"Realizamos actividades de traslado de epífitas cuando las condiciones ambientales y los requerimientos del proyecto así lo requieren.",
-				},
-				{
-					title: "Mantenimiento de plantaciones",
-					description:
-						"Acompañamos las etapas posteriores al establecimiento mediante labores de mantenimiento que favorecen el desarrollo y permanencia de las plantaciones.",
-				},
-				{
-					title: "Levantamiento de veda",
-					description:
-						"Apoyamos técnicamente los procesos asociados al levantamiento de veda de especies cuando resultan aplicables dentro del proyecto.",
-				},
-				{
-					title: "Aprovechamientos forestales",
-					description:
-						"Desarrollamos actividades relacionadas con aprovechamientos forestales bajo criterios técnicos y de cumplimiento ambiental.",
-				},
-			],
+			capabilities: createCapabilities({
+				"Inventarios forestales":
+					"Realizamos inventarios que permiten identificar y caracterizar los recursos forestales presentes en las áreas de intervención de cada proyecto.",
+				"Manejo de fauna y regeneración vegetal":
+					"Desarrollamos actividades de ahuyentamiento de fauna y traslado de brinzales como parte de los procesos de manejo y protección asociados a las intervenciones ambientales.",
+				["Reforestación"]:
+					"Ejecutamos procesos de reforestación orientados a recuperar coberturas vegetales y fortalecer la conservación y restauración de ecosistemas.",
+				"Manejo de epífitas":
+					"Realizamos actividades de traslado de epífitas cuando las condiciones ambientales y los requerimientos del proyecto así lo requieren.",
+				"Mantenimiento de plantaciones":
+					"Acompañamos las etapas posteriores al establecimiento mediante labores de mantenimiento que favorecen el desarrollo y permanencia de las plantaciones.",
+				"Levantamiento de veda":
+					"Apoyamos técnicamente los procesos asociados al levantamiento de veda de especies cuando resultan aplicables dentro del proyecto.",
+				"Aprovechamientos forestales":
+					"Desarrollamos actividades relacionadas con aprovechamientos forestales bajo criterios técnicos y de cumplimiento ambiental.",
+			}),
 			context: {
 				title: "Restauración y compensación ambiental",
 				paragraphs: [
@@ -227,38 +194,20 @@ export const services = [
 				"Acompañamos el desarrollo de proyectos agrícolas con soluciones orientadas al uso eficiente del suelo, el agua y la infraestructura productiva.",
 			valueProposition:
 				"Integramos asesoría técnica, conocimiento del territorio y apoyo operativo para fortalecer proyectos agrícolas desde su planificación hasta su ejecución.",
-			capabilities: [
-				{
-					title: "Obras agrícolas y preparación de tierras",
-					description:
-						"Brindamos asesoría para obras agrícolas, manejo de aguas y preparación de terrenos de acuerdo con las condiciones y necesidades de cada proyecto.",
-				},
-				{
-					title: "Infraestructura agrícola",
-					description:
-						"Apoyamos el diseño y construcción de infraestructura necesaria para mejorar la operación y productividad de proyectos agrícolas.",
-				},
-				{
-					title: "Caracterización de suelos",
-					description:
-						"Realizamos procesos de caracterización que permiten comprender las condiciones del suelo y tomar decisiones técnicas mejor fundamentadas.",
-				},
-				{
-					title: "Información y fotografía aérea",
-					description:
-						"Apoyamos procesos de caracterización territorial mediante herramientas de información y fotografía aérea aplicadas a las necesidades del proyecto.",
-				},
-				{
-					title: "Suministro de insumos",
-					description:
-						"Facilitamos el suministro de insumos agrícolas requeridos para la ejecución y mantenimiento de las actividades productivas.",
-				},
-				{
-					title: "Encerramientos perimetrales",
-					description:
-						"Desarrollamos soluciones de cerramiento adaptadas a las características y necesidades de las áreas de intervención.",
-				},
-			],
+			capabilities: createCapabilities({
+				"Obras agrícolas y preparación de tierras":
+					"Brindamos asesoría para obras agrícolas, manejo de aguas y preparación de terrenos de acuerdo con las condiciones y necesidades de cada proyecto.",
+				"Infraestructura agrícola":
+					"Apoyamos el diseño y construcción de infraestructura necesaria para mejorar la operación y productividad de proyectos agrícolas.",
+				"Caracterización de suelos":
+					"Realizamos procesos de caracterización que permiten comprender las condiciones del suelo y tomar decisiones técnicas mejor fundamentadas.",
+				"Información y fotografía aérea":
+					"Apoyamos procesos de caracterización territorial mediante herramientas de información y fotografía aérea aplicadas a las necesidades del proyecto.",
+				"Suministro de insumos":
+					"Facilitamos el suministro de insumos agrícolas requeridos para la ejecución y mantenimiento de las actividades productivas.",
+				"Encerramientos perimetrales":
+					"Desarrollamos soluciones de cerramiento adaptadas a las características y necesidades de las áreas de intervención.",
+			}),
 			context: {
 				title: "Gestión responsable del territorio",
 				paragraphs: [
@@ -304,28 +253,16 @@ export const services = [
 				"El agua es uno de los recursos esenciales de cualquier territorio y su gestión requiere conocimiento técnico, planificación y seguimiento.",
 			valueProposition:
 				"Acompañamos proyectos relacionados con la protección, ordenamiento y manejo sostenible del recurso hídrico, desde la planificación hasta las acciones de intervención y conservación.",
-			capabilities: [
-				{
-					title: "Planes de manejo ambiental de sistemas acuíferos",
-					description:
-						"Brindamos asesoría técnica y acompañamiento en la elaboración y ejecución de planes orientados a la protección y manejo ambiental de sistemas acuíferos.",
-				},
-				{
-					title: "Saneamiento y manejo de vertimientos",
-					description:
-						"Apoyamos la formulación y ejecución de planes de saneamiento y manejo de vertimientos de acuerdo con las necesidades de cada proyecto.",
-				},
-				{
-					title: "Ordenamiento de cuencas",
-					description:
-						"Participamos en procesos asociados a Planes de Ordenamiento y Manejo de Cuencas Hidrográficas (POMCA) y Planes de Ordenamiento del Recurso Hídrico (PORH).",
-				},
-				{
-					title: "Manejo de cauces y vertimientos",
-					description:
-						"Brindamos asesoría y apoyo técnico en actividades relacionadas con aforos de caudales y caracterización de vertimientos.",
-				},
-			],
+			capabilities: createCapabilities({
+				"Planes de manejo ambiental de sistemas acuíferos":
+					"Brindamos asesoría técnica y acompañamiento en la elaboración y ejecución de planes orientados a la protección y manejo ambiental de sistemas acuíferos.",
+				"Saneamiento y manejo de vertimientos":
+					"Apoyamos la formulación y ejecución de planes de saneamiento y manejo de vertimientos de acuerdo con las necesidades de cada proyecto.",
+				"Ordenamiento de cuencas":
+					"Participamos en procesos asociados a Planes de Ordenamiento y Manejo de Cuencas Hidrográficas (POMCA) y Planes de Ordenamiento del Recurso Hídrico (PORH).",
+				"Manejo de cauces y vertimientos":
+					"Brindamos asesoría y apoyo técnico en actividades relacionadas con aforos de caudales y caracterización de vertimientos.",
+			}),
 			context: {
 				title: "Una visión integral del recurso hídrico",
 				paragraphs: [
@@ -379,28 +316,16 @@ export const services = [
 				"Entornos de trabajo seguros requieren prevención, planificación y sistemas de gestión que funcionen en la práctica.",
 			valueProposition:
 				"Acompañamos a organizaciones públicas y privadas en el diseño, implementación, evaluación y fortalecimiento de sus procesos de Seguridad y Salud en el Trabajo.",
-			capabilities: [
-				{
-					title: "Sistemas de Gestión de Seguridad y Salud en el Trabajo",
-					description:
-						"Diseñamos e implementamos Sistemas de Gestión de Seguridad y Salud en el Trabajo (SG-SST) adaptados a las características y necesidades de cada organización.",
-				},
-				{
-					title: "Sistemas de gestión",
-					description:
-						"Apoyamos el diseño e implementación de sistemas de gestión que permitan fortalecer procesos internos y promover mejores prácticas organizacionales.",
-				},
-				{
-					title: "Auditorías",
-					description:
-						"Realizamos auditorías a Sistemas de Gestión de Calidad como herramienta para evaluar su funcionamiento e identificar oportunidades de mejora.",
-				},
-				{
-					title: "Gestión del riesgo de desastres",
-					description:
-						"Acompañamos la formulación y desarrollo de Planes de Gestión del Riesgo de Desastres para entidades públicas y privadas (PGRDEPP).",
-				},
-			],
+			capabilities: createCapabilities({
+				"Sistemas de Gestión de Seguridad y Salud en el Trabajo":
+					"Diseñamos e implementamos Sistemas de Gestión de Seguridad y Salud en el Trabajo (SG-SST) adaptados a las características y necesidades de cada organización.",
+				"Sistemas de gestión":
+					"Apoyamos el diseño e implementación de sistemas de gestión que permitan fortalecer procesos internos y promover mejores prácticas organizacionales.",
+				["Auditorías"]:
+					"Realizamos auditorías a Sistemas de Gestión de Calidad como herramienta para evaluar su funcionamiento e identificar oportunidades de mejora.",
+				"Gestión del riesgo de desastres":
+					"Acompañamos la formulación y desarrollo de Planes de Gestión del Riesgo de Desastres para entidades públicas y privadas (PGRDEPP).",
+			}),
 			context: {
 				title: "Procesos claros y sostenibles",
 				paragraphs: [
