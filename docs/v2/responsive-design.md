@@ -1515,8 +1515,8 @@ Brand Full logo when Full logo Full logo Full logo
 practical
 
 Primary Compact panel Compact or Expanded when Expanded
-navigation expanded based on fit allows  
- fit
+navigation expanded based on fit allows
+fit
 
 Contact CTA Inside compact Panel or Header Header Header
 panel depending on fit
@@ -2140,8 +2140,8 @@ Behavior Mobile Tablet Desktop Large screen
 ---
 
 Layout 1--2 2--3 Balanced Same bounded row
-columns columns / horizontal row  
- wrap
+columns columns / horizontal row
+wrap
 
 Hero overlap None or Optional Controlled Controlled
 minimal minimal overlap allowed overlap allowed
@@ -4182,8 +4182,8 @@ Submission Required Required Required Required
 feedback
 
 User data Required Required Required Required
-preserved on  
- reflow
+preserved on
+reflow
 
 Contact image Optional / Optional Supporting only Supporting
 reduced only
