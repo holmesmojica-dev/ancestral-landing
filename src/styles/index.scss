@@ -1,16 +1,20 @@
-@use "./bootstrap-extensions";
-@use "./base/base";
-
-@use "./utilities/utilities";
-
-@use "./components/buttons";
-@use "./components/custom-popup";
-@use "./components/footer";
-@use "./components/header";
-@use "./components/navbar";
-
-@use "./sections/about-us";
-@use "./sections/contact-us";
-@use "./sections/full-screen-banner";
-@use "./sections/our-services";
-@use "./sections/why-us";
+@use "bootstrap-extensions";
+@use "base/base";
+@use "utilities/utilities";
+@use "components/action-link";
+@use "components/brand-logo";
+@use "components/content-section";
+@use "components/section-heading";
+@use "components/site-header";
+@use "components/hero";
+@use "components/experience-indicators";
+@use "components/about";
+@use "components/service-card";
+@use "components/services";
+@use "components/related-services";
+@use "components/service-detail";
+@use "components/territorial-commitment";
+@use "components/trusted-entities";
+@use "components/contact";
+@use "components/not-found";
+@use "components/site-footer";

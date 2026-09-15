@@ -1,0 +1,28 @@
+@use "../abstracts/colors";
+@use "../abstracts/responsive";
+@use "../abstracts/variables";
+
+.content-section {
+	padding-block: variables.get-space("8");
+
+	&--page {
+		background: colors.$off-white;
+	}
+
+	&--surface {
+		background: colors.$white;
+	}
+
+	&--dark {
+		background: colors.$brand-navy;
+		color: colors.$white;
+	}
+
+	@include responsive.from("tablet") {
+		padding-block: variables.get-space("9");
+	}
+
+	@include responsive.from("desktop") {
+		padding-block: variables.get-space("10");
+	}
+}

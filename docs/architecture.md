@@ -2,103 +2,150 @@
 
 ## Overview
 
-Ancestral Landing is a modern frontend application built with React, TypeScript, and Vite. The project follows a modular architecture focused on component reusability, maintainability, and scalability.
+Ancestral Landing V2 is the production React, TypeScript, Vite, and
+React Router frontend for Ancestral Servicios Ambientales. The
+implementation contains the complete approved V2 experience: the Home
+page, five reusable service-detail routes, responsive navigation,
+production contact integration, prerendered SEO output, and the shared
+visual/component foundation.
 
-The application is structured around reusable UI components, independent page sections, centralized configuration, and a customizable SCSS styling system.
+The architecture remains intentionally focused. Bootstrap provides the
+grid, containers, responsive layout, and common utilities. SCSS owns
+Ancestral's visual identity and component contracts. Typed configuration
+centralizes canonical navigation, service, contact, trusted-entity, and
+SEO data.
 
----
-
-## Project Structure
-
-The frontend source code is organized as follows:
+## Source structure
 
 ```text
 src/
-├── assets/
-├── components/
-├── config/
-├── pages/
-├── sections/
-├── styles/
-├── tests/
+├── assets/       # Approved V2 brand, service, partner, and photography assets
+├── components/   # Reusable visual, semantic, navigation, contact, and service primitives
+├── config/       # Typed canonical navigation, service, contact, trusted-entity, and SEO data
+├── pages/        # Route-level Home and Service Detail composition
+├── styles/       # Tokens, Bootstrap integration, base rules, utilities, and component styles
+├── tests/        # Shared test setup and infrastructure tests
+├── types/        # Shared domain-oriented TypeScript contracts
 ├── App.tsx
 └── main.tsx
 ```
 
-### Assets
+The dependency direction is composition toward reusable foundations:
 
-Contains static resources used by the application, such as images, icons, and other frontend resources.
+```text
+App → pages → components → shared types/configuration
+```
 
-### Components
+Lower-level components do not import pages. Configuration contains
+canonical data and stable identifiers rather than page-composition
+instructions.
 
-Contains reusable UI elements that can be shared across different sections or pages.
+## Application shell and routing
 
-Examples:
+`main.tsx` initializes the browser application using Vite's configured
+base path. `App.tsx` owns the accessible application shell, shared
+navigation behavior, main landmark, and route table.
 
-- Header
-- Footer
-- Navbar
-- Buttons
-- Cards
-- Widgets
+The public production experience exposes Home plus the five canonical
+service routes:
 
-### Sections
+```text
+/
+/servicios/ambientales
+/servicios/forestales
+/servicios/agricolas
+/servicios/recurso-hidrico
+/servicios/seguridad-salud-trabajo
+```
 
-Contains complete and independent blocks that compose the landing page.
+Service pages use a shared route-level experience driven by typed
+service configuration instead of duplicating page structure.
 
-Examples:
+## Home composition
 
-- Home
-- About Us
-- Why Us
-- Services
-- Contact
+The Home page contains the approved V2 narrative and conversion flow,
+including the responsive Header, Hero, trust/experience content,
+institutional content, service overview, Environmental
+Compensation/territorial-impact content, trusted entities, Contact, and
+Footer.
 
-Each section is responsible for its own presentation and business information.
+Environmental Compensation is intentionally not modeled as a sixth
+service. It remains a transversal experience and impact narrative
+defined by the V2 content architecture.
 
-### Configuration
+## Contact integration
 
-The application follows a configuration-driven approach where common information is centralized in configuration files.
+The Contact UI is integrated with the production Ancestral API rather
+than operating as a UI-only placeholder.
 
-Examples:
+Frontend responsibilities include:
 
-- Navigation menu items
-- Section identifiers
-- Application constants
+- collecting and validating the approved form data;
+- rendering Cloudflare Turnstile with the environment-specific public
+  Site Key;
+- sending the CAPTCHA token in the request body together with the
+  contact payload;
+- submitting to the configured API origin;
+- exposing accessible pending, success, validation, and failure
+  states;
+- never embedding the Turnstile Secret Key or API secrets in `VITE_*`
+  configuration.
 
-This approach reduces duplicated information and simplifies future modifications.
+The API independently performs server-side validation, Turnstile
+verification, rate limiting, and transactional email delivery.
 
----
+## SEO and prerendering
 
-## Styling Architecture
+The production build prerenders Home and all five service routes.
+Route-specific metadata, canonical URLs, social metadata, JSON-LD,
+`robots.txt`, and `sitemap.xml` are generated from typed configuration.
 
-The project uses SCSS as the main styling solution combined with Bootstrap.
+The browser hydrates the prerendered output and retains React Router
+client navigation. Unknown routes are not treated as Home and production
+Nginx preserves a genuine HTTP 404.
 
-The styling strategy includes:
+See [`docs/v2/seo.md`](./v2/seo.md) for the SEO contract.
 
-- Modular SCSS organization.
-- Design variables and reusable utilities.
-- Bootstrap customization and extensions.
-- Responsive design principles.
+## Styling architecture
 
-Custom Bootstrap utilities were implemented to extend the default spacing system, including additional gutter classes:
+```text
+src/styles/
+├── abstracts/              # Color, typography, spacing, responsive, and shared tokens
+├── base/                   # Global document foundations
+├── components/             # Reusable component contracts
+├── utilities/              # Small generic project utilities
+├── bootstrap-extensions.scss
+└── index.scss              # Explicit style entry point
+```
 
-- `g-6` to `g-9`
-- `gx-6` to `gx-9`
-- `gy-6` to `gy-9`
+The Bootstrap customization uses the canonical V2 palette, Poppins,
+shared spacing tokens, and the documented responsive modes:
 
-This provides additional flexibility for responsive layouts while maintaining Bootstrap conventions.
+- Mobile: below 768 px
+- Tablet: 768 px and above
+- Desktop: 1024 px and above
+- Large screen: 1440 px and above
 
----
+Component styles are mobile-first and use shared tokens. Accessibility
+states, reduced-motion behavior, and responsive reflow are part of the
+component contracts rather than post-processing concerns.
 
-## Component Design Principles
+## Assets
 
-The frontend architecture follows these principles:
+Approved logos are consumed from `src/assets/images/logo/`, and service
+configuration imports the supplied category icons from
+`src/assets/icons/services/`. Partner marks and V2 photography remain
+organized by content role.
 
-- Separation of concerns.
-- Reusable components.
-- Configuration-driven behavior.
-- Maintainable styling.
-- Responsive-first development.
+Lucide is used for generic functional iconography. It does not replace
+supplied brand or service-category assets.
 
-This architecture allows the project to grow while keeping the codebase organized and easy to maintain.
+## Production boundary
+
+The Landing is deployed independently from `ancestral-api`. The frontend
+is static production output served by Nginx, while contact requests
+target `https://api.ancestral-col.com`.
+
+Deployment topology, immutable releases, smoke tests, and rollback
+behavior are documented in
+[`docs/v2/deployment.md`](./v2/deployment.md).

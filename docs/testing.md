@@ -2,94 +2,97 @@
 
 ## Overview
 
-Ancestral Landing uses automated testing to ensure component reliability, application stability, and confidence during future changes.
+Ancestral Landing uses Vitest, React Testing Library,
+`@testing-library/jest-dom`, and jsdom. Tests prioritize observable
+behavior, accessible roles and names, stable content/configuration
+contracts, routing, and production-facing integration behavior that can
+be validated deterministically in the frontend.
 
-The testing strategy focuses on validating the behavior of components and user-visible functionality.
+## Test organization
 
----
+- Reusable component tests are colocated with their components.
+- Application-shell tests remain near `App.tsx`.
+- Configuration tests are colocated with their typed data modules.
+- Shared test setup lives in `src/tests/setup.ts`.
+- Integration-oriented frontend tests mock external boundaries rather
+  than contacting production services.
 
-## Testing Stack
+## V2 coverage responsibilities
 
-The project uses the following testing tools:
+The current V2 suite should protect, as applicable:
 
-### Vitest
+- Accessible application shell and skip navigation.
+- Approved brand-asset selection.
+- Reusable action and section-heading semantics.
+- Canonical navigation order, destinations, and responsive-menu
+  interaction.
+- Exactly five canonical service definitions and stable service
+  routes.
+- The rule that Environmental Compensation is not a sixth service.
+- Home Hero, institutional, services, impact, trusted-entity, Contact,
+  and Footer behavior.
+- Shared Service Detail behavior for all five official service routes.
+- Contact form validation and submission states.
+- Cloudflare Turnstile frontend lifecycle and CAPTCHA-token handling.
+- API request construction without exposing private configuration.
+- Accessible success, validation, service-unavailable, and generic
+  failure feedback.
+- Route-specific SEO/prerendering contracts where covered by automated
+  tests.
+- Reduced-motion and accessibility-sensitive component behavior where
+  deterministic.
 
-Vitest is the main testing framework responsible for running unit and component tests.
+Tests should protect user-visible behavior and stable contracts without
+duplicating implementation details or every child-component assertion.
 
-### React Testing Library
+## Commands
 
-React Testing Library is used to render components and validate the application behavior from the user's perspective.
-
-Tests focus on what users can see and interact with rather than implementation details.
-
-### jsdom
-
-jsdom provides a browser-like environment that allows React components to be tested outside a real browser.
-
----
-
-## Testing Philosophy
-
-Tests should follow these principles:
-
-- Validate user-facing behavior.
-- Avoid testing implementation details.
-- Keep tests simple and maintainable.
-- Ensure components can evolve without unnecessary test failures.
-
-The goal is to guarantee confidence when refactoring or adding new features.
-
----
-
-## Running Tests
-
-Execute the complete test suite:
+Run the complete suite once:
 
 ```bash
 npm run test:run
 ```
 
-Run tests in watch mode during development:
+Run in watch mode:
 
 ```bash
 npm run test:watch
 ```
 
----
-
-## Coverage Reports
-
-Generate a test coverage report:
+Generate the V8 coverage reports consumed by SonarCloud:
 
 ```bash
 npm run coverage
 ```
 
-Coverage reports help identify untested areas and improve overall reliability.
+Coverage is written to `coverage/` as text, HTML, and LCOV output. Tests
+must not be added only to inflate a metric; they should protect
+meaningful behavior or contracts.
 
----
+## Pull-request quality sequence
 
-## CI Integration
+Before opening or updating a pull request, run:
 
-Automated tests are executed as part of the Frontend Quality Validation workflow.
+```bash
+npm run format:check
+npm run lint
+npm run test:run
+npm run coverage
+npm run build
+```
 
-The CI pipeline ensures that:
+CI and SonarCloud remain authoritative for repository quality gates.
 
-- All tests pass successfully.
-- The application can be built.
-- Code quality standards are maintained.
+## Manual validation
 
-A Pull Request cannot be merged into the protected `main` branch if required validations fail.
+Automated tests do not replace manual responsive, accessibility,
+CAPTCHA, and production-integration review.
 
----
+For relevant changes, manually validate the viewport matrix defined in
+`docs/v2/responsive-design.md`, including keyboard focus, reduced
+motion, image crops, text reflow, intermediate widths, Contact
+submission states, and Turnstile behavior.
 
-## Future Improvements
-
-The testing strategy can evolve to include additional quality practices such as:
-
-- End-to-end testing.
-- Visual regression testing.
-- Performance testing.
-- Accessibility testing.
-
-The current foundation allows the testing ecosystem to grow while maintaining the existing quality standards.
+Production contact-flow acceptance must validate the real deployed
+Landing → API → Turnstile → email path without exposing secrets in logs,
+screenshots, source control, or browser configuration.

@@ -1,0 +1,72 @@
+@use "../abstracts/colors";
+@use "../abstracts/fonts";
+@use "../abstracts/responsive";
+@use "../abstracts/variables";
+
+.trusted-entities {
+	padding-block: variables.get-space("8");
+
+	&__title {
+		margin-block-end: variables.get-space("7");
+		color: colors.$brand-navy;
+		font-size: clamp(1.75rem, 4vw, fonts.get-font-size("h2"));
+		font-weight: fonts.get-font-weight("bold");
+		line-height: fonts.get-line-height("heading");
+		text-align: center;
+
+		span {
+			color: colors.$brand-green;
+		}
+	}
+
+	&__list {
+		display: grid;
+		align-items: center;
+		padding: variables.get-space("6");
+		margin: 0;
+		border: 0.0625rem solid colors.$neutral-light;
+		border-radius: variables.$radius-lg;
+		background: colors.$off-white;
+		box-shadow: variables.$shadow-sm;
+		gap: variables.get-space("6");
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		list-style: none;
+
+		li {
+			display: flex;
+			min-height: 5rem;
+			align-items: center;
+			justify-content: center;
+		}
+
+		li:last-child {
+			grid-column: 1 / -1;
+		}
+
+		img {
+			display: block;
+			width: auto;
+			max-width: 10rem;
+			height: auto;
+			max-height: 4.5rem;
+			object-fit: contain;
+		}
+	}
+
+	@include responsive.from("tablet") {
+		&__list {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+
+			li:last-child {
+				grid-column: auto;
+			}
+		}
+	}
+
+	@include responsive.from("desktop") {
+		&__list {
+			padding: variables.get-space("7");
+			grid-template-columns: repeat(5, minmax(0, 1fr));
+		}
+	}
+}

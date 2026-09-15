@@ -1,59 +1,142 @@
-import { MapPin, PhoneCall } from "lucide-react";
-import ContactWidget from "../ContactWidget/ContactWidget";
-import Vr from "../Vr/Vr";
-import Navbar from "../Navbar/Navbar";
-import { useEffect, useState } from "react";
-import { getBaseSectionHref, MenuItemId } from "../../config/menuConfig";
+import { Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
-const Header = () => {
-	const [isScrolled, setIsScrolled] = useState(false);
+import { navigationItems, serviceDetailNavigationItems } from "../../config/navigation";
+import { createBaseAwarePath, routePaths } from "../../config/routes";
+import { genericWebsiteWhatsAppUrl } from "../../contact/whatsApp";
+import { useActiveSection } from "../../hooks/useActiveSection";
+import { ActionLink } from "../ActionLink/ActionLink";
+import { BrandLogo } from "../BrandLogo/BrandLogo";
+
+import WhatsappIcon from "../../assets/icons/social/whatsapp.webp";
+
+const navigationId = "primary-navigation";
+const homeNavigationSectionIds = navigationItems.map((item) => item.id);
+const serviceDetailNavigationSectionIds = serviceDetailNavigationItems.map((item) => item.id);
+const serviceDetailStickyOffset = 120;
+
+export interface HeaderProps {
+	readonly isHomePage?: boolean;
+	readonly isServiceDetailPage?: boolean;
+}
+
+export function Header({ isHomePage = true, isServiceDetailPage }: Readonly<HeaderProps>) {
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const showsServiceDetailNavigation = isServiceDetailPage ?? !isHomePage;
+	const currentNavigationItems = showsServiceDetailNavigation
+		? serviceDetailNavigationItems
+		: navigationItems;
+	const currentSectionIds = showsServiceDetailNavigation
+		? serviceDetailNavigationSectionIds
+		: homeNavigationSectionIds;
+	const initialSectionId = showsServiceDetailNavigation ? "servicio" : "inicio";
+	const [observedActiveSectionId, setActiveSectionId] = useActiveSection(
+		currentSectionIds,
+		initialSectionId,
+		isHomePage ? undefined : serviceDetailStickyOffset
+	);
+	const activeSectionId = (currentSectionIds as readonly string[]).includes(observedActiveSectionId)
+		? observedActiveSectionId
+		: initialSectionId;
+	const menuButtonRef = useRef<HTMLButtonElement>(null);
 
 	useEffect(() => {
-		const handleScroll = () => {
-			if (window.scrollY > 171) setIsScrolled(true);
-			else setIsScrolled(false);
+		if (!isMenuOpen) {
+			return undefined;
+		}
+
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key === "Escape") {
+				setIsMenuOpen(false);
+				menuButtonRef.current?.focus();
+			}
 		};
 
-		window.addEventListener("scroll", handleScroll);
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-		};
+		document.addEventListener("keydown", handleKeyDown);
+
+		return () => document.removeEventListener("keydown", handleKeyDown);
+	}, [isMenuOpen]);
+
+	useEffect(() => {
+		const handleResize = () => setIsMenuOpen(false);
+
+		window.addEventListener("resize", handleResize);
+
+		return () => window.removeEventListener("resize", handleResize);
 	}, []);
 
-	return (
-		<>
-			<div className="header-spacer" />
-			<header className="c-bg-white shadow z-1">
-				<div className={`container-fluid container-xl ${isScrolled ? "hide-content" : ""}`}>
-					<div className="row align-items-center justify-content-center justify-content-sm-between pt-4 ">
-						<img
-							src={`${import.meta.env.BASE_URL}images/logo.webp`}
-							width={365}
-							height={137}
-							className="col-7 col-sm-3 col-lg-3 col-xl-2 h-auto"
-							alt="Logo Ancestral servicios ambientales"
-						/>
-						<div className="col-sm-8 d-none d-sm-flex gap-6 justify-content-end">
-							<ContactWidget title="Ubicación" description="Calle 54 # 22-12" widgetIcon={MapPin} />
-							<Vr />
-							<ContactWidget title="Llámanos" description="316 411 4933" widgetIcon={PhoneCall} />
-							<Vr className="d-none d-lg-flex" />
-							<a
-								className="btn-link-sm btn-c-accent align-self-center d-none d-lg-block c-animation-float"
-								href={getBaseSectionHref(MenuItemId.Contact)}
-							>
-								Agenda una cita
-							</a>
-						</div>
-					</div>
-					<hr className="mb-2" />
-				</div>
-				<div className="container-fluid container-xl pb-2">
-					<Navbar />
-				</div>
-			</header>
-		</>
-	);
-};
+	const closeMenu = () => setIsMenuOpen(false);
+	const handleNavigation = (sectionId: (typeof currentSectionIds)[number]) => {
+		setActiveSectionId(sectionId);
+		closeMenu();
+	};
+	const homeHref = isHomePage ? "#inicio" : createBaseAwarePath(`${routePaths.home}#inicio`);
+	const getNavigationHref = (href: (typeof currentNavigationItems)[number]["href"]) =>
+		isHomePage || showsServiceDetailNavigation
+			? href
+			: createBaseAwarePath(`${routePaths.home}${href}`);
 
-export default Header;
+	return (
+		<header className="site-header">
+			<div className="container site-header__inner">
+				<a
+					aria-label="Ir al inicio de Ancestral"
+					className="site-header__home"
+					href={homeHref}
+					onClick={() => handleNavigation("inicio")}
+				>
+					<BrandLogo className="site-header__logo" />
+				</a>
+
+				<button
+					aria-controls={navigationId}
+					aria-expanded={isMenuOpen}
+					aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+					className="site-header__menu-button"
+					onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
+					ref={menuButtonRef}
+					type="button"
+				>
+					{isMenuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+				</button>
+
+				<nav
+					aria-label="Navegación principal"
+					className={`site-header__navigation${isMenuOpen ? " site-header__navigation--open" : ""}`}
+					id={navigationId}
+				>
+					<ul className="site-header__navigation-list">
+						{currentNavigationItems.map((item) => (
+							<li key={item.id}>
+								<a
+									aria-current={
+										(isHomePage || showsServiceDetailNavigation) && item.id === activeSectionId
+											? "location"
+											: undefined
+									}
+									className="site-header__navigation-link"
+									href={getNavigationHref(item.href)}
+									onClick={() => handleNavigation(item.id)}
+								>
+									{item.label}
+								</a>
+							</li>
+						))}
+					</ul>
+
+					<ActionLink
+						aria-label="Hablemos por WhatsApp"
+						className="site-header__whatsapp"
+						href={genericWebsiteWhatsAppUrl}
+						onClick={closeMenu}
+						rel="noreferrer"
+						target="_blank"
+					>
+						<img alt="Logo de WhatsApp" src={WhatsappIcon} width={20} height={20} />
+						<span>Hablemos</span>
+					</ActionLink>
+				</nav>
+			</div>
+		</header>
+	);
+}

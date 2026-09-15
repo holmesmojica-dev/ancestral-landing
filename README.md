@@ -1,264 +1,320 @@
-# 🌱 Ancestral Landing
+# Ancestral Landing
 
-Modern responsive landing page developed with **React, TypeScript, and Vite** for **Ancestral Servicios Ambientales**, a company focused on environmental, agricultural, forestry, and occupational health and safety services.
+Frontend for the institutional website of Ancestral Servicios
+Ambientales, built with React, TypeScript, Vite, Bootstrap, and SCSS.
 
-This project showcases a professional frontend architecture based on reusable components, configuration-driven design, a custom SCSS styling system, automated quality validation, CI/CD pipelines, semantic versioning, and automated deployment using GitHub Pages.
+Ancestral Landing V2 is the current production frontend for Ancestral
+Servicios Ambientales. It includes the complete responsive institutional
+experience, five official service areas with reusable detail pages,
+production SEO/prerendering, and the contact workflow integrated with
+the Ancestral API, Cloudflare Turnstile, and transactional email
+notifications.
 
----
+## Live Production
 
-## 🔗 Live Demo
+The current production version is available at:
 
-Visit the production application:
+**https://ancestral-col.com/**
 
-**https://holmesmojica-dev.github.io/ancestral-landing/**
+## Application Preview
 
----
-
-## 🖼️ Application Preview
+Ancestral Landing V2 delivers a complete responsive institutional experience for Ancestral Servicios Ambientales, including the Home page, five service-detail experiences, production contact flow, responsive navigation, and SEO-ready prerendered routes.
 
 ### Desktop Experience
 
 <p align="center">
-  <img src="./docs/screenshots/application/desktop/home.png" width="900" alt="Ancestral Landing Desktop Home">
+  <img
+    src="./docs/screenshots/application/desktop/Home.jpg"
+    width="900"
+    alt="Ancestral Landing V2 desktop home page"
+  >
 </p>
 
 <p align="center">
-  <img src="./docs/screenshots/application/desktop/about-us.png" width="430" alt="About Us">
-  <img src="./docs/screenshots/application/desktop/services.png" width="430" alt="Services">
+  <img
+    src="./docs/screenshots/application/desktop/Services.jpg"
+    width="600"
+    alt="Ancestral Landing V2 services section"
+  >
+  <img
+    src="./docs/screenshots/application/desktop/Service-detail.jpg"
+    width="600"
+    alt="Ancestral Landing V2 service detail page"
+  >
+</p>
+
+<p align="center">
+  <img
+    src="./docs/screenshots/application/desktop/Contact.jpg"
+    width="900"
+    alt="Ancestral Landing V2 production contact experience"
+  >
 </p>
 
 ### Mobile Experience
 
 <p align="center">
-  <img src="./docs/screenshots/application/mobile/home-mobile.png" width="260" alt="Mobile Home">
-  <img src="./docs/screenshots/application/mobile/services-mobile.png" width="260" alt="Mobile Services">
-  <img src="./docs/screenshots/application/mobile/contact-mobile.png" width="260" alt="Mobile Contact">
-</p>
-
----
-
-## ⭐ Key Highlights
-
-- Responsive design optimized for desktop and mobile devices.
-- Modern React architecture using reusable components.
-- Configuration-driven navigation and content management.
-- SCSS design system with custom Bootstrap extensions.
-- Automated testing and quality validation.
-- Continuous Integration and Continuous Deployment (CI/CD).
-- Semantic versioning and automated GitHub Releases.
-- Automated production deployment with GitHub Pages.
-
----
-
-# 🛠️ Technology Stack
-
-The project is built using a modern frontend ecosystem focused on performance, maintainability, and scalability.
-
-| Category           | Technologies                           |
-| ------------------ | -------------------------------------- |
-| Frontend Framework | React 18                               |
-| Language           | TypeScript                             |
-| Build Tool         | Vite                                   |
-| Routing            | React Router DOM                       |
-| Styling            | SCSS + Bootstrap 5                     |
-| Testing            | Vitest + React Testing Library + jsdom |
-| Code Quality       | ESLint + Prettier + SonarCloud         |
-| CI/CD              | GitHub Actions                         |
-| Release Management | Semantic Release                       |
-| Deployment         | GitHub Pages                           |
-
----
-
-# 🏗️ Frontend Architecture
-
-The application follows a component-based architecture using a Single Page Application (SPA) approach.
-
-The routing configuration uses a single `Home` page served from the `/ancestral-landing/` base path. The application is composed of reusable layout components and independent sections that are rendered inside the main page.
-
-<p align="center">
-  <img 
-    src="./docs/screenshots/architecture/frontend-architecture.png" 
-    width="1000" 
-    alt="Ancestral Landing Frontend Architecture"
+  <img
+    src="./docs/screenshots/application/mobile/Home.jpg"
+    width="280"
+    alt="Ancestral Landing V2 mobile home page"
+  >
+  <img
+    src="./docs/screenshots/application/mobile/Service-detail.jpg"
+    width="280"
+    alt="Ancestral Landing V2 mobile service detail page"
+  >
+  <img
+    src="./docs/screenshots/application/mobile/Contact.jpg"
+    width="280"
+    alt="Ancestral Landing V2 mobile contact experience"
   >
 </p>
 
-### Architecture principles
+## Architecture
 
-- **Single Page Application (SPA)** architecture with React Router.
-- **Component-based design** using reusable UI elements.
-- **Section-driven layout** where `Home.tsx` orchestrates all application sections.
-- **Configuration-driven navigation** using centralized configuration files.
-- **SCSS design system** with reusable variables, mixins, and custom Bootstrap extensions.
-- **Clean project organization** separating pages, sections, components, styles, and configuration.
+Ancestral Landing V2 follows a component-driven frontend architecture designed around
+clear separation of concerns, typed configuration, reusable UI primitives, responsive
+composition, and independently deployable frontend/backend services.
+
+<p align="center">
+  <img
+    src="./docs/screenshots/architecture/frontend-architecture.jpg"
+    width="1000"
+    alt="Ancestral Landing V2 frontend architecture"
+  >
+</p>
+
+The frontend is built with React and strict TypeScript, uses React Router for the Home
+and five service-detail routes, and generates prerendered production output through Vite.
+Reusable content and service definitions are maintained through typed configuration
+rather than duplicated across pages.
+
+The production contact workflow integrates the frontend with the independently deployed
+Ancestral API. Cloudflare Turnstile protects contact submissions before the API processes
+the request and delivers transactional email notifications.
+
+For the complete architecture and implementation boundaries, see
+[`docs/architecture.md`](./docs/architecture.md).
+
+## V2 sources of truth
+
+Implementation decisions must follow these canonical specifications:
+
+1.  [`docs/v2/content-architecture.md`](./docs/v2/content-architecture.md)
+2.  [`docs/v2/design-system.md`](./docs/v2/design-system.md)
+3.  [`docs/v2/responsive-design.md`](./docs/v2/responsive-design.md)
+
+Historical V1 screenshots under `docs/screenshots/` remain project
+evidence only. They are not a V2 design or architecture reference.
+
+## Technology
 
 ---
 
-# 🚀 Installation & Local Setup
+Area Technology
+
+---
+
+UI React 18
+
+Routing React Router 6
+
+Language Strict TypeScript
+
+Build Vite 5
+
+Layout Bootstrap 5
+
+Visual system Sass/SCSS
+
+Functional icons Lucide React
+
+Tests Vitest, React Testing Library, jsdom
+
+Quality ESLint, jsx-a11y, Prettier, SonarCloud
+
+Automation GitHub Actions, Husky, lint-staged, semantic-release
+
+---
+
+Poppins is the only application font family. Supplied Ancestral logos,
+service-category icons, partner marks, and V2 photography are kept under
+`src/assets/` and must not be reconstructed with CSS, text, or generic
+icon libraries.
+
+## Current foundation
+
+The repository currently provides:
+
+- An accessible routed React application shell prepared for the
+  production domain root.
+- Build-time prerendering and route-specific SEO for Home and the five
+  service pages.
+- The approved responsive Header and contextual navigation.
+- The complete approved Ancestral Landing V2 Home experience.
+- The five official service areas and their reusable Service Detail
+  experience.
+- Environmental Compensation and territorial impact content integrated
+  as transversal content.
+- The production Contact experience, including service context,
+  Cloudflare Turnstile, API submission, user feedback, and error
+  handling.
+- The approved Footer and institutional navigation.
+- Reusable brand, action, section, navigation, gallery, and service UI
+  primitives.
+- Typed configuration for navigation, services, contact information,
+  and trusted entities.
+- Automated component and behavior tests for the complete V2
+  experience.
+- Production integration with `https://api.ancestral-col.com` for
+  contact requests.
+- Customer confirmation and internal notification emails handled by
+  the API after a validated contact submission.
+
+Environmental Compensation is not a sixth service. It remains a
+transversal experience and impact narrative, as defined by the V2
+content architecture.
+
+## Local setup
 
 ### Prerequisites
 
-Before running the project locally, make sure you have installed:
+- Node.js 22
+- npm 10 or newer
 
-- Node.js 20+
-- npm 10+
-
-### Clone the repository
-
-```bash
-git clone https://github.com/holmesmojica-dev/ancestral-landing.git
-```
-
-### Navigate to the project directory
-
-```bash
-cd ancestral-landing
-```
-
-### Install dependencies
+Install the locked dependencies:
 
 ```bash
 npm ci
 ```
 
-### Start the development server
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
-The application will be available at:
+Copy `.env.example` to `.env.local` before starting the application. The
+example uses Cloudflare's public always-pass Turnstile test Site Key for
+local development. Set `VITE_TURNSTILE_SITE_KEY` to the
+environment-specific public Site Key when building another environment.
+Set `VITE_API_BASE_URL` to the public origin of the Ancestral API
+without the `/api/contact` path. Both variables are public frontend
+configuration; never place private Turnstile keys, API credentials, or
+other secrets in `VITE_*` variables. Because Vite embeds these public
+values in the client bundle, provide the environment-specific values at
+build time.
 
-```text
-http://localhost:5173/ancestral-landing/
+The application uses the domain root (`/`) as its Vite base path.
+
+## Commands
+
+---
+
+Command Purpose
+
+---
+
+`npm run dev` Start the Vite development server
+
+`npm run build` Type-check and create the production bundle
+
+`npm run preview` Preview the production bundle locally
+
+`npm run lint` Run ESLint and accessibility rules
+
+`npm run format` Apply Prettier formatting
+
+`npm run format:check` Verify formatting without modifying files
+
+`npm run test:run` Run all tests once
+
+`npm run test:watch` Run tests in watch mode
+
+`npm run coverage` Generate text, HTML, and LCOV coverage reports
+
+---
+
+Run the complete local quality sequence before opening a pull request:
+
+```bash
+npm run format:check
+npm run lint
+npm run test:run
+npm run coverage
+npm run build
 ```
 
----
+## Architecture
 
-# 📜 Available Scripts
+```text
+src/
+├── assets/
+├── components/
+├── config/
+├── pages/
+├── styles/
+├── tests/
+├── types/
+├── App.tsx
+└── main.tsx
+```
 
-The project provides the following npm commands:
+Bootstrap owns generic layout and responsive utilities. Project SCSS
+owns the Ancestral visual identity. Canonical repeated content is kept
+in typed configuration and remains separate from React page composition.
 
-| Command              | Description                                 |
-| -------------------- | ------------------------------------------- |
-| `npm run dev`        | Starts the Vite development server          |
-| `npm run build`      | Creates an optimized production build       |
-| `npm run preview`    | Runs the production build locally           |
-| `npm run test:run`   | Executes all automated tests                |
-| `npm run test:watch` | Runs tests in watch mode during development |
-| `npm run coverage`   | Generates the test coverage report          |
-| `npm run lint`       | Runs ESLint static analysis                 |
-| `npm run format`     | Formats the project using Prettier          |
+See [`docs/architecture.md`](./docs/architecture.md) for the detailed
+structure.
 
----
+## Responsive modes
 
-# 🧪 Testing & Code Quality
+The V2 foundation is mobile-first and uses the documented layout
+references:
 
-The project follows a quality-first development approach using automated validation and static analysis.
+- Mobile: below 768 px
+- Tablet: 768 px and above
+- Desktop: 1024 px and above
+- Large screen: 1440 px and above
 
-## Testing
+These are content-oriented reference modes, not a device whitelist.
+Components may use a justified content-fit transition when the canonical
+responsive specification requires it.
 
-Automated tests are implemented using:
+## Production
 
-- Vitest as the testing framework.
-- React Testing Library for component behavior validation.
-- jsdom to simulate browser APIs.
+The canonical production site is `https://ancestral-col.com/`.
 
-Tests are automatically executed as part of the CI pipeline, ensuring that new changes do not break existing functionality.
+The frontend is built as prerendered static output and deployed to the
+Ancestral VPS, where Nginx serves immutable release directories through
+the active `current` symlink. The contact experience communicates with
+the independently deployed API at `https://api.ancestral-col.com`.
 
----
+Production delivery is automated through GitHub Actions and includes
+repository quality validation, SonarCloud analysis, build verification,
+deployment, smoke testing, and rollback safeguards. See
+[`docs/v2/deployment.md`](./docs/v2/deployment.md) for the operational
+details.
 
-## Code Quality
+## Delivery
 
-The repository maintains consistent quality standards through:
+Pull requests must pass the repository quality checks before merge.
+Production changes are released only after the configured CI/CD workflow
+succeeds. The Landing and API remain independently deployable services
+even though the contact workflow connects them at runtime.
 
-- TypeScript type validation.
-- ESLint static code analysis.
-- Prettier formatting rules.
-- SonarCloud continuous code inspection.
-- Mandatory Quality Gates before merging Pull Requests.
+## Documentation
 
----
+- [Frontend architecture](./docs/architecture.md)
+- [Development workflow](./docs/development.md)
+- [Testing strategy](./docs/testing.md)
+- [CI/CD and delivery lifecycle](./docs/cicd.md)
+- [Production deployment and rollback](./docs/v2/deployment.md)
+- [Contributing guidelines](./docs/contributing.md)
+- [Frontend optimization](./docs/quality/frontend-optimization.md)
+- [Organic SEO](./docs/v2/seo.md)
 
-## Development Workflow
+## License
 
-All changes follow a standardized Git workflow:
-
-1. Create a GitHub Issue.
-2. Create a feature branch from `main`.
-3. Implement the required changes.
-4. Use Conventional Commit messages.
-5. Open a Pull Request.
-6. Validate all automated checks.
-7. Perform Squash & Merge into `main`.
-
-This process guarantees traceability, code quality, and a consistent repository history.
-
----
-
-# 🔄 CI/CD & Automation
-
-The project implements a complete automated software delivery lifecycle to ensure code quality, consistency, and reliable production deployments.
-
-## Automated Quality Pipeline
-
-Every change is validated through automated workflows including:
-
-- TypeScript compilation validation
-- ESLint static code analysis
-- Prettier formatting validation
-- Automated testing with Vitest
-- SonarCloud static code analysis and Quality Gate verification
-
-## Automated Release & Deployment
-
-After a Pull Request is merged into the protected `main` branch:
-
-1. Semantic Release evaluates Conventional Commit messages.
-2. A new version and GitHub Release are automatically generated.
-3. The production build is created.
-4. The application is deployed automatically to GitHub Pages.
-
-This process ensures that every production deployment has passed the required quality validations.
-
----
-
-# 📚 Additional Documentation
-
-The repository includes detailed technical documentation covering architecture, development standards, testing strategy, and CI/CD processes.
-
-| Document                                                            | Description                                                                                                             |
-| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| [🏗️ Frontend Architecture](./docs/architecture.md)                  | Project structure, component organization, configuration-driven approach, and SCSS styling architecture                 |
-| [🛠️ Development Workflow](./docs/development.md)                    | Development standards, Git workflow, branch strategy, and Conventional Commits strategy                                 |
-| [🔄 CI/CD & Automation](./docs/cicd.md)                             | GitHub Actions workflows, quality validation, Semantic Release, and deployment lifecycle                                |
-| [🧪 Testing Strategy](./docs/testing.md)                            | Testing tools, philosophy, execution commands, and quality approach                                                     |
-| [⚡ Frontend Optimization](./docs/quality/frontend-optimization.md) | Lighthouse analysis, image optimization, accessibility improvements, performance tuning, and final optimization results |
-
-## 🖼️ Visual Documentation
-
-The project also includes visual assets and evidence that complement the technical documentation:
-
-| Asset                                                                                         | Description                                                                 |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [🏠 Application Desktop Preview](./docs/screenshots/application/desktop/home.png)             | Main desktop interface and application presentation                         |
-| [📱 Mobile Responsive Experience](./docs/screenshots/application/mobile/home-mobile.png)      | Responsive design optimized for mobile devices                              |
-| [🏗️ Frontend Architecture Diagram](./docs/screenshots/architecture/frontend-architecture.png) | Visual representation of the frontend architecture and project organization |
-| [⚙️ CI/CD & Quality Evidence](./docs/screenshots/quality/github-actions.png)                  | Automated workflows, quality validation, and deployment evidence            |
-
----
-
-# 👨‍💻 Author
-
-Developed by **Holmes Mojica**.
-
-- GitHub: https://github.com/holmesmojica-dev
-- LinkedIn: https://linkedin.com/in/holmes-dennys-mojica-montero
-
----
-
-# 📄 License
-
-This project is licensed under the MIT License.
-
-For more information, see the [LICENSE](./LICENSE) file.
+This project is licensed under the [MIT License](./LICENSE).

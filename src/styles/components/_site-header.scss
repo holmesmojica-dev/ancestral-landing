@@ -1,0 +1,170 @@
+@use "../abstracts/colors";
+@use "../abstracts/fonts";
+@use "../abstracts/responsive";
+@use "../abstracts/variables";
+
+.site-header {
+	position: sticky;
+	z-index: variables.$z-header;
+	top: 0;
+	border-block-end: 0.0625rem solid colors.$neutral-light;
+	background: colors.$white;
+	box-shadow: variables.$shadow-sm;
+
+	&__inner {
+		position: relative;
+		display: flex;
+		min-height: variables.$site-header-height-mobile;
+		align-items: center;
+		justify-content: space-between;
+		gap: variables.get-space("4");
+	}
+
+	&__home {
+		flex: 0 0 auto;
+		border-radius: variables.$radius-sm;
+	}
+
+	&__logo {
+		width: 8.5rem;
+	}
+
+	&__menu-button {
+		display: inline-flex;
+		width: 3rem;
+		height: 3rem;
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+		border: 0;
+		border-radius: variables.$radius-sm;
+		background: transparent;
+		color: colors.$brand-navy;
+	}
+
+	&__navigation {
+		position: absolute;
+		top: 100%;
+		inset-inline: 0;
+		display: none;
+		padding: variables.get-space("4");
+		border: 0.0625rem solid colors.$neutral-light;
+		border-radius: 0 0 variables.$radius-md variables.$radius-md;
+		background: colors.$white;
+		box-shadow: variables.$shadow-md;
+
+		&--open {
+			display: block;
+		}
+	}
+
+	&__navigation-list {
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+		margin: 0 0 variables.get-space("4");
+		gap: variables.get-space("1");
+		list-style: none;
+	}
+
+	&__navigation-link {
+		position: relative;
+		display: flex;
+		min-height: 3rem;
+		align-items: center;
+		padding-inline: variables.get-space("3");
+		border-radius: variables.$radius-sm;
+		color: colors.$brand-navy;
+		font-size: fonts.get-font-size("body-small");
+		font-weight: fonts.get-font-weight("medium");
+		text-decoration: none;
+		transition:
+			background-color variables.$motion-fast variables.$ease-standard,
+			color variables.$motion-fast variables.$ease-standard;
+
+		&[aria-current="location"] {
+			font-weight: fonts.get-font-weight("semibold");
+
+			&::after {
+				position: absolute;
+				inset-block-end: variables.get-space("1");
+				inset-inline: variables.get-space("3");
+				height: 0.125rem;
+				border-radius: variables.$radius-pill;
+				background: colors.$brand-green;
+				content: "";
+			}
+		}
+	}
+
+	&__whatsapp {
+		width: 100%;
+		gap: variables.get-space("2");
+	}
+
+	@include responsive.from("desktop") {
+		&__inner {
+			min-height: variables.$site-header-height-desktop;
+		}
+
+		&__logo {
+			width: 9.5rem;
+		}
+
+		&__menu-button {
+			display: none;
+		}
+
+		&__navigation,
+		&__navigation--open {
+			position: static;
+			display: flex;
+			flex: 1 1 auto;
+			align-items: center;
+			justify-content: flex-end;
+			padding: 0;
+			border: 0;
+			background: transparent;
+			box-shadow: none;
+			gap: variables.get-space("4");
+		}
+
+		&__navigation-list {
+			flex-direction: row;
+			align-items: center;
+			margin: 0;
+			gap: variables.get-space("1");
+		}
+
+		&__navigation-link {
+			padding-inline: variables.get-space("3");
+		}
+
+		&__whatsapp {
+			width: auto;
+			min-height: 2.5rem;
+			padding-inline: variables.get-space("4");
+			font-size: fonts.get-font-size("caption");
+
+			svg {
+				width: 1.125rem;
+				height: 1.125rem;
+			}
+		}
+	}
+}
+
+@media (hover: hover) {
+	.site-header {
+		&__home:hover {
+			outline: 0.125rem solid colors.$neutral-light;
+			outline-offset: variables.get-space("1");
+		}
+
+		&__menu-button:hover,
+		&__navigation-link:hover {
+			background: colors.$off-white;
+			color: colors.$brand-navy;
+		}
+	}
+}

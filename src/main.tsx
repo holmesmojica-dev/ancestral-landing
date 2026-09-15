@@ -1,30 +1,33 @@
+import "@fontsource/poppins/latin-400.css";
+import "@fontsource/poppins/latin-500.css";
+import "@fontsource/poppins/latin-600.css";
+import "@fontsource/poppins/latin-700.css";
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "bootstrap/scss/bootstrap.scss";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+
+import App from "./App";
 import "./styles/index.scss";
 
-import "@fontsource/inter/300.css";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/inter/700.css";
+const rootElement = document.getElementById("root");
 
-import "@fontsource/heebo/300.css";
-import "@fontsource/heebo/400.css";
-import "@fontsource/heebo/500.css";
-import "@fontsource/heebo/600.css";
-import "@fontsource/heebo/700.css";
+if (!rootElement) {
+	throw new Error("The application root element was not found.");
+}
 
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/600.css";
-import "@fontsource/roboto/700.css";
-
-import App from "./App.tsx";
-
-createRoot(document.getElementById("root")!).render(
+const application = (
 	<StrictMode>
-		<App />
+		<BrowserRouter
+			basename={import.meta.env.BASE_URL}
+			future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+		>
+			<App />
+		</BrowserRouter>
 	</StrictMode>
 );
+
+if (rootElement.children.length > 0) {
+	hydrateRoot(rootElement, application);
+} else {
+	createRoot(rootElement).render(application);
+}

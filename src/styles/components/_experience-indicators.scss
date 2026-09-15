@@ -1,0 +1,99 @@
+@use "../abstracts/colors";
+@use "../abstracts/fonts";
+@use "../abstracts/responsive";
+@use "../abstracts/variables";
+
+.experience-indicators {
+	position: relative;
+	z-index: variables.$z-decorative;
+	background-color: colors.$brand-navy;
+	border-top-right-radius: variables.$radius-circle;
+
+	&__container {
+		position: relative;
+	}
+
+	&__list {
+		position: absolute;
+		top: calc(-1 * variables.get-space("9"));
+		overflow: hidden;
+		padding: variables.get-space("2");
+		margin: 0;
+		border: 0.0625rem solid colors.$neutral-light;
+		border-radius: variables.$radius-md;
+		background: colors.$white;
+		box-shadow: variables.$shadow-md;
+		list-style: none;
+	}
+
+	&__item {
+		display: flex;
+		min-width: 0;
+		align-items: center;
+		padding: variables.get-space("3") variables.get-space("4");
+		gap: variables.get-space("3");
+		color: colors.$brand-green;
+
+		svg {
+			width: 2.25rem;
+			height: 2.25rem;
+			flex: 0 0 auto;
+		}
+	}
+
+	&__content {
+		display: flex;
+		min-width: 0;
+		flex-direction: column;
+		gap: variables.get-space("1");
+	}
+
+	&__value {
+		color: colors.$brand-navy;
+		font-size: clamp(1.375rem, 4vw, 1.75rem);
+		font-weight: fonts.get-font-weight("bold");
+		line-height: 1.15;
+	}
+
+	&__label {
+		color: colors.$neutral-dark;
+		font-size: fonts.get-font-size("body-small");
+		font-weight: fonts.get-font-weight("medium");
+		line-height: 1.4;
+	}
+
+	@include responsive.from("tablet") {
+		padding-block-end: variables.get-space("8");
+
+		&__item {
+			padding: variables.get-space("4");
+		}
+	}
+
+	@include responsive.from("desktop") {
+		padding-block-end: variables.get-space("5");
+		margin-block-start: calc(-1 * variables.get-space("8"));
+
+		&__list {
+			width: 100%;
+			margin-inline: auto;
+			top: calc(-1 * variables.get-space("5"));
+		}
+
+		&__item {
+			justify-content: center;
+			padding: variables.get-space("4") variables.get-space("5");
+
+			&:not(:first-child) {
+				border-inline-start: 0.0625rem solid colors.$neutral-light;
+			}
+		}
+	}
+
+	@include responsive.from("large") {
+		margin-block-start: calc(-1 * variables.get-space("4"));
+		&__list {
+			top: calc(-1 * variables.get-space("7"));
+		}
+	}
+}

@@ -1,0 +1,67 @@
+@use "../abstracts/colors";
+@use "../abstracts/fonts";
+@use "../abstracts/responsive";
+@use "../abstracts/variables";
+
+.not-found {
+	display: grid;
+	align-items: center;
+	min-height: calc(100vh - variables.$site-header-height-mobile);
+	text-align: center;
+
+	&__content {
+		display: grid;
+		justify-items: center;
+	}
+
+	&__eyebrow {
+		margin-block-end: variables.get-space("3");
+		color: colors.$brand-green;
+		font-size: fonts.get-font-size("h3");
+		font-weight: fonts.get-font-weight("semibold");
+		letter-spacing: 0.08em;
+	}
+
+	&__title {
+		margin-block-end: variables.get-space("4");
+		color: colors.$white;
+		font-size: clamp(2.25rem, 10vw, fonts.get-font-size("display"));
+		font-weight: fonts.get-font-weight("bold");
+		line-height: fonts.get-line-height("heading");
+	}
+
+	&__copy {
+		max-width: 44ch;
+		margin: 0;
+		color: colors.$neutral-light;
+		font-size: fonts.get-font-size("body-large");
+	}
+
+	&__actions {
+		display: flex;
+		width: 100%;
+		align-items: center;
+		flex-direction: column;
+		margin-block-start: variables.get-space("6");
+		gap: variables.get-space("4");
+
+		.action-link {
+			width: min(100%, 18rem);
+		}
+	}
+
+	@include responsive.from("tablet") {
+		&__actions {
+			width: auto;
+			flex-direction: row;
+
+			.action-link {
+				width: auto;
+			}
+		}
+	}
+
+	@include responsive.from("desktop") {
+		min-height: calc(100vh - variables.$site-header-height-desktop);
+	}
+}

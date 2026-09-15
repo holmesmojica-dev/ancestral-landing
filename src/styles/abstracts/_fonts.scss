@@ -1,31 +1,53 @@
-@mixin generate-font-family-classes($font-families-map) {
-	@each $key, $value in $font-families-map {
-		.c-ff-#{$key} {
-			font-family: $value, Sans-serif;
-		}
+@use "sass:map";
+
+$font-family-primary: "Poppins", sans-serif;
+
+$font-weights: (
+	"regular": 400,
+	"medium": 500,
+	"semibold": 600,
+	"bold": 700,
+);
+
+$font-sizes: (
+	"display": 3.5rem,
+	"h1": 3rem,
+	"h2": 2.25rem,
+	"h3": 1.5rem,
+	"h4": 1.25rem,
+	"body-large": 1.125rem,
+	"body": 1rem,
+	"body-small": 0.875rem,
+	"caption": 0.75rem,
+);
+
+$line-heights: (
+	"display": 1.1,
+	"heading": 1.2,
+	"body": 1.6,
+	"caption": 1.45,
+);
+
+@function get-font-weight($token) {
+	@if not map.has-key($font-weights, $token) {
+		@error "Unknown font-weight token: #{$token}.";
 	}
+
+	@return map.get($font-weights, $token);
 }
 
-@mixin generate-font-size-classes($font-sizes-map) {
-	@each $key, $value in $font-sizes-map {
-		.c-fs-#{$key} {
-			font-size: $value;
-		}
+@function get-font-size($token) {
+	@if not map.has-key($font-sizes, $token) {
+		@error "Unknown font-size token: #{$token}.";
 	}
+
+	@return map.get($font-sizes, $token);
 }
 
-@mixin generate-font-weight-classes($font-weights-map) {
-	@each $key, $value in $font-weights-map {
-		.c-fw-#{$key} {
-			font-weight: $value;
-		}
+@function get-line-height($token) {
+	@if not map.has-key($line-heights, $token) {
+		@error "Unknown line-height token: #{$token}.";
 	}
-}
 
-@mixin generate-line-height-classes($line-heights-map) {
-	@each $key, $value in $line-heights-map {
-		.c-lh-#{$key} {
-			line-height: $value;
-		}
-	}
+	@return map.get($line-heights, $token);
 }
