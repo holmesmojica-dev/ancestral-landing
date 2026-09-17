@@ -3,7 +3,6 @@ name: Production CI/CD
 on:
   push:
     branches:
-      - v2
       - main
     paths:
       - "src/**"
@@ -17,27 +16,6 @@ on:
       - "sonar-project.properties"
       - ".github/workflows/production.yml"
 
-  pull_request:
-    branches:
-      - v2
-      - main
-    types:
-      - opened
-      - synchronize
-      - reopened
-    paths:
-      - "src/**"
-      - "public/**"
-      - "scripts/**"
-      - "docs/**"
-      - "README.md"
-      - "index.html"
-      - "package.json"
-      - "package-lock.json"
-      - "vite.config.ts"
-      - "tsconfig*.json"
-      - "sonar-project.properties"
-      - ".github/workflows/production.yml"
 
   workflow_dispatch:
 
@@ -104,8 +82,8 @@ jobs:
   production-build:
     name: Build production artifact
     if: >
-      (github.event_name == 'push' && (github.ref == 'refs/heads/v2' || github.ref == 'refs/heads/main')) ||
-      (github.event_name == 'workflow_dispatch' && (github.ref == 'refs/heads/v2' || github.ref == 'refs/heads/main'))
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
     needs: quality
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -154,8 +132,8 @@ jobs:
   deploy:
     name: Deploy to production VPS
     if: >
-      (github.event_name == 'push' && (github.ref == 'refs/heads/v2' || github.ref == 'refs/heads/main')) ||
-      (github.event_name == 'workflow_dispatch' && (github.ref == 'refs/heads/v2' || github.ref == 'refs/heads/main'))
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
     needs: production-build
     runs-on: ubuntu-latest
     timeout-minutes: 10
