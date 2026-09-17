@@ -11,7 +11,7 @@ export const DEFAULT_ROBOTS_DIRECTIVE = "index,follow,max-image-preview:large";
 export const homeSeo = {
 	title: "Ancestral | Servicios Ambientales en Colombia",
 	description:
-		"Formulamos, asesoramos y ejecutamos proyectos ambientales, forestales, agrícolas, hídricos y de seguridad y salud en el trabajo en Colombia.",
+		"Ancestral Servicios Ambientales formula, asesora y ejecuta proyectos ambientales, forestales, agrícolas, hídricos y de seguridad y salud en el trabajo en Colombia.",
 } as const;
 
 export const notFoundSeo = {

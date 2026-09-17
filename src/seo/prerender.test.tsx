@@ -30,7 +30,9 @@ describe("build-time prerendering", () => {
 
 		expect(html).toContain('<html lang="es">');
 		expect(html).toContain("<title>Ancestral | Servicios Ambientales en Colombia</title>");
+		expect(html).toContain(`content="${homeSeo.description}"`);
 		expect(html).toContain("Transformamos");
+		expect(html).toContain("En Ancestral formulamos");
 		expect(html).toContain(`content="${DEFAULT_ROBOTS_DIRECTIVE}"`);
 		expect(html).toContain('type="application/ld+json"');
 

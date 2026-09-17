@@ -18,33 +18,33 @@ import {
 const expectedServiceSeo = [
 	{
 		route: "/servicios/ambientales",
-		title: "Servicios Ambientales en Colombia | Ancestral",
+		title: "Servicios Ambientales y Consultoría Ambiental | Ancestral",
 		description:
-			"Formulamos, planificamos, ejecutamos y acompañamos proyectos ambientales para organizaciones públicas y privadas, con experiencia técnica y trabajo en territorio.",
+			"Ancestral brinda servicios ambientales y consultoría ambiental para formular, planificar, ejecutar y acompañar proyectos públicos y privados en Colombia.",
 	},
 	{
 		route: "/servicios/forestales",
 		title: "Servicios Forestales en Colombia | Ancestral",
 		description:
-			"Acompañamos proyectos de manejo, intervención, recuperación y conservación de recursos forestales con conocimiento técnico y experiencia en campo.",
+			"Servicios forestales de Ancestral: inventario forestal, aprovechamiento forestal, manejo, recuperación y conservación con experiencia técnica en campo.",
 	},
 	{
 		route: "/servicios/agricolas",
 		title: "Servicios Agrícolas en Colombia | Ancestral",
 		description:
-			"Desarrollamos soluciones para proyectos agrícolas mediante asesoría técnica, preparación de tierras, infraestructura, caracterización de suelos y apoyo operativo.",
+			"Ancestral ofrece servicios de consultoría agrícola y asesoría técnica para preparación de tierras, infraestructura, caracterización de suelos y apoyo operativo.",
 	},
 	{
 		route: "/servicios/recurso-hidrico",
-		title: "Manejo del Recurso Hídrico en Colombia | Ancestral",
+		title: "Gestión del Recurso Hídrico en Colombia | Ancestral",
 		description:
-			"Acompañamos proyectos de planificación, protección y manejo sostenible del recurso hídrico, incluyendo acuíferos, vertimientos, cuencas y cauces.",
+			"Ancestral acompaña la gestión y el manejo del recurso hídrico mediante planificación, protección de acuíferos, cuencas, cauces y manejo de vertimientos.",
 	},
 	{
 		route: "/servicios/seguridad-salud-trabajo",
-		title: "Seguridad y Salud en el Trabajo | Ancestral",
+		title: "Seguridad y Salud en el Trabajo (SG-SST) | Ancestral",
 		description:
-			"Diseñamos, implementamos y fortalecemos sistemas de Seguridad y Salud en el Trabajo, auditorías y procesos de gestión para organizaciones públicas y privadas.",
+			"Ancestral diseña, implementa y fortalece Sistemas de Gestión de Seguridad y Salud en el Trabajo (SG-SST), auditorías y procesos de gestión.",
 	},
 ] as const;
 
@@ -53,7 +53,7 @@ describe("SEO configuration", () => {
 		expect(homeSeo).toEqual({
 			title: "Ancestral | Servicios Ambientales en Colombia",
 			description:
-				"Formulamos, asesoramos y ejecutamos proyectos ambientales, forestales, agrícolas, hídricos y de seguridad y salud en el trabajo en Colombia.",
+				"Ancestral Servicios Ambientales formula, asesora y ejecuta proyectos ambientales, forestales, agrícolas, hídricos y de seguridad y salud en el trabajo en Colombia.",
 		});
 		expect(getSeoMetadata("/")).toMatchObject(homeSeo);
 		expect(SOCIAL_IMAGE_URL).toBe(
@@ -63,6 +63,23 @@ describe("SEO configuration", () => {
 			"https://ancestral-col.com/images/brand/ancestral-logo-seo.png"
 		);
 		expect(DEFAULT_ROBOTS_DIRECTIVE).toBe("index,follow,max-image-preview:large");
+	});
+
+	it.each([
+		["/servicios/ambientales", ["servicios ambientales", "consultoría ambiental"]],
+		["/servicios/forestales", ["inventario forestal", "aprovechamiento forestal"]],
+		["/servicios/agricolas", ["servicios de consultoría agrícola", "asesoría técnica"]],
+		["/servicios/recurso-hidrico", ["gestión", "manejo del recurso hídrico"]],
+		["/servicios/seguridad-salud-trabajo", ["Seguridad y Salud en el Trabajo", "SG-SST"]],
+	] as const)("expresses the approved search intent for %s", (route, expectedTerms) => {
+		const metadata = getSeoMetadata(route);
+		const searchableMetadata = `${metadata?.title} ${metadata?.description}`.toLocaleLowerCase(
+			"es"
+		);
+
+		for (const term of expectedTerms) {
+			expect(searchableMetadata).toContain(term.toLocaleLowerCase("es"));
+		}
 	});
 
 	it.each(expectedServiceSeo)("defines the approved metadata for $route", (expected) => {

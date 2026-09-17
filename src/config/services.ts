@@ -43,9 +43,9 @@ export const services = [
 		description: "Formulación, asesoría y ejecución de proyectos ambientales integrales.",
 		route: "/servicios/ambientales",
 		seo: {
-			title: "Servicios Ambientales en Colombia | Ancestral",
+			title: "Servicios Ambientales y Consultoría Ambiental | Ancestral",
 			description:
-				"Formulamos, planificamos, ejecutamos y acompañamos proyectos ambientales para organizaciones públicas y privadas, con experiencia técnica y trabajo en territorio.",
+				"Ancestral brinda servicios ambientales y consultoría ambiental para formular, planificar, ejecutar y acompañar proyectos públicos y privados en Colombia.",
 		},
 		icons: {
 			default: environmentalIcon,
@@ -111,7 +111,7 @@ export const services = [
 		seo: {
 			title: "Servicios Forestales en Colombia | Ancestral",
 			description:
-				"Acompañamos proyectos de manejo, intervención, recuperación y conservación de recursos forestales con conocimiento técnico y experiencia en campo.",
+				"Servicios forestales de Ancestral: inventario forestal, aprovechamiento forestal, manejo, recuperación y conservación con experiencia técnica en campo.",
 		},
 		icons: {
 			default: forestryIcon,
@@ -180,7 +180,7 @@ export const services = [
 		seo: {
 			title: "Servicios Agrícolas en Colombia | Ancestral",
 			description:
-				"Desarrollamos soluciones para proyectos agrícolas mediante asesoría técnica, preparación de tierras, infraestructura, caracterización de suelos y apoyo operativo.",
+				"Ancestral ofrece servicios de consultoría agrícola y asesoría técnica para preparación de tierras, infraestructura, caracterización de suelos y apoyo operativo.",
 		},
 		icons: {
 			default: agriculturalIcon,
@@ -237,9 +237,9 @@ export const services = [
 		description: "Gestión, protección y aprovechamiento sostenible de fuentes hídricas.",
 		route: "/servicios/recurso-hidrico",
 		seo: {
-			title: "Manejo del Recurso Hídrico en Colombia | Ancestral",
+			title: "Gestión del Recurso Hídrico en Colombia | Ancestral",
 			description:
-				"Acompañamos proyectos de planificación, protección y manejo sostenible del recurso hídrico, incluyendo acuíferos, vertimientos, cuencas y cauces.",
+				"Ancestral acompaña la gestión y el manejo del recurso hídrico mediante planificación, protección de acuíferos, cuencas, cauces y manejo de vertimientos.",
 		},
 		icons: {
 			default: waterResourcesIcon,
@@ -300,9 +300,9 @@ export const services = [
 		description: "Implementación de sistemas de gestión y auditorías para entornos seguros.",
 		route: "/servicios/seguridad-salud-trabajo",
 		seo: {
-			title: "Seguridad y Salud en el Trabajo | Ancestral",
+			title: "Seguridad y Salud en el Trabajo (SG-SST) | Ancestral",
 			description:
-				"Diseñamos, implementamos y fortalecemos sistemas de Seguridad y Salud en el Trabajo, auditorías y procesos de gestión para organizaciones públicas y privadas.",
+				"Ancestral diseña, implementa y fortalece Sistemas de Gestión de Seguridad y Salud en el Trabajo (SG-SST), auditorías y procesos de gestión.",
 		},
 		icons: {
 			default: occupationalSafetyIcon,
