@@ -16,7 +16,6 @@ on:
       - "sonar-project.properties"
       - ".github/workflows/production.yml"
 
-
   workflow_dispatch:
 
 permissions:
