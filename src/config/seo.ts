@@ -1,4 +1,3 @@
-import corporateLogo from "../assets/images/logo/full/ancestral-logo.svg";
 import { routePaths } from "./routes";
 import { services } from "./services";
 
@@ -6,7 +5,8 @@ export const SITE_URL = "https://ancestral-col.com";
 export const SITE_NAME = "Ancestral";
 export const ORGANIZATION_NAME = "Ancestral Servicios Ambientales";
 export const SOCIAL_IMAGE_URL = `${SITE_URL}/images/social/ancestral-social-preview.jpg`;
-export const DEFAULT_ROBOTS_DIRECTIVE = "index,follow";
+export const ORGANIZATION_LOGO_URL = `${SITE_URL}/images/brand/ancestral-logo-seo.png`;
+export const DEFAULT_ROBOTS_DIRECTIVE = "index,follow,max-image-preview:large";
 
 export const homeSeo = {
 	title: "Ancestral | Servicios Ambientales en Colombia",
@@ -55,7 +55,7 @@ function createOrganizationSchema(): StructuredData {
 		"@id": `${SITE_URL}/#organization`,
 		name: ORGANIZATION_NAME,
 		url: `${SITE_URL}/`,
-		logo: createCanonicalUrl(corporateLogo),
+		logo: ORGANIZATION_LOGO_URL,
 		telephone: "+57 316 411 4933",
 		address: {
 			"@type": "PostalAddress",
@@ -68,6 +68,27 @@ function createOrganizationSchema(): StructuredData {
 			"@type": "Country",
 			name: "Colombia",
 		},
+	};
+}
+
+function createServiceBreadcrumbSchema(serviceName: string, canonicalUrl: string): StructuredData {
+	return {
+		"@type": "BreadcrumbList",
+		"@id": `${canonicalUrl}#breadcrumb`,
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Todos los servicios",
+				item: createCanonicalUrl(routePaths.home),
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: serviceName,
+				item: canonicalUrl,
+			},
+		],
 	};
 }
 
@@ -142,6 +163,7 @@ export function getStructuredData(pathname: string): StructuredData | undefined 
 					name: "Colombia",
 				},
 			},
+			createServiceBreadcrumbSchema(service.name, metadata.canonicalUrl),
 		],
 	};
 }

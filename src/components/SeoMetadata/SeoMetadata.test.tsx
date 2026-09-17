@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import { Link, MemoryRouter, Route, Routes } from "react-router-dom";
 
 import { services } from "../../config/services";
-import { notFoundSeo } from "../../config/seo";
+import { DEFAULT_ROBOTS_DIRECTIVE, notFoundSeo } from "../../config/seo";
 import { SeoMetadata } from "./SeoMetadata";
 
 function getMetaContent(selector: string) {
@@ -36,10 +36,16 @@ describe("SeoMetadata", () => {
 		await waitFor(() => {
 			expect(document.title).toBe("Ancestral | Servicios Ambientales en Colombia");
 		});
+		expect(getMetaContent('meta[name="robots"]')).toBe(DEFAULT_ROBOTS_DIRECTIVE);
 		expect(document.head.querySelector('link[rel="canonical"]')).toHaveAttribute(
 			"href",
 			"https://ancestral-col.com/"
 		);
+		expect(
+			JSON.parse(document.getElementById("seo-structured-data")?.textContent ?? "")
+		).toMatchObject({
+			"@graph": [{ "@type": "Organization" }, { "@type": "WebSite" }],
+		});
 
 		await user.click(screen.getByRole("link", { name: "Ver servicio" }));
 
@@ -47,14 +53,25 @@ describe("SeoMetadata", () => {
 			expect(document.title).toBe(service.seo.title);
 		});
 		expect(getMetaContent('meta[name="description"]')).toBe(service.seo.description);
-		expect(getMetaContent('meta[name="robots"]')).toBe("index,follow");
+		expect(getMetaContent('meta[name="robots"]')).toBe(DEFAULT_ROBOTS_DIRECTIVE);
 		expect(getMetaContent('meta[property="og:url"]')).toBe(
 			"https://ancestral-col.com/servicios/ambientales"
 		);
 		expect(getMetaContent('meta[name="twitter:card"]')).toBe("summary_large_image");
-		expect(document.getElementById("seo-structured-data")?.textContent).toContain(
-			'"@type":"Service"'
-		);
+		expect(
+			JSON.parse(document.getElementById("seo-structured-data")?.textContent ?? "")
+		).toMatchObject({
+			"@graph": [
+				{ "@type": "Service" },
+				{
+					"@type": "BreadcrumbList",
+					itemListElement: [
+						{ name: "Todos los servicios", item: "https://ancestral-col.com/" },
+						{ name: service.name },
+					],
+				},
+			],
+		});
 	});
 
 	it("removes metadata inherited from a valid route when navigating to an unknown route", async () => {

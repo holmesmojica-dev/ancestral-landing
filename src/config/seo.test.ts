@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 
 import { services } from "./services";
 import {
+	DEFAULT_ROBOTS_DIRECTIVE,
+	ORGANIZATION_LOGO_URL,
 	ORGANIZATION_NAME,
 	SITE_URL,
 	SOCIAL_IMAGE_URL,
@@ -57,6 +59,10 @@ describe("SEO configuration", () => {
 		expect(SOCIAL_IMAGE_URL).toBe(
 			"https://ancestral-col.com/images/social/ancestral-social-preview.jpg"
 		);
+		expect(ORGANIZATION_LOGO_URL).toBe(
+			"https://ancestral-col.com/images/brand/ancestral-logo-seo.png"
+		);
+		expect(DEFAULT_ROBOTS_DIRECTIVE).toBe("index,follow,max-image-preview:large");
 	});
 
 	it.each(expectedServiceSeo)("defines the approved metadata for $route", (expected) => {
@@ -99,14 +105,15 @@ describe("structured data", () => {
 		const organization = graph[0];
 		const website = graph[1];
 
+		expect(graph).toHaveLength(2);
 		expect(organization).toMatchObject({
 			"@type": "Organization",
 			name: ORGANIZATION_NAME,
 			url: "https://ancestral-col.com/",
+			logo: ORGANIZATION_LOGO_URL,
 			telephone: "+57 316 411 4933",
 			areaServed: { "@type": "Country", name: "Colombia" },
 		});
-		expect(organization.logo).toMatch(/^https:\/\/ancestral-col\.com\//);
 		expect(organization).not.toHaveProperty("sameAs");
 		expect(organization).not.toHaveProperty("aggregateRating");
 		expect(website).toMatchObject({
@@ -121,7 +128,9 @@ describe("structured data", () => {
 		const structuredData = getStructuredData(service.route);
 		const graph = structuredData?.["@graph"] as readonly Record<string, unknown>[];
 		const serviceSchema = graph[0];
+		const breadcrumbSchema = graph[1];
 
+		expect(graph).toHaveLength(2);
 		expect(serviceSchema).toMatchObject({
 			"@type": "Service",
 			name: service.name,
@@ -130,6 +139,29 @@ describe("structured data", () => {
 			areaServed: { "@type": "Country", name: "Colombia" },
 			provider: { "@type": "Organization", name: ORGANIZATION_NAME },
 		});
+		expect(breadcrumbSchema).toEqual({
+			"@type": "BreadcrumbList",
+			"@id": `${createCanonicalUrl(service.route)}#breadcrumb`,
+			itemListElement: [
+				{
+					"@type": "ListItem",
+					position: 1,
+					name: "Todos los servicios",
+					item: "https://ancestral-col.com/",
+				},
+				{
+					"@type": "ListItem",
+					position: 2,
+					name: service.name,
+					item: createCanonicalUrl(service.route),
+				},
+			],
+		});
+		expect(JSON.stringify(structuredData)).not.toContain(
+			'"item":"https://ancestral-col.com/servicios"'
+		);
+		expect(JSON.stringify(structuredData)).not.toContain("sameAs");
+		expect(JSON.stringify(structuredData)).not.toContain("aggregateRating");
 	});
 });
 
