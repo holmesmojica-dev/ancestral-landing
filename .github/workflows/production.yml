@@ -312,7 +312,7 @@ jobs:
 
           assert_contains \
             "https://ancestral-col.com/servicios/ambientales" \
-            "<title>Servicios Ambientales en Colombia | Ancestral</title>"
+            "<title>Servicios Ambientales y Consultoría Ambiental | Ancestral</title>"
 
           assert_contains \
             "https://ancestral-col.com/servicios/forestales" \
@@ -324,11 +324,11 @@ jobs:
 
           assert_contains \
             "https://ancestral-col.com/servicios/recurso-hidrico" \
-            "<title>Manejo del Recurso Hídrico en Colombia | Ancestral</title>"
+            "<title>Gestión del Recurso Hídrico en Colombia | Ancestral</title>"
 
           assert_contains \
             "https://ancestral-col.com/servicios/seguridad-salud-trabajo" \
-            "<title>Seguridad y Salud en el Trabajo | Ancestral</title>"
+            "<title>Seguridad y Salud en el Trabajo (SG-SST) | Ancestral</title>"
 
           curl \
             --fail \
