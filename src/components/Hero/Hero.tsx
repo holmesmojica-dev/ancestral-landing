@@ -44,9 +44,9 @@ export function Hero() {
 								Transformamos <span>entornos</span>, generamos vida.
 							</h1>
 							<p className="hero__description">
-								Formulamos, asesoramos y ejecutamos proyectos ambientales en el sector privado y
-								público, con acciones que protegen los recursos naturales y contribuyen a un futuro
-								sostenible.
+								En Ancestral formulamos, asesoramos y ejecutamos proyectos ambientales en el sector
+								privado y público, con acciones que protegen los recursos naturales y contribuyen a
+								un futuro sostenible.
 							</p>
 							<div className="d-flex flex-column flex-sm-row gap-4 hero__actions">
 								<ActionLink href="#servicios" size="large">

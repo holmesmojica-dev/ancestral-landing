@@ -15,6 +15,7 @@ describe("Hero", () => {
 		expect(within(hero).getByRole("heading", { level: 1 })).toHaveTextContent(
 			"Transformamos entornos, generamos vida."
 		);
+		expect(within(hero).getByText(/En Ancestral formulamos/)).toBeVisible();
 		expect(within(hero).getByRole("link", { name: "Nuestros servicios" })).toHaveAttribute(
 			"href",
 			"#servicios"

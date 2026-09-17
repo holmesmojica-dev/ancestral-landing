@@ -16,6 +16,39 @@ Unknown routes are not part of the prerender list or sitemap. The client
 marks an unknown route as `noindex,follow` before the existing service
 fallback navigation completes.
 
+## Search-intent strategy
+
+Home is the primary branded-discovery page. Its title, description,
+visible introduction, `Organization`, and `WebSite` data consistently
+connect **Ancestral**, **Ancestral Servicios Ambientales**, and the
+canonical `ancestral-col.com` origin without repeating the brand
+artificially.
+
+The five service routes are the only non-branded service landing pages:
+
+- `/servicios/ambientales` targets services and environmental
+  consulting (`servicios ambientales` and `consultoría ambiental`).
+- `/servicios/forestales` targets forest services and the approved
+  inventory and harvesting capabilities (`inventario forestal` and
+  `aprovechamiento forestal`).
+- `/servicios/agricolas` targets agricultural services and consulting,
+  supported by the approved technical advice, land preparation,
+  infrastructure, soil characterization, and operational capabilities.
+- `/servicios/recurso-hidrico` prioritizes `gestión del recurso hídrico`
+  while naturally retaining the canonical service name and the concept
+  of `manejo del recurso hídrico`.
+- `/servicios/seguridad-salud-trabajo` connects the complete expression
+  `Seguridad y Salud en el Trabajo` with `SG-SST` and the approved
+  design, implementation, evaluation, and strengthening capabilities.
+
+Search terms must always describe services explicitly supported by the
+approved content architecture. Metadata and visible copy must remain
+truthful, natural Spanish written for prospective clients; exact-match
+repetition, keyword stuffing, fabricated service claims, and unsupported
+locations, credentials, certifications, projects, or results are
+prohibited. New keyword or location routes must not be created to
+duplicate these canonical pages.
+
 ## Build-time architecture
 
 `npm run build` creates the normal Vite client bundle and a temporary

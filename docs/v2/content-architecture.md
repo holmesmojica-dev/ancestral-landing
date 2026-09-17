@@ -218,9 +218,9 @@ visual design.
 
 ### Supporting copy
 
-> Formulamos, asesoramos y ejecutamos proyectos ambientales en el sector
-> privado y público, con acciones que protegen los recursos naturales y
-> contribuyen a un futuro sostenible.
+> En Ancestral formulamos, asesoramos y ejecutamos proyectos ambientales
+> en el sector privado y público, con acciones que protegen los recursos
+> naturales y contribuyen a un futuro sostenible.
 
 ### Primary CTA
 
