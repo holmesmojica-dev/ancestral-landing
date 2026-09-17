@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest";
 
 import robots from "../../public/robots.txt?raw";
-import { homeSeo, notFoundSeo } from "../config/seo";
+import {
+	DEFAULT_ROBOTS_DIRECTIVE,
+	ORGANIZATION_LOGO_URL,
+	homeSeo,
+	notFoundSeo,
+} from "../config/seo";
 import { routePaths } from "../config/routes";
 import { services } from "../config/services";
 import { createSitemap, indexableRoutes, notFoundRoute, renderDocument } from "../entry-server";
@@ -12,6 +17,13 @@ const template = `<!doctype html>
 	<body><div id="root"><!--app-html--></div></body>
 </html>`;
 
+function readStructuredData(html: string) {
+	const document = new DOMParser().parseFromString(html, "text/html");
+	const content = document.getElementById("seo-structured-data")?.textContent;
+
+	return JSON.parse(content ?? "") as Readonly<Record<string, unknown>>;
+}
+
 describe("build-time prerendering", () => {
 	it("renders route-specific Home metadata and content into the initial HTML", () => {
 		const html = renderDocument(template, "/");
@@ -19,9 +31,14 @@ describe("build-time prerendering", () => {
 		expect(html).toContain('<html lang="es">');
 		expect(html).toContain("<title>Ancestral | Servicios Ambientales en Colombia</title>");
 		expect(html).toContain("Transformamos");
+		expect(html).toContain(`content="${DEFAULT_ROBOTS_DIRECTIVE}"`);
 		expect(html).toContain('type="application/ld+json"');
-		expect(html).toContain('"@type":"Organization"');
-		expect(html).toContain('"@type":"WebSite"');
+
+		const graph = readStructuredData(html)["@graph"] as readonly Record<string, unknown>[];
+
+		expect(graph).toHaveLength(2);
+		expect(graph[0]).toMatchObject({ "@type": "Organization", logo: ORGANIZATION_LOGO_URL });
+		expect(graph[1]).toMatchObject({ "@type": "WebSite" });
 	});
 
 	it("renders internal React Router links for root and subpath deployments", () => {
@@ -42,9 +59,32 @@ describe("build-time prerendering", () => {
 
 		expect(html).toContain(`<title>${service.seo.title}</title>`);
 		expect(html).toContain(`content="${service.seo.description}"`);
+		expect(html).toContain(`content="${DEFAULT_ROBOTS_DIRECTIVE}"`);
 		expect(html).toContain(`href="https://ancestral-col.com${service.route}"`);
 		expect(html).toContain(service.name);
-		expect(html).toContain('"@type":"Service"');
+
+		const graph = readStructuredData(html)["@graph"] as readonly Record<string, unknown>[];
+
+		expect(graph).toHaveLength(2);
+		expect(graph[0]).toMatchObject({ "@type": "Service" });
+		expect(graph[1]).toEqual({
+			"@type": "BreadcrumbList",
+			"@id": `https://ancestral-col.com${service.route}#breadcrumb`,
+			itemListElement: [
+				{
+					"@type": "ListItem",
+					position: 1,
+					name: "Todos los servicios",
+					item: "https://ancestral-col.com/",
+				},
+				{
+					"@type": "ListItem",
+					position: 2,
+					name: service.name,
+					item: `https://ancestral-col.com${service.route}`,
+				},
+			],
+		});
 		expect(html).not.toContain("<title>Ancestral | Servicios Ambientales en Colombia</title>");
 	});
 

@@ -41,16 +41,16 @@ are derived rather than duplicated.
 
 The shared social preview is the approved
 `public/images/social/ancestral-social-preview.jpg`. The Organization
-schema uses the existing full corporate logo source; Vite publishes that
-real asset and the generated schema converts its output path to an
-absolute production URL.
+schema uses the stable public asset
+`public/images/brand/ancestral-logo-seo.png`, published at the absolute
+production URL `https://ancestral-col.com/images/brand/ancestral-logo-seo.png`.
 
 ## Metadata and structured data
 
 Every indexable route includes:
 
 - a unique title and description;
-- `index,follow`;
+- `index,follow,max-image-preview:large`;
 - an absolute canonical URL;
 - Open Graph `website`, `es_CO`, site, route, and image fields;
 - Twitter/X large-image summary fields;
@@ -58,10 +58,15 @@ Every indexable route includes:
 
 Home publishes an `Organization` and `WebSite` graph. Service pages
 publish a route-specific `Service` whose provider is the same
-Organization and whose service area is Colombia. Structured data is
-limited to verified institutional information; it does not claim
-ratings, reviews, prices, certifications, awards, clients, hours, or
-social profiles.
+Organization and whose service area is Colombia, plus a `BreadcrumbList`
+that represents `Todos los servicios → servicio actual`. Its first level
+uses the canonical Home URL; no intermediate `/servicios` page is
+invented. Structured data is limited to verified institutional
+information; it does not claim ratings, reviews, prices, certifications,
+awards, clients, hours, or social profiles.
+
+Unknown and 404 pages continue using `noindex,follow` without canonical,
+social metadata, or structured data.
 
 `public/robots.txt` allows public crawling and points to
 `https://ancestral-col.com/sitemap.xml`. The generated sitemap contains

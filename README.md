@@ -150,7 +150,8 @@ The repository currently provides:
 - An accessible routed React application shell prepared for the
   production domain root.
 - Build-time prerendering and route-specific SEO for Home and the five
-  service pages.
+  service pages, including canonical metadata, social metadata, structured
+  data, and sitemap alignment.
 - The approved responsive Header and contextual navigation.
 - The complete approved Ancestral Landing V2 Home experience.
 - The five official service areas and their reusable Service Detail
