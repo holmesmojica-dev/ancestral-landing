@@ -937,11 +937,11 @@ behavior, and accessibility when deciding how the map is loaded.
 
 # 19. Contact information
 
-Based on the 2026 brochure:
+Current approved corporate contact information:
 
 ### Phone
 
-> +57 316 411 4933
+> +57 317 771 1133
 
 ### Address
 
@@ -982,7 +982,7 @@ Supporting copy:
 Information:
 
 - Calle 54 \# 22 - 12, Bucaramanga, Santander
-- +57 316 411 4933
+- +57 317 771 1133
 
 Approved social media channels may also be displayed through their
 corresponding icons.
@@ -1170,7 +1170,7 @@ Confirm:
 
 - Calle 54 \# 22 - 12.
 - Bucaramanga, Santander.
-- +57 316 411 4933.
+- +57 317 771 1133.
 - WhatsApp number.
 
 ### Business hours
