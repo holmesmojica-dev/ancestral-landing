@@ -128,7 +128,7 @@ describe("structured data", () => {
 			name: ORGANIZATION_NAME,
 			url: "https://ancestral-col.com/",
 			logo: ORGANIZATION_LOGO_URL,
-			telephone: "+57 316 411 4933",
+			telephone: "+57 317 771 1133",
 			areaServed: { "@type": "Country", name: "Colombia" },
 		});
 		expect(organization).not.toHaveProperty("sameAs");
@@ -154,7 +154,11 @@ describe("structured data", () => {
 			description: service.seo.description,
 			url: createCanonicalUrl(service.route),
 			areaServed: { "@type": "Country", name: "Colombia" },
-			provider: { "@type": "Organization", name: ORGANIZATION_NAME },
+			provider: {
+				"@type": "Organization",
+				name: ORGANIZATION_NAME,
+				telephone: "+57 317 771 1133",
+			},
 		});
 		expect(breadcrumbSchema).toEqual({
 			"@type": "BreadcrumbList",

@@ -1,3 +1,4 @@
+import { contactDetails } from "./contact";
 import { routePaths } from "./routes";
 import { services } from "./services";
 
@@ -56,7 +57,7 @@ function createOrganizationSchema(): StructuredData {
 		name: ORGANIZATION_NAME,
 		url: `${SITE_URL}/`,
 		logo: ORGANIZATION_LOGO_URL,
-		telephone: "+57 316 411 4933",
+		telephone: contactDetails.phoneDisplay,
 		address: {
 			"@type": "PostalAddress",
 			streetAddress: "Calle 54 # 22 - 12",
